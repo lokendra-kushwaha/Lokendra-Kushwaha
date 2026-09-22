@@ -1,0 +1,525 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Pitch black background with subtle grid feel */
+body {
+    background-color: #050505; 
+    color: #a3a3a3;
+    line-height: 1.6;
+}
+
+/* Sharp edge navigation box */
+.nav-box {
+    width: 90%;
+    margin: 20px auto 0;
+    background: #0a0a0a;
+    border: 1px solid #00f3ff; /* Sharp neon border */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    box-shadow: 0px 5px 15px rgba(0, 243, 255, 0.1);
+    position: relative;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.menu a:hover {
+    color: #00f3ff;
+    text-shadow: 0 0 8px #00f3ff; /* Glowing text on hover */
+}
+
+/* Main content area */
+.main-section {
+    height: 85vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10%;
+    margin-top: 50px;
+}
+
+.intro-text {
+    max-width: 60%;
+}
+
+.intro-text h1 {
+    font-size: 4.0rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Neon text highlight */
+.accent-text {
+    color: #00f3ff; 
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.5);
+}
+
+.intro-text h2 {
+    font-size: 1.5rem;
+    color: #8b949e;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    margin-bottom: 45px;
+    color: #6e7681;
+}
+
+/* Sharp technical button */
+.action-btn {
+    text-decoration: none;
+    color: #050505;
+    background-color: #00f3ff;
+    padding: 12px 35px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+    border: 2px solid #00f3ff;
+}
+
+.action-btn:hover {
+    background-color: transparent;
+    color: #00f3ff;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+}
+
+/* Right side layout */
+.profile-area {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Square target box instead of circle */
+.image-circle {
+    width: 300px;
+    height: 300px;
+    border: 1px solid #00f3ff;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 243, 255, 0.5);
+    font-size: 14px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Adding technical corners */
+.image-circle::before, .image-circle::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00f3ff;
+}
+
+.image-circle::before {
+    top: -5px; left: -5px;
+    border-right: none; border-bottom: none;
+}
+
+.image-circle::after {
+    bottom: -5px; right: -5px;
+    border-left: none; border-top: none;
+}
+
+.image-circle:hover {
+    background-color: rgba(0, 243, 255, 0.05);
+    box-shadow: inset 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+/* =========================================
+   About Section - Glassmorphism Grid
+========================================= */
+.about-section {
+    padding: 50px 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Section Title Font Override (Cyberpunk Font) */
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 60px;
+    font-family: 'Orbitron', sans-serif; 
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Grid Layout for 3 Boxes */
+.about-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+/* Glassmorphism Box Design */
+.about-box {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 40px 30px;
+    transition: all 0.4s ease;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover Effect - Card moves up and glows */
+.about-box:hover {
+    transform: translateY(-10px);
+    border-color: rgba(0, 243, 255, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 243, 255, 0.15);
+}
+
+/* Box Headings Font Override (Technical Font) */
+.about-box h3 {
+    font-size: 1.6rem;
+    color: #00f3ff;
+    margin-bottom: 20px;
+    font-family: 'Rajdhani', sans-serif; 
+    letter-spacing: 1px;
+}
+
+/* Box Paragraph Font Override (Clean Reading Font) */
+.about-box p {
+    color: #8b949e;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* =========================================
+   Contact Section - Advanced Layout
+========================================= */
+.contact-section {
+    padding: 100px 10%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Glassmorphism Container for Contact */
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* Left Side: Info & Socials */
+.contact-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-info h3 {
+    font-size: 2rem;
+    color: #00f3ff;
+    margin-bottom: 15px;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 1px;
+}
+
+.contact-info p {
+    color: #8b949e;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+}
+
+.email-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.2rem;
+    color: #e2e8f0;
+    margin-bottom: 45px;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.email-box i {
+    color: #00f3ff;
+    font-size: 1.5rem;
+}
+
+/* Social Media Icons Styling */
+.social-links {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-icon:hover {
+    background: #00f3ff;
+    color: #050505;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.6);
+    transform: translateY(-5px);
+}
+
+/* Right Side: Contact Form Styling */
+.contact-form-box {
+    flex: 1;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Input Fields Design */
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Glowing Effect on Typing (Focus) */
+.input-group input:focus,
+.input-group textarea:focus {
+    border-color: #00f3ff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Custom Submit Button */
+.submit-btn {
+    width: 100%;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (TABLETS & MOBILE)
+========================================= */
+
+/* Hide Hamburger Menu on Desktop */
+.hamburger {
+    display: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.hamburger:hover {
+    color: #00f3ff;
+}
+
+/* -----------------------------------------
+   TABLET VIEW (Max Width: 991px)
+----------------------------------------- */
+@media (max-width: 991px) {
+    /* Adjusting outer spacing */
+    .nav-box {
+        width: 90%;
+        padding: 12px 25px;
+    }
+    
+    .main-section, .about-section, .contact-section {
+        padding: 60px 5%;
+    }
+
+    /* Shrinking Hero Section text */
+    .intro-text h1 {
+        font-size: 3rem;
+    }
+    
+    .intro-text h2 {
+        font-size: 1.3rem;
+    }
+
+    /* Modifying About Section Grid */
+    .about-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablet */
+    }
+
+    /* Adjusting Contact Form Layout */
+    .contact-container {
+        flex-direction: column; /* Stack form below info */
+        padding: 30px;
+    }
+}
+
+/* -----------------------------------------
+   MOBILE VIEW (Max Width: 768px)
+----------------------------------------- */
+@media (max-width: 768px) {
+    /* Navbar & Full Screen Glass Menu */
+    .hamburger {
+        display: block; /* Show hamburger icon */
+    }
+
+    .menu {
+        position: absolute;
+        top: 70px; /* Place below navbar */
+        left: 0;
+        right: 0;
+        background: rgba(13, 17, 23, 0.95);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        padding: 30px 0;
+        gap: 25px;
+        border-radius: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        
+        /* Animation states */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-20px);
+        transition: all 0.4s ease;
+    }
+
+    /* Class added via JavaScript to open menu */
+    .menu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    /* Hero Section (Stacking elements vertically) */
+    .main-section {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: auto;
+        min-height: 100vh;
+        padding-top: 50px;
+        gap: 50px;
+    }
+
+    .intro-text, .profile-area {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .profile-area {
+        justify-content: center;
+    }
+
+    .image-circle {
+        width: 250px; /* Smaller circle for mobile */
+        height: 250px;
+    }
+
+    .intro-text h1 {
+        font-size: 2.5rem;
+    }
+
+    /* About Section (1 Column) */
+    .about-container {
+        grid-template-columns: 1fr; /* 1 column on mobile */
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+    }
+
+    /* Contact Section adjustments */
+    .contact-info h3 {
+        font-size: 1.6rem;
+        text-align: center;
+        align-items: center; 
+    }
+
+    .email-box {
+    font-size: 11.5px; 
+    gap: 8px; 
+    justify-content: center;
+    word-break: break-word; 
+    }
+
+    .logo {
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
+
+    .social-links {
+        justify-content: center; 
+    }
+
+    .contact-container {
+        padding: 30px 20px; 
+        gap: 30px;
+    }
+
+    .about-box {
+        text-align: center;
+        padding: 30px 20px;
+    }
+    
+}
