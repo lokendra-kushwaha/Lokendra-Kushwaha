@@ -1,0 +1,193 @@
+/* =========================================
+   Projects UI Architecture
+========================================= */
+.projects-section {
+    padding: 120px 5%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 2-Column Grid for Desktop */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 80px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+/* Project Card Glassmorphism */
+.project-card {
+    background: rgba(13, 17, 23, 0.6);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    border: 1px solid rgba(0, 243, 255, 0.4);
+    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+/* Image Hover Physics */
+.project-image-box {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    background: #050505; /* Fallback color agar image na ho */
+}
+
+.project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img {
+    transform: scale(1.08); /* Smooth zoom effect */
+}
+
+/* Content Area */
+.project-content {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Neon Tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tech-tag {
+    background: rgba(0, 243, 255, 0.1);
+    color: #00f3ff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    letter-spacing: 1px;
+}
+
+.project-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.project-desc {
+    font-family: 'Poppins', sans-serif;
+    color: #a3b3c6;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    flex-grow: 1;
+}
+
+/* Buttons System */
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-links a {
+    flex: 1;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: 5px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+/* Solid Neon Button */
+.btn-live {
+    background: #00f3ff;
+    color: #0d1117;
+    font-weight: 700;
+}
+
+.btn-live:hover {
+    background: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+}
+
+/* Outline Ghost Button */
+.btn-github {
+    background: transparent;
+    color: #ffffff;
+    border: 1px solid #58a6ff;
+}
+
+.btn-github:hover {
+    background: rgba(88, 166, 255, 0.1);
+    border-color: #00f3ff;
+    color: #00f3ff;
+}
+
+.subtitle {
+    color: #8b949e;
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 50px;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (Tablets & Mobile)
+========================================= */
+@media (max-width: 991px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        max-width: 600px;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-section {
+        padding-top: 60px; 
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .section-title {
+        font-size: 2.0rem;
+        overflow-wrap: break-word;
+        word-wrap: break-word;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 15px;
+        margin-bottom: 30px;
+    }
+    
+    .project-image-box {
+        height: 200px;
+    }
+    
+    .project-links {
+        flex-direction: column;
+    }
+}
