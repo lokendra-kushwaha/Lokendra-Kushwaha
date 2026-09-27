@@ -424,29 +424,29 @@ body {
 
     .menu {
         position: absolute;
-        top: 70px; /* Place below navbar */
+        top: 70px;
         left: 0;
         right: 0;
-        background: rgba(13, 17, 23, 0.95);
-        backdrop-filter: blur(20px);
+        background: #0a0a0a;
         flex-direction: column;
         align-items: center;
         padding: 30px 0;
         gap: 25px;
         border-radius: 15px;
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        
-        /* Animation states */
+        border: 1px solid rgba(0, 243, 255, 0.3);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.9);
+        z-index: 999;
         opacity: 0;
         visibility: hidden;
+        pointer-events: none;
         transform: translateY(-20px);
-        transition: all 0.4s ease;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     }
 
-    /* Class added via JavaScript to open menu */
     .menu.active {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto;
         transform: translateY(0);
     }
 
