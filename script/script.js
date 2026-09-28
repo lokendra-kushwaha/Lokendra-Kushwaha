@@ -167,6 +167,7 @@ if (canvas) {
     draw();
 }
 
+document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]').forEach(function(el) { el.remove(); });
 const favCanvas = document.createElement('canvas');
 favCanvas.width = 64;
 favCanvas.height = 64;
@@ -676,8 +677,11 @@ function updateTabFavicon(hexColor) {
     ctx.textBaseline = 'middle';
     ctx.fillText('LK', 32, 34);
 
-    let link = document.querySelector('link[rel="icon"]');
-    if (link) link.href = c.toDataURL('image/png');
+    document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]').forEach(function(el) { el.remove(); });
+    let link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = c.toDataURL('image/png');
+    document.head.appendChild(link);
 }
 
 function applyCyberTheme(key) {
