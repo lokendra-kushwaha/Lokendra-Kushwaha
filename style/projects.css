@@ -558,3 +558,33 @@ div:has(+ h2) > span {
     flex: 0 0 auto !important;
     white-space: nowrap !important;
 }
+
+/* =========================================================
+   INTERACTIVE BLUEPRINT SANDBOX HUD & HOVER STATES
+   ========================================================= */
+.cyber-blueprint-wrap,
+div:has(> canvas) {
+    position: relative !important;
+    cursor: crosshair !important;
+    user-select: none !important;
+}
+
+.blueprint-hud-pill {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    z-index: 5;
+    font-family: 'Courier New', Consolas, monospace !important;
+    font-size: 0.65rem !important;
+    letter-spacing: 0.8px !important;
+    color: var(--neon-color, #00f3ff) !important;
+    background: rgba(5, 8, 12, 0.88) !important;
+    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.45) !important;
+    padding: 3px 8px !important;
+    pointer-events: none;
+    transition: all 0.2s ease;
+}
+
+.blueprint-active-pulse {
+    box-shadow: inset 0 0 28px rgba(var(--neon-rgb, 0, 243, 255), 0.28) !important;
+}

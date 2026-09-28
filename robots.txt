@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lokendra-kushwaha.web.app/sitemap.txt

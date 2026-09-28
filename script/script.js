@@ -909,6 +909,31 @@ function applyCyberTheme(key) {
     return theme;
 }
 
+// Sync Quick Navigation Links with Activ Theme
+(function syncQuickNavTheme() {
+    var styleId = 'cyber-quicknav-theme-sync';
+    if (document.getElementById(styleId)) return;
+
+    var styleEl = document.createElement('style');
+    styleEl.id = styleId;
+    styleEl.textContent = [
+        'a[href*="#LOG_"], .quick-nav a, #quick-nav-list a {',
+        '    color: rgba(var(--neon-rgb, 0, 243, 255), 0.82) !important;',
+        '    transition: all 0.22s ease !important;',
+        '}',
+        'a[href*="#LOG_"] *, .quick-nav a * {',
+        '    color: inherit !important;',
+        '}',
+        'a[href*="#LOG_"]:hover, .quick-nav a:hover, #quick-nav-list a:hover {',
+        '    color: var(--neon-color, #00f3ff) !important;',
+        '    text-shadow: 0 0 12px rgba(var(--neon-rgb, 0, 243, 255), 0.7) !important;',
+        '    border-color: var(--neon-color, #00f3ff) !important;',
+        '}'
+    ].join('\n');
+
+    document.head.appendChild(styleEl);
+})();
+
 // Scan hardcoded colors first, then apply saved theme
 scanHardcodedCyanElements();
 applyCyberTheme(activeThemeKey);
@@ -1226,7 +1251,8 @@ window.addEventListener('keydown', (e) => {
     ];
 
     if (typeof commands !== 'undefined') {
-        commands.help += '\n\nENGINEERING DIAGNOSTICS:\n  benchmark     -> Run 200x200 Float64 Matrix Compute Test\n  sysinfo       -> Display Hardware & Browser Telemetry\n  [Tab Key]     -> Auto-complete any terminal command';
+        commands.help += '\n\nENGINEERING DIAGNOSTICS:\n  benchmark     -> Run 200x200 Float64 Matrix Compute Test\n  sysinfo       -> Display Hardware & Browser Telemetry\n  xray          -> Toggle Live X-Ray Architecture & Telemetry HUD\n  [X Key]       -> Press X anytime to toggle X-Ray Mode\n  [Tab Key]     -> Auto-complete any terminal command';
+        commands.xray = '[X-RAY_HUD]: Toggling Live Architecture Wireframe...';
     }
 
     // Real 200x200 Float64 Matrix Multiplication Benchmark
@@ -1870,4 +1896,850 @@ window.addEventListener('keydown', (e) => {
     mountSiliconLabs();
     window.addEventListener('DOMContentLoaded', mountSiliconLabs);
     setTimeout(mountSiliconLabs, 200);
+})();
+
+// =========================================================
+// GLOBAL X-RAY ARCHITECTURE MODE (BUTTON + TERMINAL + 'X' KEY)
+// =========================================================
+(function initCyberXRayArchitecture() {
+    if (window.__cyberXRayV2Initialized) return;
+    window.__cyberXRayV2Initialized = true;
+
+    var xrayActive = false;
+    var rafId = null;
+    var lastFrameTime = performance.now();
+    var frameCount = 0;
+    var currentFps = 60;
+    var currentFrameMs = 16.6;
+    var mouseVec = { x: 0, y: 0 };
+    var hoveredSignature = 'ROOT_VIEWPORT';
+    var dockToggleBtn = null;
+
+    function makeEl(tag, className, text) {
+        var el = document.createElement(tag);
+        if (className) el.className = className;
+        if (text !== undefined) el.textContent = text;
+        return el;
+    }
+
+    // 1. Inject Clean Theme-Synced X-Ray CSS
+    var styleEl = document.createElement('style');
+    styleEl.id = 'cyber-xray-styles';
+    styleEl.textContent = [
+        'body.cyber-xray-active::before {',
+        '    content: "";',
+        '    position: fixed;',
+        '    inset: 0;',
+        '    pointer-events: none;',
+        '    z-index: 9990;',
+        '    background-image:',
+        '        linear-gradient(to right, rgba(var(--neon-rgb, 0, 243, 255), 0.06) 1px, transparent 1px),',
+        '        linear-gradient(to bottom, rgba(var(--neon-rgb, 0, 243, 255), 0.06) 1px, transparent 1px);',
+        '    background-size: 32px 32px;',
+        '}',
+        '.xray-hud-panel {',
+        '    position: fixed !important;',
+        '    top: auto !important;',
+        '    bottom: 20px !important;',
+        '    left: 20px !important;',
+        '    z-index: 10002 !important;',
+        '    width: 340px !important;',
+        '    padding: 12px 14px !important;',
+        '    background: rgba(5, 8, 12, 0.94) !important;',
+        '    border: 1px solid var(--neon-color, #00f3ff) !important;',
+        '    border-left: 4px solid var(--neon-color, #00f3ff) !important;',
+        '    box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), 0 0 15px rgba(var(--neon-rgb, 0, 243, 255), 0.25) !important;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '    color: #e6edf3 !important;',
+        '    display: none;',
+        '    pointer-events: auto;',
+        '    user-select: none;',
+        '}',
+        'body.cyber-xray-active .xray-hud-panel {',
+        '    display: block !important;',
+        '}',
+        '.xray-hud-title {',
+        '    display: flex !important;',
+        '    justify-content: space-between !important;',
+        '    align-items: center !important;',
+        '    white-space: nowrap !important;',
+        '    gap: 10px !important;',
+        '    font-size: 0.68rem !important;',
+        '    font-weight: 700;',
+        '    color: var(--neon-color, #00f3ff);',
+        '    border-bottom: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.3);',
+        '    padding-bottom: 6px;',
+        '    margin-bottom: 8px;',
+        '    letter-spacing: 1px;',
+        '}',
+        '.xray-close-btn {',
+        '    background: transparent;',
+        '    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.5);',
+        '    color: var(--neon-color, #00f3ff);',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '    font-size: 0.65rem !important;',
+        '    padding: 2px 8px !important;',
+        '    white-space: nowrap !important;',
+        '    flex-shrink: 0 !important;',
+        '    cursor: pointer;',
+        '}',
+        '.xray-close-btn:hover {',
+        '    background: var(--neon-color, #00f3ff);',
+        '    color: #050505;',
+        '}',
+        '.xray-hud-row {',
+        '    display: flex;',
+        '    justify-content: space-between;',
+        '    font-size: 0.72rem !important;',
+        '    line-height: 1.55;',
+        '    color: #c9d1d9;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '}',
+        '.xray-hud-val {',
+        '    color: var(--neon-color, #00f3ff);',
+        '    font-weight: 700;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '}',
+        '.xray-hud-target {',
+        '    margin-top: 8px;',
+        '    padding-top: 6px;',
+        '    border-top: 1px dashed rgba(var(--neon-rgb, 0, 243, 255), 0.3);',
+        '    font-size: 0.66rem !important;',
+        '    color: #8b949e;',
+        '    white-space: nowrap;',
+        '    overflow: hidden;',
+        '    text-overflow: ellipsis;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '}',
+        'body.cyber-xray-active .xray-inspected-node {',
+        '    outline: 1px dashed rgba(var(--neon-rgb, 0, 243, 255), 0.65) !important;',
+        '    outline-offset: 2px !important;',
+        '    position: relative !important;',
+        '}',
+        'body.cyber-xray-active .xray-inspected-node:hover {',
+        '    outline: 1px solid var(--neon-color, #00f3ff) !important;',
+        '    box-shadow: inset 0 0 18px rgba(var(--neon-rgb, 0, 243, 255), 0.14) !important;',
+        '}',
+        '.xray-node-badge {',
+        '    display: none;',
+        '    position: absolute;',
+        '    top: auto !important;',
+        '    bottom: 0 !important;',
+        '    left: 0 !important;',
+        '    z-index: 30;',
+        '    max-width: 100% !important;',
+        '    overflow: hidden !important;',
+        '    text-overflow: ellipsis !important;',
+        '    background: rgba(5, 8, 12, 0.95) !important;',
+        '    color: var(--neon-color, #00f3ff);',
+        '    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.55);',
+        '    padding: 2px 8px !important;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '    font-size: 0.58rem !important;',
+        '    letter-spacing: 0.5px !important;',
+        '    pointer-events: none;',
+        '    white-space: nowrap;',
+        '}',
+        'body.cyber-xray-active .xray-node-badge {',
+        '    display: inline-block;',
+        '}',
+        '.telemetry-bar > .xray-node-badge,',
+        '.cyber-filter-bar > .xray-node-badge,',
+        '.quick-nav > .xray-node-badge {',
+        '    display: none !important;',
+        '}',
+        '.cyber-xray-dock-btn {',
+        '    background: rgba(5, 8, 12, 0.9) !important;',
+        '    color: var(--neon-color, #00f3ff) !important;',
+        '    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.5) !important;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '    font-size: 0.75rem !important;',
+        '    padding: 8px 12px !important;',
+        '    cursor: pointer !important;',
+        '    transition: all 0.2s ease !important;',
+        '    letter-spacing: 0.8px !important;',
+        '}',
+        '.cyber-xray-dock-btn:hover, .cyber-xray-dock-btn.active {',
+        '    background: rgba(var(--neon-rgb, 0, 243, 255), 0.18) !important;',
+        '    border-color: var(--neon-color, #00f3ff) !important;',
+        '    box-shadow: 0 0 12px rgba(var(--neon-rgb, 0, 243, 255), 0.4) !important;',
+        '}',
+        '@media (max-width: 768px) {',
+        '    .xray-hud-panel {',
+        '        bottom: 64px !important;',
+        '        left: 10px !important;',
+        '        right: 10px !important;',
+        '        width: auto !important;',
+        '        padding: 9px 12px !important;',
+        '    }',
+        '}'
+    ].join('\n');
+    document.head.appendChild(styleEl);
+
+    // 2. Build Global Telemetry HUD Panel
+    var hudPanel = makeEl('div', 'xray-hud-panel');
+    var titleBar = makeEl('div', 'xray-hud-title');
+    titleBar.appendChild(makeEl('span', '', '[ // X-RAY_ARCHITECTURE_HUD ]'));
+    var closeBtn = makeEl('button', 'xray-close-btn', 'ESC / X');
+    closeBtn.type = 'button';
+    titleBar.appendChild(closeBtn);
+    hudPanel.appendChild(titleBar);
+
+    function createMetricRow(label, defaultVal) {
+        var row = makeEl('div', 'xray-hud-row');
+        var lbl = makeEl('span', '', label);
+        var val = makeEl('span', 'xray-hud-val', defaultVal);
+        row.appendChild(lbl);
+        row.appendChild(val);
+        hudPanel.appendChild(row);
+        return val;
+    }
+
+    var fpsValEl = createMetricRow('REALTIME_FPS:', '60 FPS');
+    var frameMsValEl = createMetricRow('FRAME_TIME:', '16.6 ms');
+    var memValEl = createMetricRow('MEMORY_FOOTPRINT:', '-- MB');
+    var domValEl = createMetricRow('DOM_GRAPH_NODES:', '--');
+    var canvasValEl = createMetricRow('ACTIVE_CANVASES:', '--');
+    var vecValEl = createMetricRow('CURSOR_VECTOR:', '(0, 0)');
+
+    var targetEl = makeEl('div', 'xray-hud-target', 'INSPECT: ROOT_VIEWPORT');
+    hudPanel.appendChild(targetEl);
+
+    // 3. Mount On-Screen Button (Next to SFX: ON & >_ TERMINAL) so No Keyboard is Required!
+    function mountHudAndButton() {
+        if (document.body && !document.body.contains(hudPanel)) {
+            document.body.appendChild(hudPanel);
+        }
+
+        if (!dockToggleBtn || !document.body.contains(dockToggleBtn)) {
+            var allBtns = Array.from(document.querySelectorAll('button, div, span'));
+            var sfxOrTermBtn = allBtns.find(function(el) {
+                var txt = (el.textContent || '').trim();
+                return (txt.indexOf('SFX:') !== -1 || txt === '>_ TERMINAL') && el.tagName === 'BUTTON';
+            });
+
+            if (sfxOrTermBtn && sfxOrTermBtn.parentElement) {
+                dockToggleBtn = makeEl('button', sfxOrTermBtn.className + ' cyber-xray-dock-btn', 'X-RAY: OFF');
+                dockToggleBtn.type = 'button';
+                dockToggleBtn.title = 'Toggle X-Ray Architecture HUD (Shortcut: X)';
+                sfxOrTermBtn.parentElement.insertBefore(dockToggleBtn, sfxOrTermBtn);
+
+                dockToggleBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleCyberXRay();
+                });
+            }
+        }
+    }
+
+    if (document.body) mountHudAndButton();
+    window.addEventListener('DOMContentLoaded', mountHudAndButton);
+    setTimeout(mountHudAndButton, 400);
+
+    // 4. Attach Corner Telemetry Badges to Cards & Canvases
+    function refreshNodeBadges() {
+        var selectors = [
+            '.project-card',
+            '[id^="LOG_"]',
+            '.memory-trap-lab',
+            '#contact form',
+            '.main-section canvas'
+        ];
+        var targets = Array.from(document.querySelectorAll(selectors.join(',')));
+
+        targets.forEach(function(el, idx) {
+            if (el.tagName === 'A') return;
+            var targetBox = (el.tagName === 'CANVAS' && el.parentElement) ? el.parentElement : el;
+            targetBox.classList.add('xray-inspected-node');
+
+            var badge = targetBox.querySelector(':scope > .xray-node-badge');
+            if (!badge) {
+                badge = makeEl('span', 'xray-node-badge');
+                targetBox.appendChild(badge);
+            }
+
+            var rect = targetBox.getBoundingClientRect();
+            var w = Math.round(rect.width);
+            var h = Math.round(rect.height);
+            var domCount = targetBox.querySelectorAll('*').length;
+            var hasCanvas = targetBox.querySelector('canvas');
+
+            var memKb = (domCount * 0.45);
+            if (hasCanvas) {
+                memKb += (hasCanvas.width * hasCanvas.height * 4) / 1024;
+            }
+            var renderEstMs = (0.08 + (domCount * 0.012) + (hasCanvas ? 0.42 : 0)).toFixed(2);
+            var nodeName = targetBox.id || (hasCanvas ? 'CANVAS_KERNEL_0' + (idx + 1) : 'ARCH_BLOCK_0' + (idx + 1));
+
+            badge.textContent = '[ ' + nodeName.toUpperCase() + ' // ' + w + 'x' + h + 'px // DOM:' + domCount + ' // MEM:' + memKb.toFixed(1) + 'KB // ' + renderEstMs + 'ms ]';
+        });
+    }
+
+    // 5. Live 60FPS Telemetry Loop
+    function updateTelemetryLoop(now) {
+        if (!xrayActive) return;
+
+        frameCount++;
+        var delta = now - lastFrameTime;
+
+        if (delta >= 250) {
+            currentFps = Math.min(144, Math.round((frameCount * 1000) / delta));
+            currentFrameMs = (delta / frameCount).toFixed(2);
+            frameCount = 0;
+            lastFrameTime = now;
+
+            fpsValEl.textContent = currentFps + ' FPS';
+            frameMsValEl.textContent = currentFrameMs + ' ms';
+
+            var allDom = document.getElementsByTagName('*').length;
+            var canvases = document.querySelectorAll('canvas');
+            domValEl.textContent = allDom + ' NODES';
+            canvasValEl.textContent = canvases.length + ' KERNELS';
+
+            var memMb = 0;
+            if (window.performance && performance.memory && performance.memory.usedJSHeapSize) {
+                memMb = (performance.memory.usedJSHeapSize / 1048576);
+            } else {
+                var pixelBytes = 0;
+                canvases.forEach(function(c) {
+                    pixelBytes += (c.width || 300) * (c.height || 200) * 4;
+                });
+                memMb = 14.2 + (allDom * 0.004) + (pixelBytes / 1048576);
+            }
+            memValEl.textContent = memMb.toFixed(2) + ' MB';
+
+            refreshNodeBadges();
+        }
+
+        vecValEl.textContent = '(' + mouseVec.x + ', ' + mouseVec.y + ')';
+        targetEl.textContent = 'INSPECT: ' + hoveredSignature;
+
+        rafId = requestAnimationFrame(updateTelemetryLoop);
+    }
+
+    // 6. Master Toggle Function (Syncs HUD, Body Class & On-Screen Button)
+    function toggleCyberXRay(forceState) {
+        mountHudAndButton();
+        xrayActive = (typeof forceState === 'boolean') ? forceState : !xrayActive;
+
+        if (xrayActive) {
+            document.body.classList.add('cyber-xray-active');
+            refreshNodeBadges();
+            lastFrameTime = performance.now();
+            frameCount = 0;
+            rafId = requestAnimationFrame(updateTelemetryLoop);
+        } else {
+            document.body.classList.remove('cyber-xray-active');
+            if (rafId) cancelAnimationFrame(rafId);
+        }
+
+        if (dockToggleBtn) {
+            dockToggleBtn.textContent = xrayActive ? 'X-RAY: ON' : 'X-RAY: OFF';
+            dockToggleBtn.classList.toggle('active', xrayActive);
+        }
+
+        return xrayActive;
+    }
+
+    window.toggleCyberXRay = toggleCyberXRay;
+
+    closeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleCyberXRay(false);
+    });
+
+    // 7. Track Mouse Coordinates & Inspected DOM Element
+    document.addEventListener('mousemove', function(e) {
+        mouseVec.x = e.clientX;
+        mouseVec.y = e.clientY;
+        if (!xrayActive) return;
+
+        var el = e.target;
+        if (el && el !== document.body && el !== document.documentElement) {
+            var tag = el.tagName.toLowerCase();
+            var idStr = el.id ? '#' + el.id : '';
+            var clsStr = (el.className && typeof el.className === 'string')
+                ? '.' + el.className.trim().split(/\s+/)[0]
+                : '';
+            hoveredSignature = (tag + idStr + clsStr).toUpperCase();
+        }
+    });
+
+    // 8. Helper to Close/Minimize Terminal Overlay When X-Ray Turns ON from Terminal
+    function closeTerminalModalIfOpen() {
+        var termInput = document.querySelector('#term-input, .term-input, .terminal-input');
+        if (!termInput) return;
+
+        // Find terminal modal wrapper and close button
+        var modal = termInput.closest('.cyber-terminal-modal, .terminal-overlay, .terminal-window, #cyber-terminal, [class*="terminal"]');
+        if (modal) {
+            var closeTermBtn = modal.querySelector('button, .term-close, [class*="close"]');
+            if (closeTermBtn && closeTermBtn !== dockToggleBtn) {
+                closeTermBtn.click();
+                return;
+            }
+            var parentOverlay = modal.parentElement;
+            if (parentOverlay && window.getComputedStyle(parentOverlay).position === 'fixed') {
+                parentOverlay.style.display = 'none';
+            } else if (window.getComputedStyle(modal).position === 'fixed') {
+                modal.style.display = 'none';
+            }
+        }
+        termInput.blur();
+    }
+
+    // 9. Unified Keyboard & Terminal Command Handler
+    document.addEventListener('keydown', function(e) {
+        var activeEl = document.activeElement;
+        var activeTag = activeEl ? activeEl.tagName.toUpperCase() : '';
+        var isTyping = (activeTag === 'INPUT' || activeTag === 'TEXTAREA' || (activeEl && activeEl.isContentEditable));
+
+        // CASE A: User is typing inside the Hacker Terminal Input & presses Enter
+        if (isTyping && activeTag === 'INPUT' && e.key === 'Enter') {
+            var rawCmd = (activeEl.value || '').trim().toLowerCase();
+            if (rawCmd === 'xray' || rawCmd === 'x' || rawCmd === 'xray on' || rawCmd === 'xray off') {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                var desiredState = (rawCmd === 'xray on') ? true : ((rawCmd === 'xray off') ? false : !xrayActive);
+                var newState = toggleCyberXRay(desiredState);
+
+                var termOut = document.querySelector('#term-output, .term-output, .term-body, .terminal-body');
+                if (termOut) {
+                    var cmdLine = makeEl('div', 'term-line', 'lokendra@ai-core:~$ ' + rawCmd);
+                    var resLine = makeEl('div', 'term-res', '[X-RAY_ARCHITECTURE_HUD]: ' + (newState ? 'ENABLED -> Launching Live CAD Wireframe...' : 'DISABLED'));
+                    resLine.style.color = 'var(--neon-color, #00f3ff)';
+                    termOut.appendChild(cmdLine);
+                    termOut.appendChild(resLine);
+                    termOut.scrollTop = termOut.scrollHeight;
+                }
+
+                activeEl.value = '';
+
+                // If X-Ray was turned ON from inside Terminal, auto-close Terminal so user sees the X-Ray HUD!
+                if (newState) {
+                    setTimeout(closeTerminalModalIfOpen, 350);
+                }
+                return;
+            }
+        }
+
+        // CASE B: User presses 'X' anywhere on the page (when NOT typing in an input)
+        if (!isTyping && (e.key === 'x' || e.key === 'X') && !e.ctrlKey && !e.altKey && !e.metaKey) {
+            e.preventDefault();
+            toggleCyberXRay();
+        }
+    }, true);
+})();
+
+// =========================================================
+// UNIFIED BOTTOM CONTROL DOCK (SINGLE X-RAY + SFX + TERMINAL)
+// =========================================================
+(function mountUnifiedCyberDock() {
+    var oldBtn = document.getElementById('cyber-xray-floating-btn');
+    if (oldBtn) oldBtn.remove();
+    var oldStyle = document.getElementById('cyber-xray-btn-style');
+    if (oldStyle) oldStyle.remove();
+
+    // Remove any duplicate dock button created by earlier script
+    document.querySelectorAll('.cyber-xray-dock-btn').forEach(function(el) {
+        el.remove();
+    });
+
+    var dockStyle = document.createElement('style');
+    dockStyle.id = 'cyber-xray-btn-style';
+    dockStyle.textContent = [
+        '/* Permanently hide any duplicate legacy X-Ray button */',
+        '.cyber-xray-dock-btn {',
+        '    display: none !important;',
+        '}',
+        '/* 1. Unified Bottom-Right Dock for X-RAY, SFX & TERMINAL */',
+        '#cyber-control-dock {',
+        '    position: fixed !important;',
+        '    bottom: 20px !important;',
+        '    right: 20px !important;',
+        '    left: auto !important;',
+        '    top: auto !important;',
+        '    z-index: 9999 !important;',
+        '    display: inline-flex !important;',
+        '    flex-direction: row !important;',
+        '    align-items: stretch !important;',
+        '    gap: 0px !important;',
+        '    background: rgba(5, 8, 12, 0.94) !important;',
+        '    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9) !important;',
+        '}',
+        '#cyber-control-dock > * {',
+        '    position: static !important;',
+        '    bottom: auto !important;',
+        '    right: auto !important;',
+        '    left: auto !important;',
+        '    top: auto !important;',
+        '    transform: none !important;',
+        '    margin: 0 !important;',
+        '    height: 36px !important;',
+        '    padding: 0 14px !important;',
+        '    display: inline-flex !important;',
+        '    align-items: center !important;',
+        '    justify-content: center !important;',
+        '    font-family: "Courier New", Consolas, monospace !important;',
+        '    font-size: 0.75rem !important;',
+        '    font-weight: 700 !important;',
+        '    letter-spacing: 0.8px !important;',
+        '    white-space: nowrap !important;',
+        '    box-sizing: border-box !important;',
+        '    border-radius: 0 !important;',
+        '    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.65) !important;',
+        '    background: rgba(5, 8, 12, 0.92) !important;',
+        '    color: var(--neon-color, #00f3ff) !important;',
+        '    cursor: pointer !important;',
+        '    transition: all 0.2s ease !important;',
+        '}',
+        '#cyber-control-dock > *:not(:first-child) {',
+        '    margin-left: -1px !important;',
+        '}',
+        '#cyber-control-dock > *:hover,',
+        'body.cyber-xray-active #cyber-xray-floating-btn {',
+        '    background: var(--neon-color, #00f3ff) !important;',
+        '    color: #050505 !important;',
+        '    border-color: var(--neon-color, #00f3ff) !important;',
+        '    box-shadow: 0 0 16px var(--neon-color, #00f3ff) !important;',
+        '    z-index: 2 !important;',
+        '}',
+        '#contact form > .xray-node-badge {',
+        '    display: none !important;',
+        '}',
+        '/* 2. Clean 1-Column Mobile HUD & Symmetrical Mobile Bar */',
+        '@media (max-width: 768px) {',
+        '    #cyber-control-dock {',
+        '        bottom: 10px !important;',
+        '        left: 8px !important;',
+        '        right: 8px !important;',
+        '        display: flex !important;',
+        '    }',
+        '    #cyber-control-dock > * {',
+        '        flex: 1 1 0 !important;',
+        '        height: 32px !important;',
+        '        padding: 0 4px !important;',
+        '        font-size: 0.62rem !important;',
+        '        letter-spacing: 0.3px !important;',
+        '    }',
+        '    .xray-hud-panel {',
+        '        bottom: 50px !important;',
+        '        left: 8px !important;',
+        '        right: 8px !important;',
+        '        width: auto !important;',
+        '        padding: 9px 12px !important;',
+        '        display: none !important;',
+        '    }',
+        '    body.cyber-xray-active .xray-hud-panel {',
+        '        display: block !important;',
+        '    }',
+        '    .xray-hud-title {',
+        '        font-size: 0.64rem !important;',
+        '        margin-bottom: 5px !important;',
+        '        padding-bottom: 4px !important;',
+        '    }',
+        '    .xray-hud-row {',
+        '        display: flex !important;',
+        '        justify-content: space-between !important;',
+        '        white-space: nowrap !important;',
+        '        font-size: 0.64rem !important;',
+        '        line-height: 1.4 !important;',
+        '    }',
+        '    .xray-hud-target {',
+        '        font-size: 0.58rem !important;',
+        '        margin-top: 5px !important;',
+        '        padding-top: 4px !important;',
+        '    }',
+        '}'
+    ].join('\n');
+    document.head.appendChild(dockStyle);
+
+    var xrayBtn = document.createElement('button');
+    xrayBtn.id = 'cyber-xray-floating-btn';
+    xrayBtn.type = 'button';
+    xrayBtn.textContent = '⌖ X-RAY: OFF';
+
+    function syncButtonLabel() {
+        // Clean up any duplicate button if recreated by toggleCyberXRay
+        document.querySelectorAll('.cyber-xray-dock-btn').forEach(function(el) {
+            el.remove();
+        });
+        var isOn = document.body.classList.contains('cyber-xray-active');
+        xrayBtn.textContent = isOn ? '⌖ X-RAY: ON' : '⌖ X-RAY: OFF';
+    }
+
+    xrayBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.toggleCyberXRay === 'function') {
+            window.toggleCyberXRay();
+        }
+        syncButtonLabel();
+    });
+
+    function findFloatingButtonByKeyword(keyword) {
+        var all = Array.from(document.querySelectorAll('button, div, span, a'));
+        var match = all.find(function(el) {
+            if (el === xrayBtn || el.id === 'cyber-control-dock' || el.classList.contains('cyber-xray-dock-btn')) return false;
+            var txt = (el.textContent || '').trim().toUpperCase();
+            var rect = el.getBoundingClientRect();
+            return (
+                txt.indexOf(keyword) !== -1 &&
+                txt.indexOf('LOKENDRA_OS') === -1 &&
+                el.children.length <= 2 &&
+                rect.width > 40 &&
+                rect.width < 220 &&
+                rect.height > 18 &&
+                rect.height < 70
+            );
+        });
+        if (!match) return null;
+        return match.closest('button') || match;
+    }
+
+    function assembleDock() {
+        if (!document.body) return;
+
+        var dock = document.getElementById('cyber-control-dock');
+        if (!dock) {
+            dock = document.createElement('div');
+            dock.id = 'cyber-control-dock';
+            document.body.appendChild(dock);
+        }
+
+        var sfxEl = findFloatingButtonByKeyword('SFX:');
+        var termEl = findFloatingButtonByKeyword('TERMINAL');
+
+        if (!dock.contains(xrayBtn)) {
+            dock.insertBefore(xrayBtn, dock.firstChild);
+        }
+        if (sfxEl && !dock.contains(sfxEl)) {
+            dock.appendChild(sfxEl);
+        }
+        if (termEl && !dock.contains(termEl)) {
+            dock.appendChild(termEl);
+        }
+
+        syncButtonLabel();
+    }
+
+    if (document.body) assembleDock();
+    window.addEventListener('DOMContentLoaded', assembleDock);
+    setTimeout(assembleDock, 150);
+    setTimeout(assembleDock, 500);
+
+    var observer = new MutationObserver(syncButtonLabel);
+    if (document.body) {
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    }
+})();
+
+// =========================================================
+// DYNAMIC CYBERPUNK 404 PAGE ENGINE (THEME-SYNCED)
+// =========================================================
+(function initCyber404Engine() {
+    function render404IfNeeded() {
+        var errSection = document.getElementById('error-404');
+        var is404Url = window.location.pathname.indexOf('404.html') !== -1;
+
+        if (!errSection && !is404Url) return;
+
+        document.title = '404 // SECTOR_NOT_FOUND | Lokendra Kushwaha';
+
+        // Hide extra sections (like About / Contact copied from index.html)
+        var allSections = Array.from(document.querySelectorAll('section'));
+        allSections.forEach(function(sec, idx) {
+            if (idx === 0) {
+                errSection = sec;
+            } else {
+                sec.style.display = 'none';
+            }
+        });
+
+        if (!errSection || errSection.dataset.cyber404Ready === 'true') return;
+        errSection.dataset.cyber404Ready = 'true';
+        errSection.innerHTML = '';
+
+        errSection.style.minHeight = '85vh';
+        errSection.style.display = 'flex';
+        errSection.style.alignItems = 'center';
+        errSection.style.justifyContent = 'center';
+        errSection.style.padding = '40px 20px';
+
+        function make(tag, styles, text) {
+            var el = document.createElement(tag);
+            if (styles) el.style.cssText = styles;
+            if (text !== undefined) el.textContent = text;
+            return el;
+        }
+
+        var card = make(
+            'div',
+            'max-width:560px;width:100%;background:rgba(5,8,12,0.94);border:1px solid var(--neon-color,#00f3ff);border-left:4px solid var(--neon-color,#00f3ff);padding:36px 30px;box-shadow:0 0 30px rgba(0,0,0,0.9),0 0 15px rgba(var(--neon-rgb,0,243,255),0.2);font-family:"Courier New",Consolas,monospace;text-align:left;'
+        );
+
+        var badge = make(
+            'div',
+            'font-size:0.75rem;color:var(--neon-color,#00f3ff);letter-spacing:1.5px;margin-bottom:12px;',
+            '[ // SYSTEM_ALERT: TELEMETRY_LINK_SEVERED ]'
+        );
+
+        var heading = make(
+            'h1',
+            'font-size:3.4rem;margin:0 0 10px 0;color:#ffffff;letter-spacing:2px;text-shadow:0 0 14px var(--neon-color,#00f3ff);',
+            '404_ERR'
+        );
+
+        var subTitle = make(
+            'div',
+            'font-size:0.95rem;color:var(--neon-color,#00f3ff);font-weight:700;margin-bottom:18px;letter-spacing:1px;',
+            '\u003e\u003e TARGET_COORDINATES_NOT_FOUND'
+        );
+
+        var desc = make(
+            'p',
+            'font-size:0.88rem;line-height:1.65;color:#8b949e;margin-bottom:26px;',
+            'The neural sector or architecture log you requested does not exist in this memory space. It may have been relocated or purged from the main matrix.'
+        );
+
+        var diagBox = make(
+            'div',
+            'padding:12px 14px;background:rgba(var(--neon-rgb,0,243,255),0.06);border:1px dashed rgba(var(--neon-rgb,0,243,255),0.4);font-size:0.76rem;color:#c9d1d9;margin-bottom:28px;line-height:1.6;'
+        );
+
+        var line1 = make('div', '', 'STATUS_CODE : 0x00000404 (SECTOR_VOID)');
+        var line2 = make('div', '', 'RECOVERY_OP : REROUTE_TO_MAIN_CORE');
+        var line3 = make('div', '', 'REQUEST_PATH: ' + window.location.pathname);
+        diagBox.appendChild(line1);
+        diagBox.appendChild(line2);
+        diagBox.appendChild(line3);
+
+        var btnRow = make('div', 'display:flex;gap:14px;flex-wrap:wrap;');
+
+        var homeBtn = make(
+            'a',
+            'text-decoration:none;background:var(--neon-color,#00f3ff);color:#05080c;font-weight:700;font-size:0.8rem;padding:12px 20px;letter-spacing:1px;border:1px solid var(--neon-color,#00f3ff);',
+            '[ RETURN_TO_HOME_CORE ]'
+        );
+        homeBtn.href = 'index.html';
+
+        var projBtn = make(
+            'a',
+            'text-decoration:none;background:transparent;color:var(--neon-color,#00f3ff);font-weight:700;font-size:0.8rem;padding:12px 20px;letter-spacing:1px;border:1px solid var(--neon-color,#00f3ff);',
+            '[ EXPLORE_PROJECTS ]'
+        );
+        projBtn.href = 'projects.html';
+
+        btnRow.appendChild(homeBtn);
+        btnRow.appendChild(projBtn);
+
+        card.appendChild(badge);
+        card.appendChild(heading);
+        card.appendChild(subTitle);
+        card.appendChild(desc);
+        card.appendChild(diagBox);
+        card.appendChild(btnRow);
+
+        errSection.appendChild(card);
+    }
+
+    if (document.body) render404IfNeeded();
+    window.addEventListener('DOMContentLoaded', render404IfNeeded);
+    setTimeout(render404IfNeeded, 100);
+})();
+
+// =========================================================
+// GOOGLE #1 RANKING SEO & KNOWLEDGE GRAPH ENGINE
+// =========================================================
+(function initCyberSeoEngine() {
+    if (window.__cyberSeoInitialized) return;
+    window.__cyberSeoInitialized = true;
+
+    var head = document.head || document.getElementsByTagName('head')[0];
+    if (!head) return;
+
+    var path = window.location.pathname || '';
+    var pageUrl = '[https://lokendra-kushwaha.web.app/](https://lokendra-kushwaha.web.app/)';
+    var pageTitle = 'Lokendra Kushwaha | AI Systems Engineer & Custom Math Architectures';
+    var pageDesc = 'Official portfolio of Lokendra Kushwaha — AI and Data Science Systems Engineer building zero-dependency math engines, neural architectures, graph crawlers, and hardware memory benchmarks from scratch.';
+
+    if (path.indexOf('projects.html') !== -1) {
+        pageUrl = '[https://lokendra-kushwaha.web.app/projects.html](https://lokendra-kushwaha.web.app/projects.html)';
+        pageTitle = 'Custom AI & Math Architectures | Lokendra Kushwaha';
+        pageDesc = 'Interactive AI systems, 3D Tensor Convolution Cores, Movie Matrix Linear Algebra engines, and Universe Graph Crawlers built from scratch by Lokendra Kushwaha.';
+    } else if (path.indexOf('research.html') !== -1) {
+        pageUrl = '[https://lokendra-kushwaha.web.app/research.html](https://lokendra-kushwaha.web.app/research.html)';
+        pageTitle = 'Engineering Research Logs & Silicon Benchmarks | Lokendra Kushwaha';
+        pageDesc = 'Deep-dive systems engineering research logs by Lokendra Kushwaha covering CPU cache locality, NumPy C-strides, and Pandas memory architecture.';
+    } else if (path.indexOf('404.html') === -1) {
+        document.title = pageTitle;
+    }
+
+    function setMetaTag(attrName, attrValue, contentValue) {
+        var selector = 'meta[' + attrName + '="' + attrValue + '"]';
+        var meta = head.querySelector(selector);
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute(attrName, attrValue);
+            head.appendChild(meta);
+        }
+        meta.setAttribute('content', contentValue);
+    }
+
+    // 1. Standard Google Search Meta Tags
+    setMetaTag('name', 'author', 'Lokendra Kushwaha');
+    setMetaTag('name', 'description', pageDesc);
+    setMetaTag('name', 'keywords', 'Lokendra Kushwaha, Lokendra, AI Systems Engineer, Data Science Portfolio, Custom Math Engine, Neural Optic Core, The Universe Crawler, Matrix Physics');
+    setMetaTag('name', 'robots', 'index, follow');
+
+    // 2. Social & OpenGraph Preview Tags (LinkedIn / WhatsApp / X)
+    setMetaTag('property', 'og:type', 'website');
+    setMetaTag('property', 'og:site_name', 'Lokendra Kushwaha');
+    setMetaTag('property', 'og:title', pageTitle);
+    setMetaTag('property', 'og:description', pageDesc);
+    setMetaTag('property', 'og:url', pageUrl);
+
+    // 3. Canonical URL Link
+    var canonical = head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+        canonical = document.createElement('link');
+        canonical.setAttribute('rel', 'canonical');
+        head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', pageUrl);
+
+    // 4. Google Knowledge Graph JSON-LD (Tells Google Who "Lokendra Kushwaha" Is)
+    var schemaScript = document.getElementById('lokendra-jsonld-schema');
+    if (!schemaScript) {
+        schemaScript = document.createElement('script');
+        schemaScript.id = 'lokendra-jsonld-schema';
+        schemaScript.type = 'application/ld+json';
+        schemaScript.textContent = JSON.stringify({
+            '@context': '[https://schema.org](https://schema.org)',
+            '@type': 'Person',
+            'name': 'Lokendra Kushwaha',
+            'url': '[https://lokendra-kushwaha.web.app/](https://lokendra-kushwaha.web.app/)',
+            'email': 'mailto:thelokendrakushwaha@gmail.com',
+            'jobTitle': 'AI & Data Science Systems Engineer',
+            'description': pageDesc,
+            'knowsAbout': [
+                'Artificial Intelligence',
+                'Data Science',
+                'Linear Algebra',
+                'Matrix Physics',
+                'Memory Architecture',
+                'Python',
+                'Computer Vision'
+            ],
+            'sameAs': [
+                '[https://github.com/lokendra-kushwaha](https://github.com/lokendra-kushwaha)',
+                '[https://www.linkedin.com/in/lokendra-kushwaha](https://www.linkedin.com/in/lokendra-kushwaha)'
+            ]
+        });
+        head.appendChild(schemaScript);
+    }
 })();
