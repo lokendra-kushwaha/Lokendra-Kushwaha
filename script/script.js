@@ -2309,7 +2309,7 @@ window.addEventListener('keydown', (e) => {
 
                 var termOut = document.querySelector('#term-output, .term-output, .term-body, .terminal-body');
                 if (termOut) {
-                    var cmdLine = makeEl('div', 'term-line', 'lokendra@ai-core:~$ ' + rawCmd);
+                    var cmdLine = makeEl('div', 'term-line', 'lokendra@kushwaha:~$ ' + rawCmd);
                     var resLine = makeEl('div', 'term-res', '[X-RAY_ARCHITECTURE_HUD]: ' + (newState ? 'ENABLED -> Launching Live CAD Wireframe...' : 'DISABLED'));
                     resLine.style.color = 'var(--neon-color, #00f3ff)';
                     termOut.appendChild(cmdLine);
