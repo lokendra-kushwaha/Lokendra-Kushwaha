@@ -108,60 +108,6 @@ projectCards.forEach((card) => {
     });
 });
 
-// 2. Clean Cyber Header & Telemetry Bar
-const pageTitle = document.querySelector('.projects-section h1') || document.querySelector('h1');
-
-if (pageTitle) {
-    document.querySelectorAll('.cyber-top-tag, .telemetry-bar').forEach(el => el.remove());
-
-    const headerBox = pageTitle.parentElement;
-    headerBox.classList.add('cyber-header-wrap');
-    pageTitle.classList.add('cyber-main-title');
-
-    // Top Lab Classification Tag
-    const topTag = document.createElement('div');
-    topTag.className = 'cyber-top-tag';
-    topTag.textContent = '[ // AI_ARCHITECTURE_LAB // ]';
-    headerBox.insertBefore(topTag, pageTitle);
-
-    // Live Engineering Telemetry HUD Bar
-    const telemetryBar = document.createElement('div');
-    telemetryBar.className = 'telemetry-bar';
-
-    const pill1 = document.createElement('div');
-    pill1.className = 'telemetry-pill';
-    const dot = document.createElement('span');
-    dot.className = 'status-dot';
-    const pill1Text = document.createElement('span');
-    pill1Text.textContent = 'CORE_STATUS: ONLINE';
-    pill1.appendChild(dot);
-    pill1.appendChild(pill1Text);
-
-    const pill2 = document.createElement('div');
-    pill2.className = 'telemetry-pill';
-    pill2.textContent = 'STACK: ZERO_DEPENDENCY_MATH';
-
-    const pill3 = document.createElement('div');
-    pill3.className = 'telemetry-pill';
-    pill3.textContent = 'COMPUTE_LATENCY: 0.42ms';
-
-    telemetryBar.appendChild(pill1);
-    telemetryBar.appendChild(pill2);
-    telemetryBar.appendChild(pill3);
-
-    const subtitle = pageTitle.nextElementSibling;
-    if (subtitle) {
-        subtitle.insertAdjacentElement('afterend', telemetryBar);
-    } else {
-        headerBox.appendChild(telemetryBar);
-    }
-
-    setInterval(() => {
-        const ms = (0.35 + Math.random() * 0.18).toFixed(2);
-        pill3.textContent = 'COMPUTE_LATENCY: ' + ms + 'ms';
-    }, 1800);
-}
-
 // =========================================================
 // 3. AUTO LIVE BLUEPRINT ENGINE FOR UNDEPLOYED PROJECTS
 // =========================================================

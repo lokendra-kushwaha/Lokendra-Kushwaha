@@ -271,60 +271,6 @@ function initCopyButtons() {
 initCopyButtons();
 window.addEventListener('DOMContentLoaded', initCopyButtons);
 
-// 3. Clean Header & Telemetry Bar for Research Logs
-const researchTitle = document.querySelector('.section-title') || document.querySelector('h1');
-
-if (researchTitle) {
-    document.querySelectorAll('.cyber-top-tag, .telemetry-bar').forEach(el => el.remove());
-
-    const headerParent = researchTitle.parentElement;
-    headerParent.classList.add('cyber-header-wrap');
-    researchTitle.classList.add('cyber-main-title');
-
-    // Top Archive Classification Tag
-    const topTag = document.createElement('div');
-    topTag.className = 'cyber-top-tag';
-    topTag.textContent = '[ // NEURAL_RESEARCH_ARCHIVE // ]';
-    headerParent.insertBefore(topTag, researchTitle);
-
-    // Live Research Telemetry HUD Bar
-    const telemetryBar = document.createElement('div');
-    telemetryBar.className = 'telemetry-bar';
-
-    const pill1 = document.createElement('div');
-    pill1.className = 'telemetry-pill';
-    const dot = document.createElement('span');
-    dot.className = 'status-dot';
-    const pill1Text = document.createElement('span');
-    pill1Text.textContent = 'ARCHIVE_STATUS: ONLINE';
-    pill1.appendChild(dot);
-    pill1.appendChild(pill1Text);
-
-    const pill2 = document.createElement('div');
-    pill2.className = 'telemetry-pill';
-    pill2.textContent = 'FOCUS: MATRIX_&_MEMORY_PHYSICS';
-
-    const pill3 = document.createElement('div');
-    pill3.className = 'telemetry-pill';
-    pill3.textContent = 'READ_LATENCY: 0.34ms';
-
-    telemetryBar.appendChild(pill1);
-    telemetryBar.appendChild(pill2);
-    telemetryBar.appendChild(pill3);
-
-    const subtitle = researchTitle.nextElementSibling;
-    if (subtitle) {
-        subtitle.insertAdjacentElement('afterend', telemetryBar);
-    } else {
-        headerParent.appendChild(telemetryBar);
-    }
-
-    setInterval(() => {
-        const ms = (0.28 + Math.random() * 0.15).toFixed(2);
-        pill3.textContent = 'READ_LATENCY: ' + ms + 'ms';
-    }, 1800);
-}
-
 // 4. Auto Read-Time & AI Voice Reader for Research Logs
 function initLogVoiceReader() {
     const logBoxes = document.querySelectorAll('[id^="LOG_"], article, .log-card, .log-box');

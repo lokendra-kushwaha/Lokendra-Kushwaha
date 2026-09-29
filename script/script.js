@@ -306,7 +306,7 @@ function printTerm(text, className = 'term-line') {
     termBody.scrollTop = termBody.scrollHeight;
 }
 
-printTerm('Neural Optic Core Initialized...', 'term-res');
+printTerm('Terminal Initialized...', 'term-res');
 printTerm('Type "help" to view available commands.');
 
 termBtn.addEventListener('click', () => {
@@ -323,7 +323,7 @@ termClose.addEventListener('click', () => {
 const commands = {
     help: 'INFO COMMANDS:\n  whoami, skills, projects, logs\n\nCONTROL COMMANDS:\n  goto home     -> Open Home Page\n  goto projects -> Open Projects Page\n  goto logs     -> Open Research Logs\n  goto about    -> Jump to About Section\n  goto contact  -> Jump to Contact Section\n  top / bottom  -> Scroll Page Top or Bottom\n  matrix        -> Launch Cyber Matrix Rain\n  clear         -> Clear Terminal',
     whoami: 'Lokendra Kushwaha — AI Engine & Data Architecture Builder. I build custom algorithms and math engines from scratch.',
-    skills: 'Core Stack: Pure NumPy Logic, Custom Vectorization, Linear Algebra Matrices, Python Internals, DSA.',
+    skills: '>> CORE & ALGORITHMS: Python Internals, Advanced DSA, Algorithmic Problem Solving\n>> MATH & DATA ENGINE: Linear Algebra Matrices, Calculus, Statistics & Probability, Custom Vectorization, Pure NumPy Logic, Pandas Data Manipulation, Data Science\n>> AI & SYSTEM ARCHITECTURE: AI Engineering, System Design, Machine Learning, Deep Learning, MLOps.',
     projects: '1. The Movie Matrix (Pure NumPy Recommendation Engine)\n2. Universe Crawler (Logic-Driven Architecture)\n(Tip: Type "goto projects" to open the page)',
     logs: '[LOG_001]: Building an AI Math Engine from Scratch - The Physics of Matrices & Hardware Memory Trap.\n(Tip: Type "goto logs" to read full article)'
 };
