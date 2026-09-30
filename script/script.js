@@ -456,72 +456,6 @@ termInput.addEventListener('keydown', (e) => {
     }
 });
 
-// Custom Magnetic Cursor
-if (window.matchMedia('(pointer: fine)').matches) {
-    const cursorDot = document.createElement('div');
-    cursorDot.className = 'cyber-cursor-dot';
-
-    const cursorRing = document.createElement('div');
-    cursorRing.className = 'cyber-cursor-ring';
-
-    document.body.appendChild(cursorDot);
-    document.body.appendChild(cursorRing);
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorDot.style.left = mouseX + 'px';
-        cursorDot.style.top = mouseY + 'px';
-    });
-
-    function renderCursor() {
-        ringX += (mouseX - ringX) * 0.22;
-        ringY += (mouseY - ringY) * 0.22;
-        cursorRing.style.left = ringX + 'px';
-        cursorRing.style.top = ringY + 'px';
-        requestAnimationFrame(renderCursor);
-    }
-    requestAnimationFrame(renderCursor);
-
-    // Links, Buttons aur Inputs Hover Lock Effect
-    const interactiveSelector = 'a, button, .btn, .copy-btn, .term-toggle-btn, .term-close, input, textarea';
-
-    document.addEventListener('mouseover', (e) => {
-        if (e.target.closest(interactiveSelector)) {
-            cursorRing.classList.add('cursor-active');
-            cursorDot.classList.add('cursor-active');
-        }
-    });
-
-    document.addEventListener('mouseout', (e) => {
-        if (e.target.closest(interactiveSelector)) {
-            cursorRing.classList.remove('cursor-active');
-            cursorDot.classList.remove('cursor-active');
-        }
-    });
-
-    // Magnetic Pull Effect on Navigation Links & Buttons
-    const magneticItems = document.querySelectorAll('nav a, .btn, .project-links a, .term-toggle-btn');
-
-    magneticItems.forEach((item) => {
-        item.addEventListener('mousemove', (e) => {
-            const rect = item.getBoundingClientRect();
-            const moveX = (e.clientX - (rect.left + rect.width / 2)) * 0.25;
-            const moveY = (e.clientY - (rect.top + rect.height / 2)) * 0.25;
-            item.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
-        });
-
-        item.addEventListener('mouseleave', () => {
-            item.style.transform = 'translate(0px, 0px)';
-        });
-    });
-}
-
 // ==========================================
 // ADVANCED LIVE THEME ENGINE
 // ==========================================
@@ -1509,9 +1443,9 @@ window.addEventListener('keydown', (e) => {
             // Step 3: Transmit via FormSubmit AJAX (Works on Live Hosted Site) + Mailto Fallback
             sendBtn.innerText = '[ 03 // UPLOADING_TO_NODE... ]';
 
-            const subject = 'Portfolio Contact [' + packetId + '] from ' + senderName;
+            const subject = 'System Uplink [' + packetId + '] from ' + senderName;
             const bodyLines = [
-                '=== ENCRYPTED PORTFOLIO TRANSMISSION ===',
+                '=== ENCRYPTED Node TRANSMISSION ===',
                 'Packet ID : ' + packetId,
                 'Sender    : ' + senderName,
                 'Email     : ' + senderEmail,
@@ -2667,16 +2601,16 @@ window.addEventListener('keydown', (e) => {
     if (!head) return;
 
     var path = window.location.pathname || '';
-    var pageUrl = '[https://lokendra-kushwaha.web.app/](https://lokendra-kushwaha.web.app/)';
+    var pageUrl = 'https://lokendra-kushwaha.web.app/';
     var pageTitle = 'Lokendra Kushwaha | AI Systems Engineer & Custom Math Architectures';
-    var pageDesc = 'Official portfolio of Lokendra Kushwaha — AI and Data Science Systems Engineer building zero-dependency math engines, neural architectures, graph crawlers, and hardware memory benchmarks from scratch.';
+    var pageDesc = 'Engineering workspace of Lokendra Kushwaha — AI and Data Science Systems Engineer building zero-dependency math engines, neural architectures, graph crawlers, and hardware memory benchmarks from scratch.';
 
     if (path.indexOf('projects.html') !== -1) {
-        pageUrl = '[https://lokendra-kushwaha.web.app/projects.html](https://lokendra-kushwaha.web.app/projects.html)';
+        pageUrl = 'https://lokendra-kushwaha.web.app/projects.html';
         pageTitle = 'Custom AI & Math Architectures | Lokendra Kushwaha';
         pageDesc = 'Interactive AI systems, 3D Tensor Convolution Cores, Movie Matrix Linear Algebra engines, and Universe Graph Crawlers built from scratch by Lokendra Kushwaha.';
     } else if (path.indexOf('research.html') !== -1) {
-        pageUrl = '[https://lokendra-kushwaha.web.app/research.html](https://lokendra-kushwaha.web.app/research.html)';
+        pageUrl = 'https://lokendra-kushwaha.web.app/research.html';
         pageTitle = 'Engineering Research Logs & Silicon Benchmarks | Lokendra Kushwaha';
         pageDesc = 'Deep-dive systems engineering research logs by Lokendra Kushwaha covering CPU cache locality, NumPy C-strides, and Pandas memory architecture.';
     } else if (path.indexOf('404.html') === -1) {
@@ -2697,7 +2631,7 @@ window.addEventListener('keydown', (e) => {
     // 1. Standard Google Search Meta Tags
     setMetaTag('name', 'author', 'Lokendra Kushwaha');
     setMetaTag('name', 'description', pageDesc);
-    setMetaTag('name', 'keywords', 'Lokendra Kushwaha, Lokendra, AI Systems Engineer, Data Science Portfolio, Custom Math Engine, Neural Optic Core, The Universe Crawler, Matrix Physics');
+    setMetaTag('name', 'keywords', 'Lokendra Kushwaha, Lokendra, AI Systems Engineer, Data Science Architectures, Custom Math Engine, Custom AI Engines, Matrix Physics, Custom Algorithms');
     setMetaTag('name', 'robots', 'index, follow');
 
     // 2. Social & OpenGraph Preview Tags (LinkedIn / WhatsApp / X)
@@ -2723,16 +2657,20 @@ window.addEventListener('keydown', (e) => {
         schemaScript.id = 'lokendra-jsonld-schema';
         schemaScript.type = 'application/ld+json';
         schemaScript.textContent = JSON.stringify({
-            '@context': '[https://schema.org](https://schema.org)',
+            '@context': 'https://schema.org',
             '@type': 'Person',
             'name': 'Lokendra Kushwaha',
-            'url': '[https://lokendra-kushwaha.web.app/](https://lokendra-kushwaha.web.app/)',
+            'url': 'https://lokendra-kushwaha.web.app/',
             'email': 'mailto:thelokendrakushwaha@gmail.com',
             'jobTitle': 'AI & Data Science Systems Engineer',
             'description': pageDesc,
             'knowsAbout': [
                 'Artificial Intelligence',
+                'Machine Learning',
+                'Deep Learning',
                 'Data Science',
+                'Mathematics',
+                'MLOps',
                 'Linear Algebra',
                 'Matrix Physics',
                 'Memory Architecture',
@@ -2740,8 +2678,9 @@ window.addEventListener('keydown', (e) => {
                 'Computer Vision'
             ],
             'sameAs': [
-                '[https://github.com/lokendra-kushwaha](https://github.com/lokendra-kushwaha)',
-                '[https://www.linkedin.com/in/lokendra-kushwaha](https://www.linkedin.com/in/lokendra-kushwaha)'
+                'https://github.com/lokendra-kushwaha',
+                'https://www.linkedin.com/in/the-lokendra-kushwaha',
+                'https://www.instagram.com/the_lokendra_kushwaha_81'
             ]
         });
         head.appendChild(schemaScript);

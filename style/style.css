@@ -685,54 +685,6 @@ body {
     outline: none;
 }
 
-/* Custom Magnetic Cursor (PC Only) */
-@media (pointer: fine) {
-    body, a, button, input, textarea {
-        cursor: none !important;
-    }
-
-    .cyber-cursor-dot {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 6px;
-        height: 6px;
-        background-color: #00f3ff;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10001;
-        transform: translate(-50%, -50%);
-        box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff;
-        transition: transform 0.1s ease;
-    }
-
-    .cyber-cursor-ring {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 32px;
-        height: 32px;
-        border: 1.5px solid rgba(0, 243, 255, 0.6);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 10000;
-        transform: translate(-50%, -50%);
-        transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .cyber-cursor-ring.cursor-active {
-        width: 48px;
-        height: 48px;
-        border-color: #00f3ff;
-        background-color: rgba(0, 243, 255, 0.08);
-        box-shadow: 0 0 15px rgba(0, 243, 255, 0.35);
-    }
-
-    .cyber-cursor-dot.cursor-active {
-        transform: translate(-50%, -50%) scale(1.4);
-    }
-}
-
 /* Audio Toggle Button */
 .cyber-sfx-btn {
     position: fixed;
