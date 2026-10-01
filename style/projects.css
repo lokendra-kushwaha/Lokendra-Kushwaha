@@ -1,15 +1,150 @@
-/* =========================================
-   Projects UI Architecture
-========================================= */
+/* =========================================================
+   1. PROJECTS SECTION & HEADER (BASE LAYOUT)
+========================================================= */
 .projects-section {
-    padding: 120px 5%;
+    padding: 30px 5% 120px 5%; /* Merged padding updates */
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-/* 2-Column Grid for Desktop */
+.cyber-header-wrap {
+    position: relative;
+    text-align: center;
+}
+
+.cyber-top-tag {
+    display: inline-block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    color: #00f3ff;
+    background: rgba(0, 243, 255, 0.08);
+    border: 1px solid rgba(0, 243, 255, 0.35);
+    padding: 4px 12px;
+    margin-bottom: 10px !important;
+    letter-spacing: 2px;
+}
+
+.cyber-main-title {
+    cursor: pointer;
+    text-shadow: 0 0 18px rgba(0, 243, 255, 0.45);
+    letter-spacing: 3px;
+    margin-top: 0px !important;
+    margin-bottom: 6px !important;
+    line-height: 1.15 !important;
+}
+
+.section-title {
+    margin-top: 0px !important;
+    margin-bottom: 6px !important;
+    line-height: 1.15 !important;
+}
+
+.subtitle {
+    color: #8b949e;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 0px !important;
+    margin-bottom: 12px !important;
+}
+
+/* =========================================================
+   2. LIVE TELEMETRY STATUS PILLS
+========================================================= */
+.telemetry-bar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 10px auto 22px auto !important;
+}
+
+.telemetry-pill {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.75rem;
+    color: #c9d1d9;
+    background: rgba(10, 13, 18, 0.9);
+    border: 1px solid rgba(0, 243, 255, 0.3);
+    padding: 5px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 1px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff88;
+    animation: pulseDot 1.5s infinite;
+}
+
+@keyframes pulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+/* =========================================================
+   3. FILTER BAR (SEARCHING / CATEGORIES)
+========================================================= */
+.cyber-filter-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 10px auto 32px auto;
+    padding: 0 15px;
+}
+
+.cyber-filter-btn {
+    white-space: nowrap;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px; 
+    font-weight: 600;
+    color: #c9d1d9;
+    background: rgba(10, 13, 18, 0.9);
+    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.35);
+    padding: 7px 16px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.22s ease;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.cyber-filter-btn:hover,
+.cyber-filter-btn.active {
+    background: var(--neon-color, #00f3ff) !important;
+    color: #050505 !important;
+    border-color: var(--neon-color, #00f3ff) !important;
+    box-shadow: 0 0 16px rgba(var(--neon-rgb, 0, 243, 255), 0.5) !important;
+    font-weight: 700;
+}
+
+.project-card-hidden {
+    display: none !important;
+}
+
+.project-card-fade {
+    animation: cardFilterIn 0.3s ease forwards;
+}
+
+@keyframes cardFilterIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* =========================================================
+   4. PROJECTS GRID & CARD ARCHITECTURE
+========================================================= */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -19,7 +154,6 @@
     margin-top: 20px;
 }
 
-/* Project Card Glassmorphism */
 .project-card {
     background: rgba(13, 17, 23, 0.6);
     backdrop-filter: blur(15px);
@@ -37,7 +171,21 @@
     transform: translateY(-5px);
 }
 
-/* Image Hover Physics */
+/* 3D Hologram Tilt Effect */
+.holo-active {
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.holo-active:hover .holo-glare {
+    opacity: 1;
+}
+
+/* =========================================================
+   5. PROJECT VISUALS (IMAGES & BLUEPRINT ENGINE)
+========================================================= */
 .project-image-box {
     width: 100%;
     height: 250px;
@@ -54,10 +202,95 @@
 }
 
 .project-card:hover .project-img {
-    transform: scale(1.08); /* Smooth zoom effect */
+    transform: scale(1.08);
 }
 
-/* Content Area */
+/* Auto Live Blueprint Canvas */
+.blueprint-canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 215px;
+    background: radial-gradient(circle at 50% 50%, rgba(12, 18, 28, 0.95) 0%, rgba(5, 7, 11, 0.98) 100%);
+    border-bottom: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.3);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.blueprint-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.hover-reveal-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    object-position: top;
+}
+
+.project-card:hover .hover-reveal-img,
+.card:hover .hover-reveal-img,
+.holo-active:hover .hover-reveal-img {
+    opacity: 1; 
+}
+
+/* HUD Tags inside Blueprint */
+.blueprint-hud-tag, .blueprint-status-tag, .blueprint-hud-pill {
+    position: absolute;
+    font-family: 'Courier New', Courier, monospace;
+    background: rgba(5, 5, 5, 0.82);
+    letter-spacing: 1px;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.blueprint-hud-tag {
+    top: 10px; left: 12px;
+    font-size: 0.68rem;
+    color: var(--neon-color, #00f3ff);
+    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.4);
+    padding: 3px 8px;
+}
+
+.blueprint-status-tag {
+    bottom: 10px; right: 12px;
+    font-size: 0.65rem;
+    color: #a3b3c6;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 2px 8px;
+}
+
+.blueprint-hud-pill {
+    top: 10px; right: 12px;
+    font-size: 0.65rem !important;
+    color: var(--neon-color, #00f3ff) !important;
+    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.45) !important;
+    padding: 3px 8px !important;
+}
+
+.cyber-blueprint-wrap, div:has(> canvas) {
+    position: relative !important;
+    cursor: crosshair !important;
+    user-select: none !important;
+}
+
+.blueprint-active-pulse {
+    box-shadow: inset 0 0 28px rgba(var(--neon-rgb, 0, 243, 255), 0.28) !important;
+}
+
+/* =========================================================
+   6. PROJECT CONTENT & BUTTONS
+========================================================= */
 .project-content {
     padding: 30px;
     display: flex;
@@ -65,7 +298,6 @@
     flex-grow: 1;
 }
 
-/* Neon Tags */
 .tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -101,7 +333,6 @@
     flex-grow: 1;
 }
 
-/* Buttons System */
 .project-links {
     display: flex;
     gap: 15px;
@@ -119,7 +350,6 @@
     letter-spacing: 1px;
 }
 
-/* Solid Button */
 .btn-live {
     background: #00f3ff;
     color: #0d1117;
@@ -131,7 +361,6 @@
     box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
 }
 
-/* Outline Ghost Button */
 .btn-github {
     background: transparent;
     color: #ffffff;
@@ -144,22 +373,107 @@
     color: #00f3ff;
 }
 
-.subtitle {
-    color: #8b949e;
-    font-family: 'Orbitron', sans-serif;
-    margin-bottom: 50px;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    text-align: center;
+/* =========================================================
+   7. HORIZONTAL SCROLL UTILITIES (TAGS)
+========================================================= */
+.tech-stack, .project-tags, .tags, .card-tags, div:has(+ h3), div:has(+ h2) {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none !important;
+    padding: 2px 2px 6px 2px !important;
+    margin-bottom: 10px !important;
+    box-sizing: border-box !important;
 }
 
-/* =========================================
-   RESPONSIVE DESIGN (Tablets & Mobile)
-========================================= */
+.tech-stack > *, .project-tags > *, .tags > *, .card-tags > *, div:has(+ h3) > span, div:has(+ h2) > span {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+}
+
+/* Hide Scrollbars Global Rule */
+.cyber-filter-bar::-webkit-scrollbar,
+.telemetry-bar::-webkit-scrollbar,
+.tech-stack::-webkit-scrollbar,
+.project-tags::-webkit-scrollbar,
+.tags::-webkit-scrollbar,
+.card-tags::-webkit-scrollbar,
+div:has(+ h3)::-webkit-scrollbar,
+div:has(+ h2)::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* =========================================================
+   8. RESPONSIVE DESIGN (TABLETS & MOBILE)
+========================================================= */
 @media (max-width: 991px) {
     .projects-grid {
         grid-template-columns: 1fr;
         max-width: 600px;
+    }
+}
+
+@media (max-width: 900px) {
+    .projects-section {
+        padding-top: 15px !important;
+    }
+
+    .cyber-header-wrap {
+        margin-bottom: 14px !important;
+    }
+
+    .cyber-main-title {
+        font-size: 1.55rem !important;
+        margin-bottom: 6px !important;
+    }
+
+    .subtitle {
+        font-size: 0.82rem !important;
+        margin-bottom: 12px !important;
+    }
+
+    /* Swipeable Telemetry Bar */
+    .telemetry-bar {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        padding: 2px 12px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .telemetry-pill {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
+    }
+
+    /* Swipeable Filter Bar */
+    .cyber-filter-bar {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: auto !important;
+        padding: 4px 12px !important;
+        margin: 4px 0 18px 0 !important;
+    }
+
+    .cyber-filter-btn {
+        flex: 0 0 auto !important;
+        white-space: nowrap !important;
     }
 }
 
@@ -191,70 +505,7 @@
     .project-links {
         flex-direction: column;
     }
-}
 
-/* Clean Header Styling & Mobile */
-.cyber-header-wrap {
-    position: relative;
-    text-align: center;
-}
-
-.cyber-top-tag {
-    display: inline-block;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    color: #00f3ff;
-    background: rgba(0, 243, 255, 0.08);
-    border: 1px solid rgba(0, 243, 255, 0.35);
-    padding: 4px 12px;
-    margin-bottom: 12px;
-    letter-spacing: 2px;
-}
-
-.cyber-main-title {
-    cursor: pointer;
-    text-shadow: 0 0 18px rgba(0, 243, 255, 0.45);
-    letter-spacing: 3px;
-}
-
-/* Live Telemetry Pills */
-.telemetry-bar {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin: 18px auto 35px auto;
-}
-
-.telemetry-pill {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    color: #c9d1d9;
-    background: rgba(10, 13, 18, 0.9);
-    border: 1px solid rgba(0, 243, 255, 0.3);
-    padding: 5px 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    letter-spacing: 1px;
-}
-
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background: #00ff88;
-    border-radius: 50%;
-    box-shadow: 0 0 8px #00ff88;
-    animation: pulseDot 1.5s infinite;
-}
-
-@keyframes pulseDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-}
-
-/* Mobile Responsive Font */
-@media (max-width: 768px) {
     .cyber-main-title,
     .projects-section h1 {
         font-size: 1.45rem !important;
@@ -278,313 +529,14 @@
         font-size: 0.68rem;
         padding: 4px 10px;
     }
-}
 
-/* 3D Hologram Tilt & Glare Effect */
-.holo-active {
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-/* Clean 3D Card Tilt Effect (No Color Overlay) */
-.holo-active {
-    position: relative;
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-.holo-active:hover .holo-glare {
-    opacity: 1;
-}
-
-/* Tighten Title & Subtitle Spacing */
-.projects-section {
-    padding-top: 30px !important;
-}
-
-.cyber-top-tag {
-    margin-bottom: 10px !important;
-}
-
-.section-title,
-.cyber-main-title {
-    margin-top: 0px !important;
-    margin-bottom: 6px !important;
-    line-height: 1.15 !important;
-}
-
-.subtitle {
-    margin-top: 0px !important;
-    margin-bottom: 12px !important;
-}
-
-.telemetry-bar {
-    margin: 10px auto 22px auto !important;
-}
-
-/* Auto Live Blueprint Preview for Undeployed Projects */
-.blueprint-canvas-wrap {
-    position: relative;
-    width: 100%;
-    height: 215px;
-    background: radial-gradient(circle at 50% 50%, rgba(12, 18, 28, 0.95) 0%, rgba(5, 7, 11, 0.98) 100%);
-    border-bottom: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.3);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.blueprint-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.blueprint-hud-tag {
-    position: absolute;
-    top: 10px;
-    left: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.68rem;
-    color: var(--neon-color, #00f3ff);
-    background: rgba(5, 5, 5, 0.82);
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.4);
-    padding: 3px 8px;
-    letter-spacing: 1px;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.blueprint-status-tag {
-    position: absolute;
-    bottom: 10px;
-    right: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.65rem;
-    color: #a3b3c6;
-    background: rgba(5, 5, 5, 0.82);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 2px 8px;
-    letter-spacing: 1px;
-    pointer-events: none;
-    z-index: 2;
-}
-
-/* Live Tech-Stack Cyber Filter Bar */
-.cyber-filter-bar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 10px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px auto 32px auto;
-    padding: 0 15px;
-}
-
-.cyber-filter-btn {
-    white-space: nowrap;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.7rem;
-    color: #c9d1d9;
-    background: rgba(10, 13, 18, 0.9);
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.35);
-    padding: 7px 13px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.22s ease;
-    text-transform: uppercase;
-}
-
-.cyber-filter-btn:hover,
-.cyber-filter-btn.active {
-    background: var(--neon-color, #00f3ff) !important;
-    color: #050505 !important;
-    border-color: var(--neon-color, #00f3ff) !important;
-    box-shadow: 0 0 16px rgba(var(--neon-rgb, 0, 243, 255), 0.5) !important;
-    font-weight: 700;
-}
-
-.project-card-hidden {
-    display: none !important;
-}
-
-.project-card-fade {
-    animation: cardFilterIn 0.3s ease forwards;
-}
-
-@keyframes cardFilterIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px) scale(0.98);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-@media (max-width: 768px) {
     .cyber-filter-bar {
         gap: 7px;
         margin-bottom: 22px;
     }
+    
     .cyber-filter-btn {
-        font-size: 0.64rem;
-        padding: 6px 10px;
+        font-size: 12px; /* Adjusted slightly for mobile screens */
+        padding: 6px 12px;
     }
-}
-
-/* Hide Scrollbars for Clean YouTube-Chip Swipe Look */
-.cyber-filter-bar::-webkit-scrollbar,
-.telemetry-bar::-webkit-scrollbar {
-    display: none;
-}
-
-@media (max-width: 900px) {
-    /* Compact Header Spacing on Mobile so Projects Show Immediately */
-    .projects-section {
-        padding-top: 15px !important;
-    }
-
-    .cyber-header-wrap {
-        margin-bottom: 14px !important;
-    }
-
-    .cyber-main-title {
-        font-size: 1.55rem !important;
-        margin-bottom: 6px !important;
-    }
-
-    .subtitle {
-        font-size: 0.82rem !important;
-        margin-bottom: 12px !important;
-    }
-
-    /* 1. Telemetry Status Bar -> Single-Line Horizontal Swipe */
-    .telemetry-bar {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        gap: 8px !important;
-        width: 100% !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 2px 12px !important;
-        margin-bottom: 10px !important;
-    }
-
-    .telemetry-pill {
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-        font-size: 0.62rem !important;
-        padding: 5px 10px !important;
-    }
-
-    /* 2. Filter Buttons Bar -> YouTube-Style Single-Line Swipe */
-    .cyber-filter-bar {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        gap: 8px !important;
-        width: 100% !important;
-        max-width: 100vw !important;
-        overflow-x: auto !important;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        padding: 4px 12px !important;
-        margin: 4px 0 18px 0 !important;
-    }
-
-    .cyber-filter-btn {
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-        font-size: 0.65rem !important;
-        padding: 6px 12px !important;
-    }
-}
-
-/* =========================================================
-   PROJECT CARD TECH TAGS -> SINGLE-LINE HORIZONTAL SCROLL
-   ========================================================= */
-.tech-stack,
-.project-tags,
-.tags,
-.card-tags,
-div:has(+ h3),
-div:has(+ h2) {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none !important;
-    padding: 2px 2px 6px 2px !important;
-    margin-bottom: 10px !important;
-    box-sizing: border-box !important;
-}
-
-/* Hide Scrollbar for Clean Look */
-.tech-stack::-webkit-scrollbar,
-.project-tags::-webkit-scrollbar,
-.tags::-webkit-scrollbar,
-.card-tags::-webkit-scrollbar,
-div:has(+ h3)::-webkit-scrollbar,
-div:has(+ h2)::-webkit-scrollbar {
-    display: none !important;
-}
-
-/* Keep Every Tag Pill in 1 Line (Never Wrap or Shrink) */
-.tech-stack > *,
-.project-tags > *,
-.tags > *,
-.card-tags > *,
-div:has(+ h3) > span,
-div:has(+ h2) > span {
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
-}
-
-/* =========================================================
-   INTERACTIVE BLUEPRINT SANDBOX HUD & HOVER STATES
-   ========================================================= */
-.cyber-blueprint-wrap,
-div:has(> canvas) {
-    position: relative !important;
-    cursor: crosshair !important;
-    user-select: none !important;
-}
-
-.blueprint-hud-pill {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    z-index: 5;
-    font-family: 'Courier New', Consolas, monospace !important;
-    font-size: 0.65rem !important;
-    letter-spacing: 0.8px !important;
-    color: var(--neon-color, #00f3ff) !important;
-    background: rgba(5, 8, 12, 0.88) !important;
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.45) !important;
-    padding: 3px 8px !important;
-    pointer-events: none;
-    transition: all 0.2s ease;
-}
-
-.blueprint-active-pulse {
-    box-shadow: inset 0 0 28px rgba(var(--neon-rgb, 0, 243, 255), 0.28) !important;
 }
