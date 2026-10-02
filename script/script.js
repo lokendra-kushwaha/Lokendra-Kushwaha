@@ -2607,12 +2607,12 @@ window.addEventListener('keydown', (e) => {
 
     if (path.indexOf('projects.html') !== -1) {
         pageUrl = 'https://lokendra-kushwaha.web.app/projects.html';
-        pageTitle = 'Custom AI & Math Architectures | Lokendra Kushwaha';
-        pageDesc = 'Interactive AI systems, 3D Tensor Convolution Cores, Movie Matrix Linear Algebra engines, and Universe Graph Crawlers built from scratch by Lokendra Kushwaha.';
+        pageTitle = 'Custom AI Architectures & Math Engines | Lokendra Kushwaha';
+        pageDesc = 'An engineering repository of zero-dependency AI systems, custom data structures, and mathematical engines. Featuring pure-Python neural architectures, N-dimensional tensors, and logic-driven algorithms built from scratch by Lokendra Kushwaha.';
     } else if (path.indexOf('research.html') !== -1) {
         pageUrl = 'https://lokendra-kushwaha.web.app/research.html';
-        pageTitle = 'Engineering Research Logs & Silicon Benchmarks | Lokendra Kushwaha';
-        pageDesc = 'Deep-dive systems engineering research logs by Lokendra Kushwaha covering CPU cache locality, NumPy C-strides, and Pandas memory architecture.';
+        pageTitle = 'Engineering Research Logs & Systems Architecture | Lokendra Kushwaha';
+        pageDesc = 'Technical research logs and architectural deep-dives by Lokendra Kushwaha. Exploring low-level algorithmic optimizations, memory architecture, computational math, and raw performance engineering from first principles.';
     } else if (path.indexOf('404.html') === -1) {
         document.title = pageTitle;
     }
