@@ -26,7 +26,7 @@ const projectsData = [
         image: "assets/y.png",
         tags: ["Page Rank", "Inverted Matrix", "Data Structures", "Algorithmic Scaling"],
         description: "Engineered a custom web crawler and scalable search engine from scratch, implementing PageRank algorithms, TF-IDF scoring, and inverted indexing without relying on heavy external web-scraping frameworks.",
-        liveLink: "#",
+        liveLink: "https://universe-crawler.streamlit.app",
         githubLink: "https://github.com/lokendra-kushwaha/Universe-Crawler"
     },
     {
@@ -45,7 +45,7 @@ const projectsData = [
         tags: ["Symbolic Calculus", "AST Architecture", "Operator Overloading", "Zero-Deps Logic"],
         description: "Engineered a pure-Python Symbolic Calculus Engine using an Abstract Syntax Tree (AST) architecture. Independent of external solvers, this framework parses complex equations into hierarchical MathNode objects, leveraging Python magic methods for operator overloading. It supports Nth-order differentiation across arithmetic, trigonometric, and exponential functions, while natively applying the Chain Rule and dynamic algebraic simplification for clean, production-grade output.",
         liveLink: "#",
-        githubLink: "https://github.com/lokendra-kushwaha/Core-Math-Algorithms/04_Calculus"
+        githubLink: "https://github.com/lokendra-kushwaha/Core-Math-Algorithms/tree/master/04_Calculus"
     },
     {
         id: "PRJ_06",
