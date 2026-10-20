@@ -1,542 +1,347 @@
 /* =========================================================
-   1. PROJECTS SECTION & HEADER (BASE LAYOUT)
+   ARCHITECTURES PAGE // DESIGN SYSTEM (SOP)
+   =========================================================*/
+:root {
+    --fs-arch-title: 2.5rem;
+    --fs-arch-subtitle: 1.04rem;
+    --fs-card-heading: 1.32rem;
+    --fs-card-desc: 0.95rem;
+    --fs-spec-mono: 0.76rem;
+    --fs-tag-mono: 0.74rem;
+    --arch-grid-gap: 28px;
+    --arch-card-padding: 28px;
+}
+
+/* =========================================================
+   1. PAGE HEADER & SYSTEM METRICS BAR
 ========================================================= */
 .projects-section {
-    padding: 30px 5% 120px 5%; /* Merged padding updates */
-    min-height: 100vh;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 72px 2% 100px;
+    min-height: 85vh;
+}
+
+.arch-header {
+    margin-bottom: 44px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 32px;
+}
+
+.arch-main-title {
+    font-size: var(--fs-arch-title);
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.025em;
+    line-height: var(--lh-tight);
+    margin-bottom: 14px;
+}
+
+.arch-subtitle {
+    font-size: var(--fs-arch-subtitle);
+    color: var(--text-secondary);
+    line-height: var(--lh-relaxed);
+    max-width: 740px;
+    margin-bottom: 26px;
+}
+
+/* System Metrics Bar (Clean replacement for old Telemetry Bar) */
+.arch-metrics-bar {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.cyber-header-wrap {
-    position: relative;
-    text-align: center;
-}
-
-.cyber-top-tag {
-    display: inline-block;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    color: #00f3ff;
-    background: rgba(0, 243, 255, 0.08);
-    border: 1px solid rgba(0, 243, 255, 0.35);
-    padding: 4px 12px;
-    margin-bottom: 10px !important;
-    letter-spacing: 2px;
-}
-
-.cyber-main-title {
-    cursor: pointer;
-    text-shadow: 0 0 18px rgba(0, 243, 255, 0.45);
-    letter-spacing: 3px;
-    margin-top: 0px !important;
-    margin-bottom: 6px !important;
-    line-height: 1.15 !important;
-}
-
-.section-title {
-    margin-top: 0px !important;
-    margin-bottom: 6px !important;
-    line-height: 1.15 !important;
-}
-
-.subtitle {
-    color: #8b949e;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    text-align: center;
-    margin-top: 0px !important;
-    margin-bottom: 12px !important;
-}
-
-/* =========================================================
-   2. LIVE TELEMETRY STATUS PILLS
-========================================================= */
-.telemetry-bar {
-    display: flex;
-    justify-content: center;
     flex-wrap: wrap;
     gap: 12px;
-    margin: 10px auto 22px auto !important;
+    margin-bottom: 28px;
 }
 
-.telemetry-pill {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 0.75rem;
-    color: #c9d1d9;
-    background: rgba(10, 13, 18, 0.9);
-    border: 1px solid rgba(0, 243, 255, 0.3);
-    padding: 5px 12px;
-    display: flex;
+.arch-metric-pill {
+    font-family: var(--font-mono);
+    font-size: var(--fs-spec-mono);
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    letter-spacing: 1px;
 }
 
-.status-dot {
-    width: 8px;
-    height: 8px;
-    background: #00ff88;
+.arch-metric-pill strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.metric-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--status-green);
     border-radius: 50%;
-    box-shadow: 0 0 8px #00ff88;
-    animation: pulseDot 1.5s infinite;
-}
-
-@keyframes pulseDot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
 }
 
 /* =========================================================
-   3. FILTER BAR (SEARCHING / CATEGORIES)
+   2. CATEGORY FILTER BAR
 ========================================================= */
-.cyber-filter-bar {
+.arch-filter-bar {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 10px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 10px auto 32px auto;
-    padding: 0 15px;
 }
 
-.cyber-filter-btn {
-    white-space: nowrap;
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 14px; 
-    font-weight: 600;
-    color: #c9d1d9;
-    background: rgba(10, 13, 18, 0.9);
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.35);
-    padding: 7px 16px;
-    letter-spacing: 1px;
+.arch-filter-btn {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    padding: 8px 16px;
     cursor: pointer;
-    transition: all 0.22s ease;
-    text-transform: uppercase;
-    border-radius: 4px;
+    transition: all 0.2s ease;
 }
 
-.cyber-filter-btn:hover,
-.cyber-filter-btn.active {
-    background: var(--neon-color, #00f3ff) !important;
-    color: #050505 !important;
-    border-color: var(--neon-color, #00f3ff) !important;
-    box-shadow: 0 0 16px rgba(var(--neon-rgb, 0, 243, 255), 0.5) !important;
-    font-weight: 700;
+.arch-filter-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-hover);
+}
+
+.arch-filter-btn.active {
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border-color: var(--btn-bg);
+    font-weight: 600;
+}
+
+/* =========================================================
+   3. ARCHITECTURES GRID & CARDS
+========================================================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--arch-grid-gap);
+    width: 100%;
+}
+
+.project-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+}
+
+/* Flagship Card (NullHunter) spans full width on desktop */
+.project-card.flagship-card {
+    grid-column: 1 / -1;
+    border-color: rgba(56, 189, 248, 0.35);
 }
 
 .project-card-hidden {
     display: none !important;
 }
 
-.project-card-fade {
-    animation: cardFilterIn 0.3s ease forwards;
-}
-
-@keyframes cardFilterIn {
-    from { opacity: 0; transform: translateY(10px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
 /* =========================================================
-   4. PROJECTS GRID & CARD ARCHITECTURE
+   4. ARCHITECTURAL SPEC HEADER (Replaces Flashy Canvas)
 ========================================================= */
-.projects-grid {
+.arch-spec-banner {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 16px var(--arch-card-padding);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.arch-spec-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+}
+
+.arch-sys-id {
+    color: var(--accent-blue);
+    font-weight: 600;
+    letter-spacing: 0.8px;
+}
+
+.arch-sys-layer {
+    color: var(--text-muted);
+}
+
+.arch-spec-metrics {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 80px;
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 20px;
+    gap: 12px;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border-subtle);
 }
 
-.project-card {
-    background: rgba(13, 17, 23, 0.6);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.4s ease;
+.flagship-card .arch-spec-metrics {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.spec-mini-item {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
-.project-card:hover {
-    border: 1px solid rgba(0, 243, 255, 0.4);
-    box-shadow: 0 10px 30px rgba(0, 243, 255, 0.1);
-    transform: translateY(-5px);
+.spec-mini-label {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
 }
 
-/* 3D Hologram Tilt Effect */
-.holo-active {
-    position: relative;
-    overflow: hidden;
-    transform-style: preserve-3d;
-    will-change: transform;
-}
-
-.holo-active:hover .holo-glare {
-    opacity: 1;
-}
-
-/* =========================================================
-   5. PROJECT VISUALS (IMAGES & BLUEPRINT ENGINE)
-========================================================= */
-.project-image-box {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    background: #050505;
-}
-
-.project-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.project-card:hover .project-img {
-    transform: scale(1.08);
-}
-
-/* Auto Live Blueprint Canvas */
-.blueprint-canvas-wrap {
-    position: relative;
-    width: 100%;
-    height: 215px;
-    background: radial-gradient(circle at 50% 50%, rgba(12, 18, 28, 0.95) 0%, rgba(5, 7, 11, 0.98) 100%);
-    border-bottom: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.3);
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px 8px 0 0;
-}
-
-.blueprint-canvas {
-    width: 100%;
-    height: 100%;
-    display: block;
-}
-
-.hover-reveal-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.4s ease-in-out;
-    object-position: top;
-}
-
-.project-card:hover .hover-reveal-img,
-.card:hover .hover-reveal-img,
-.holo-active:hover .hover-reveal-img {
-    opacity: 1; 
-}
-
-/* HUD Tags inside Blueprint */
-.blueprint-hud-tag, .blueprint-status-tag, .blueprint-hud-pill {
-    position: absolute;
-    font-family: 'Courier New', Courier, monospace;
-    background: rgba(5, 5, 5, 0.82);
-    letter-spacing: 1px;
-    pointer-events: none;
-    z-index: 5;
-}
-
-.blueprint-hud-tag {
-    top: 10px; left: 12px;
-    font-size: 0.68rem;
-    color: var(--neon-color, #00f3ff);
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.4);
-    padding: 3px 8px;
-}
-
-.blueprint-status-tag {
-    bottom: 10px; right: 12px;
-    font-size: 0.65rem;
-    color: #a3b3c6;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 2px 8px;
-}
-
-.blueprint-hud-pill {
-    top: 10px; right: 12px;
-    font-size: 0.65rem !important;
-    color: var(--neon-color, #00f3ff) !important;
-    border: 1px solid rgba(var(--neon-rgb, 0, 243, 255), 0.45) !important;
-    padding: 3px 8px !important;
-}
-
-.cyber-blueprint-wrap, div:has(> canvas) {
-    position: relative !important;
-    cursor: crosshair !important;
-    user-select: none !important;
-}
-
-.blueprint-active-pulse {
-    box-shadow: inset 0 0 28px rgba(var(--neon-rgb, 0, 243, 255), 0.28) !important;
+.spec-mini-val {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 /* =========================================================
-   6. PROJECT CONTENT & BUTTONS
+   5. CARD CONTENT, TAGS & ACTION LINKS
 ========================================================= */
 .project-content {
-    padding: 30px;
+    padding: var(--arch-card-padding);
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+}
+
+.project-title {
+    font-family: var(--font-sans);
+    font-size: var(--fs-card-heading);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: var(--lh-heading);
+    margin-bottom: 12px;
+}
+
+.project-desc {
+    font-family: var(--font-sans);
+    color: var(--text-secondary);
+    font-size: var(--fs-card-desc);
+    line-height: var(--lh-relaxed);
+    margin-bottom: 22px;
     flex-grow: 1;
 }
 
 .tags-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 8px;
+    margin-bottom: 24px;
 }
 
 .tech-tag {
-    background: rgba(0, 243, 255, 0.1);
-    color: #00f3ff;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    padding: 5px 12px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 243, 255, 0.2);
-    letter-spacing: 1px;
-}
-
-.project-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 1.8rem;
-    color: #ffffff;
-    margin-bottom: 15px;
-}
-
-.project-desc {
-    font-family: 'Poppins', sans-serif;
-    color: #a3b3c6;
-    font-size: 0.95rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
-    text-align: justify !important;
-    flex-grow: 1;
+    background: var(--bg-input);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: var(--fs-tag-mono);
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
 }
 
 .project-links {
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-subtle);
 }
 
-.project-links a {
+.project-links a,
+.project-links .btn-status {
     flex: 1;
+    min-width: 150px;
     text-align: center;
-    padding: 12px 0;
-    border-radius: 5px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.85rem;
+    padding: 10px 16px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: 0.84rem;
+    font-weight: 500;
     text-decoration: none;
-    transition: all 0.3s ease;
-    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
 }
 
 .btn-live {
-    background: #00f3ff;
-    color: #0d1117;
-    font-weight: 700;
+    background: var(--btn-bg);
+    color: var(--btn-text);
+    border: 1px solid var(--btn-bg);
+    font-weight: 600;
 }
 
 .btn-live:hover {
-    background: #ffffff;
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.6);
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 .btn-github {
-    background: transparent;
-    color: #ffffff;
-    border: 1px solid #58a6ff;
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-subtle);
 }
 
 .btn-github:hover {
-    background: rgba(88, 166, 255, 0.1);
-    border-color: #00f3ff;
-    color: #00f3ff;
+    border-color: var(--border-hover);
+    background: var(--bg-input);
+}
+
+.btn-status {
+    background: var(--bg-input);
+    color: var(--text-muted);
+    border: 1px solid var(--border-subtle);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    cursor: default;
 }
 
 /* =========================================================
-   7. HORIZONTAL SCROLL UTILITIES (TAGS)
-========================================================= */
-.tech-stack, .project-tags, .tags, .card-tags, div:has(+ h3), div:has(+ h2) {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    gap: 8px !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none !important;
-    padding: 2px 2px 6px 2px !important;
-    margin-bottom: 10px !important;
-    box-sizing: border-box !important;
-}
-
-.tech-stack > *, .project-tags > *, .tags > *, .card-tags > *, div:has(+ h3) > span, div:has(+ h2) > span {
-    flex: 0 0 auto !important;
-    white-space: nowrap !important;
-}
-
-/* Hide Scrollbars Global Rule */
-.cyber-filter-bar::-webkit-scrollbar,
-.telemetry-bar::-webkit-scrollbar,
-.tech-stack::-webkit-scrollbar,
-.project-tags::-webkit-scrollbar,
-.tags::-webkit-scrollbar,
-.card-tags::-webkit-scrollbar,
-div:has(+ h3)::-webkit-scrollbar,
-div:has(+ h2)::-webkit-scrollbar {
-    display: none !important;
-}
-
-/* =========================================================
-   8. RESPONSIVE DESIGN (TABLETS & MOBILE)
+   6. RESPONSIVE DESIGN (TABLETS & MOBILE)
 ========================================================= */
 @media (max-width: 991px) {
     .projects-grid {
         grid-template-columns: 1fr;
-        max-width: 600px;
     }
-}
 
-@media (max-width: 900px) {
+    .flagship-card .arch-spec-metrics {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    :root {
+        --fs-arch-title: 1.9rem;
+        --arch-card-padding: 22px;
+    }
+
     .projects-section {
-        padding-top: 15px !important;
+        padding: 48px 5% 80px;
     }
 
-    .cyber-header-wrap {
-        margin-bottom: 14px !important;
+    .arch-spec-metrics,
+    .flagship-card .arch-spec-metrics {
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
 
-    .cyber-main-title {
-        font-size: 1.55rem !important;
-        margin-bottom: 6px !important;
-    }
-
-    .subtitle {
-        font-size: 0.82rem !important;
-        margin-bottom: 12px !important;
-    }
-
-    /* Swipeable Telemetry Bar */
-    .telemetry-bar {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        width: 100% !important;
-        overflow-x: auto !important;
-        padding: 2px 12px !important;
-        margin-bottom: 10px !important;
-    }
-    
-    .telemetry-pill {
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-    }
-
-    /* Swipeable Filter Bar */
-    .cyber-filter-bar {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: flex-start !important;
-        align-items: center !important;
-        width: 100% !important;
-        max-width: 100vw !important;
-        overflow-x: auto !important;
-        padding: 4px 12px !important;
-        margin: 4px 0 18px 0 !important;
-    }
-
-    .cyber-filter-btn {
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .projects-section {
-        padding-top: 60px; 
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-    
-    .section-title {
-        font-size: 2.0rem;
-        overflow-wrap: break-word;
-        word-wrap: break-word;
-        text-align: center;
-        padding: 0 10px;
-    }
-    
-    .subtitle {
-        font-size: 1rem;
-        padding: 0 15px;
-        margin-bottom: 30px;
-    }
-    
-    .project-image-box {
-        height: 200px;
-    }
-    
     .project-links {
         flex-direction: column;
-    }
-
-    .cyber-main-title,
-    .projects-section h1 {
-        font-size: 1.45rem !important;
-        letter-spacing: 1.5px !important;
-        line-height: 1.3;
-        padding: 0 10px;
-    }
-
-    .cyber-top-tag {
-        font-size: 0.65rem;
-        padding: 3px 8px;
-        letter-spacing: 1px;
-    }
-
-    .telemetry-bar {
-        gap: 8px;
-        margin: 14px auto 25px auto;
-    }
-
-    .telemetry-pill {
-        font-size: 0.68rem;
-        padding: 4px 10px;
-    }
-
-    .cyber-filter-bar {
-        gap: 7px;
-        margin-bottom: 22px;
-    }
-    
-    .cyber-filter-btn {
-        font-size: 12px; /* Adjusted slightly for mobile screens */
-        padding: 6px 12px;
     }
 }

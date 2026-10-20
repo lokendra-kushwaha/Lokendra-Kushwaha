@@ -9,148 +9,276 @@
     <meta name="application-name" content="Lokendra Kushwaha">
     <meta property="og:site_name" content="Lokendra Kushwaha">
 
-    <script type="application/ld+json">
+    <script type="application/ld+json" id="lokendra-jsonld-schema">
     { 
-    "@context" : "https://schema.org",
-    "@type" : "WebSite",
-    "name" : "Lokendra Kushwaha",
-    "url" :  "https://lokendra-kushwaha.web.app/"
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Lokendra Kushwaha",
+        "url": "https://lokendra-kushwaha.web.app/",
+        "email": "mailto:thelokendrakushwaha@gmail.com",
+        "jobTitle": "Systems Architect & Founder @ OmniCore Systems",
+        "worksFor": {
+            "@type": "Organization",
+            "name": "OmniCore Systems"
+        },
+        "description": "AI and Data Systems Architect engineering zero-dependency mathematical foundations, C++ memory-mapped execution engines (NullHunter), and OmniCore Tabular Intelligence (OTI) from first principles.",
+        "knowsAbout": [
+            "Systems Architecture",
+            "C++ Memory Architecture (mmap / Zero-IPC)",
+            "SIMD Hardware Vectorization",
+            "Linear Algebra & Spectral Decomposition",
+            "N-Dimensional Tensor Mechanics",
+            "OmniCore Tabular Intelligence (OTI)"
+        ],
+        "sameAs": [
+            "https://github.com/lokendra-kushwaha",
+            "https://www.linkedin.com/in/the-lokendra-kushwaha/",
+            "https://x.com/The__Lokendra__"
+        ]
     }
     </script>
 
-    <meta name="description" content="Engineering workspace of Lokendra Kushwaha — AI and Data Science Systems Engineer building zero-dependency math engines, neural architectures, graph crawlers, and hardware memory benchmarks from scratch.">
+    <meta name="description" content="Engineering workspace of Lokendra Kushwaha — Systems Architect and Founder of OmniCore Systems. Designing deterministic mathematical kernels, Zero-IPC C++ data engines (NullHunter), and OmniCore Tabular Intelligence.">
+    <meta name="keywords" content="Lokendra Kushwaha, Systems Architect, OmniCore Systems, OmniCore Tabular Intelligence, NullHunter, Zero-IPC Architecture, C++ mmap, SIMD Vectorization, First-Principles AI">
+    <meta name="author" content="Lokendra Kushwaha">
+    <meta name="robots" content="index, follow">
 
-    <title>Lokendra Kushwaha | AI Systems Engineer & Custom Math Architectures</title>
+    <title>Lokendra Kushwaha — Systems Architect</title>
     
-    <!-- Social Media Preview Card (WhatsApp, LinkedIn, Facebook) -->
+    <!-- Social Media Preview Card -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lokendra-kushwaha.web.app/">
-    <meta property="og:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta property="og:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
+    <meta property="og:title" content="Lokendra Kushwaha — Systems Architect">
+    <meta property="og:description" content="Engineering deterministic mathematical foundations, Zero-IPC C++ execution engines, and OmniCore Tabular Intelligence from first principles.">
     <meta property="og:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
 
     <!-- X (Twitter) Large Preview Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta name="twitter:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
+    <meta name="twitter:title" content="Lokendra Kushwaha — Systems Architect">
+    <meta name="twitter:description" content="Engineering deterministic mathematical foundations, Zero-IPC C++ execution engines, and OmniCore Tabular Intelligence from first principles.">
     <meta name="twitter:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
 
-    <!-- Rajdhani Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Clean Engineering Typography: Inter (Prose) & JetBrains Mono (Architecture Specs) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Poppins Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Orbitron Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Social Media Icons -->
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Linking CSS from the style folder -->
+    <!-- Standard SOP Stylesheet -->
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <!-- Premium Navigation Bar -->
-    <nav class="nav-box">
-        <div class="logo">LOKENDRA KUSHWAHA</div>
-        
-        <!-- Hamburger Icon for Mobile -->
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-        
-        <ul class="menu">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="projects.html">PROJECTS</a></li>
-            <li><a href="research.html">RESEARCH LOGS</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
-    </nav>
 
-    <!-- Main Introduction Section -->
-    <section id="home" class="main-section">
-        <div class="intro-text">
-            <h1>Hi, I'm <span class="accent-text">Lokendra</span>.</h1>
-            <h2>I Build Advanced AI Engines & Data Architectures.</h2>
-            <p>Explore my custom algorithms and logic-driven projects like the Universe Crawler.</p>
-            <a href="projects.html" class="action-btn">Explore Projects</a>
-        </div>
-        
-        <!-- Placeholder for future profile picture -->
-        <div class="profile-area">
-            <div class="image-circle">
-                <canvas id="neuralCanvas"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <!-- Box 1: The Origin -->
-            <div class="about-box">
-                <h3>The Origin</h3>
-                <p>I like systems that follow logic without excuses, and that need for control is what pulled me into AI. At first, I did not even know it was all driven by math. Discovering that AI actually works through mathematical predictions made decoding its core logic way more exciting, since math was already my strong suit.</p>
-            </div>
+    <!-- Top Navigation Bar -->
+    <header class="site-header">
+        <nav class="nav-box">
+            <a href="index.html" class="logo">
+                LOKENDRA KUSHWAHA
+            </a>
             
-            <!-- Box 2: The Philosophy -->
-            <div class="about-box">
-                <h3>The Philosophy</h3>
-                <p>I do not trust black-box tools that hide how a system actually works under the hood. Instead of taking shortcuts with pre-built libraries, I build algorithms, pure NumPy logic, and mathematical engines entirely from scratch. For me, real engineering means commanding every single layer of how a machine calculates, learns, and processes data.</p>
-            </div>
-            
-            <!-- Box 3: The Vision -->
-            <div class="about-box">
-                <h3>The Vision</h3>
-                <p>I focus on engineering custom AI architectures, high-speed data pipelines, and logic-driven engines built for raw performance. Rather than just wrapping existing APIs, I build scalable, self-reliant systems where I direct the entire execution flow, from raw data ingestion to the final real-time predictions.</p>
-            </div>
-        </div>
-    </section>
+            <div class="nav-controls">
+                <ul class="menu" id="nav-menu">
+                    <li><a href="index.html" class="active">Index</a></li>
+                    <li><a href="projects.html">Architectures</a></li>
+                    <li><a href="research.html">Research Logs</a></li>
+                    <li><a href="#about">Doctrine</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Contact Me</h2>
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Switch System Color Scheme" aria-label="Switch Theme">
+                    <i class="fas fa-adjust"></i> <span id="theme-label">System</span>
+                </button>
+
+                <button type="button" class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
         
-        <div class="contact-container">
-            <!-- Left Side: Info & Social Links -->
-            <div class="contact-info">
-                <h3>Let's Connect</h3>
-                <p>Interested in collaborating on AI architectures or discussing custom logic? Drop me a message.</p>
-                
-                <div class="email-box">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:thelokendrakushwaha@gmail.com" style="color: white; text-decoration: none;"><span>thelokendrakushwaha@gmail.com</span></a>
+        <!-- Main Hero Section -->
+        <section id="home" class="main-section">
+            <!-- Left Column: Grounded Builder Identity -->
+            <div class="intro-text">
+                <div class="founder-badge">
+                    <span class="status-indicator"></span>
+                    <span>SYSTEMS ARCHITECT &middot; FOUNDER @ OMNICORE SYSTEMS</span>
                 </div>
                 
-                <div class="social-links">
-                    <a href="https://github.com/lokendra-kushwaha" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/the-lokendra-kushwaha/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://x.com/The__Lokendra__" target="_blank" class="social-icon" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+                <h1>Lokendra Kushwaha</h1>
+                
+                <h2 class="hero-subtitle">
+                    Architecting Autonomous AI &amp; High-Efficiency Data Systems.
+                </h2>
+                
+                <p class="hero-description">
+                    I focus on building self-reliant systems from first principles. Through <strong>OmniCore Systems</strong>, I design mathematical engines and autonomous data infrastructure, including <strong>NullHunter</strong> and <strong>OmniCore Tabular Intelligence (OTI), </strong>engineered to automate complex workflows from raw data to intelligent execution on minimal hardware.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="projects.html" class="action-btn">Explore Systems &amp; Engines</a>
+                    <a href="research.html" class="secondary-btn">Read Research Logs</a>
                 </div>
             </div>
             
-            <!-- Right Side: Custom Contact Form -->
-            <div class="contact-form-box">
-                <form action="https://formsubmit.co/thelokendrakushwaha@gmail.com" method="POST" class="contact-form">
-                    <div class="input-group">
-                        <input name = "name" type="text" placeholder="Your Name" required>
+            <!-- Right Column: Clean System Overview Card -->
+            <div class="spec-area">
+                <div class="spec-card">
+                    <div class="spec-card-header">
+                        <span class="spec-title">ENGINEERING OVERVIEW</span>
+                        <span class="spec-status">ACTIVE R&amp;D</span>
                     </div>
-                    <div class="input-group">
-                        <input name="email" type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="input-group">
-                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="action-btn submit-btn">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
 
-    <!-- Linking JavaScript file -->
+                    <div class="spec-body">
+                        <div class="spec-row">
+                            <span class="spec-key">Role</span>
+                            <span class="spec-val">AI &amp; Data Systems Architect</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Organization</span>
+                            <span class="spec-val">OmniCore Systems</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Core Focus</span>
+                            <span class="spec-val">Autonomous AI &amp; Data Automation</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Data Engine</span>
+                            <span class="spec-val">NullHunter (Automated Data Refinery)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Tabular AI</span>
+                            <span class="spec-val">OmniCore Tabular Intelligence (OTI)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key">Approach</span>
+                            <span class="spec-val">First-Principles Math &amp; Low-RAM Execution</span>
+                        </div>
+                    </div>
+
+                    <div class="spec-footer">
+                        <div class="spec-note">
+                            <span class="spec-note-label">CORE PRINCIPLE</span>
+                            <p class="spec-note-text">
+                                "True engineering means understanding every layer of how a machine stores, calculates, and learns from data."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy & Vision Section (Calm, Grounded & Purpose-Driven) -->
+        <section id="about" class="about-section">
+            <div class="section-header">
+                <span class="section-tag">PHILOSOPHY &amp; VISION</span>
+                <h2 class="section-title">First-Principles Systems Engineering</h2>
+                <p class="section-lead">
+                    My work is guided by a simple belief: to build truly reliable and intelligent systems, you must understand the mathematics and hardware mechanics underneath, and automate the repetitive work that slows human thinking down.
+                </p>
+            </div>
+
+            <div class="about-container">
+                <!-- Box 1: The Engineering Approach -->
+                <article class="about-box">
+                    <div class="box-meta">THE APPROACH</div>
+                    <h3>Understanding From Scratch</h3>
+                    <p>
+                        Instead of treating machine learning as a black box, I prefer building core algorithms, matrices, and tensors from the ground up. Writing mathematical foundations from scratch gives me complete clarity over how data moves in memory, how models converge, and where real performance bottlenecks hide.
+                    </p>
+                </article>
+                
+                <!-- Box 2: The Problem & Foundation -->
+                <article class="about-box">
+                    <div class="box-meta">THE FOUNDATION</div>
+                    <h3>Automating the Data Bottleneck</h3>
+                    <p>
+                        Most of data science is still slowed down by manual data cleaning, while automated training tools often assume raw data is already clean. I built <strong>NullHunter</strong> to bridge this gap, an autonomous data refinery that prepares large, messy datasets on standard hardware so engineers can focus on building intelligence rather than fixing tables.
+                    </p>
+                </article>
+                
+                <!-- Box 3: The Long-Term Vision -->
+                <article class="about-box">
+                    <div class="box-meta">THE VISION</div>
+                    <h3>Accessible Autonomous Intelligence</h3>
+                    <p>
+                        Data refining is the first step toward a larger goal. Through <strong>OmniCore Systems</strong> and <strong>OmniCore Tabular Intelligence (OTI)</strong>, I am working toward unified, self-reliant systems that automate the complex layers of AI, making it practical for anyone to build and train high-quality models without massive infrastructure.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Personal Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-header">
+                <span class="section-tag">DIRECT CHANNEL</span>
+                <h2 class="section-title">Get In Touch</h2>
+            </div>
+            
+            <div class="contact-container">
+                <!-- Left Side: Direct Info & Social Links -->
+                <div class="contact-info">
+                    <h3>Direct Correspondence</h3>
+                    <p>
+                        Open to deep-tech discussions on low-level systems architecture, custom mathematical engines, tabular foundation models, and strategic engineering initiatives.
+                    </p>
+                    
+                    <div class="email-box">
+                        <i class="far fa-envelope"></i>
+                        <a href="mailto:thelokendrakushwaha@gmail.com" id="copy-email-link" title="Click to copy email address">
+                            thelokendrakushwaha@gmail.com
+                        </a>
+                        <span id="copy-badge" class="copy-badge">Click to copy</span>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/lokendra-kushwaha" target="_blank" rel="noopener noreferrer" class="social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/the-lokendra-kushwaha/" target="_blank" rel="noopener noreferrer" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://x.com/The__Lokendra__" target="_blank" rel="noopener noreferrer" class="social-icon" title="X (Twitter)">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right Side: Clean Contact Form -->
+                <div class="contact-form-box">
+                    <form action="https://formsubmit.co/thelokendrakushwaha@gmail.com" method="POST" class="contact-form" id="contact-form" novalidate>
+                        <div class="input-group">
+                            <label for="sender-name" class="input-label">Name</label>
+                            <input name="name" id="sender-name" type="text" placeholder="Your name" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="sender-email" class="input-label">Email</label>
+                            <input name="email" id="sender-email" type="email" placeholder="you@domain.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="sender-message" class="input-label">Message</label>
+                            <textarea name="message" id="sender-message" rows="4" placeholder="Your message or architectural inquiry..." required></textarea>
+                        </div>
+                        <button type="submit" class="action-btn submit-btn" id="submit-btn">Send Message</button>
+                        <div id="form-status" class="form-status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 Lokendra Kushwaha.</span>
+            <span class="footer-meta">Systems Architecture &amp; First-Principles Engineering.</span>
+        </div>
+    </footer>
+
+    <!-- Standard SOP Script -->
     <script src="script/script.js"></script>
 </body>
 </html>

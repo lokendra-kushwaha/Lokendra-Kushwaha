@@ -1,6 +1,8 @@
-// ==========================================
-// Research Logs Data
-// ==========================================
+
+/* =========================================================
+   RESEARCH LOGS // ARCHIVE, SEARCH & VOICE ENGINE (SOP)
+   ========================================================= */
+
 const researchLogs = [
     {
         id: "LOG_001",
@@ -3354,665 +3356,348 @@ if (container && indexContainer) {
     indexContainer.innerHTML = indexHTML;
 }
 
-// 1. Top Reading Progress Bar
-const progressBar = document.createElement('div');
-progressBar.id = 'reading-progress';
-document.body.prepend(progressBar);
-
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-    progressBar.style.width = progress + '%';
-});
-
-// 2. Auto-Inject Copy Buttons into Code Boxes
-function initCopyButtons() {
-    const codeBoxes = document.querySelectorAll('.code-box');
-    codeBoxes.forEach((box) => {
-        if (box.querySelector('.copy-btn')) return;
-
-        const btn = document.createElement('button');
-        btn.className = 'copy-btn';
-        btn.innerText = 'COPY';
-
-        btn.addEventListener('click', () => {
-            const pre = box.querySelector('pre');
-            const codeText = pre ? pre.innerText : box.innerText;
-
-            navigator.clipboard.writeText(codeText).then(() => {
-                btn.innerText = 'COPIED!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.innerText = 'COPY';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
-        });
-
-        box.appendChild(btn);
-    });
-}
-
-initCopyButtons();
-window.addEventListener('DOMContentLoaded', initCopyButtons);
-
 // =========================================================
-// MODULAR BENCHMARK LABS FOR RESEARCH LOGS (FULL 9 MODULES)
+// 2. CHRONOLOGICAL (LATEST-FIRST) RENDER & SEARCH ENGINE
 // =========================================================
-(function initBenchmarkLabs() {
-    
-    // 1. DEFINE ALL 9 LABS EXACTLY MATCHING YOUR ARCHITECTURE TOPICS
-    const labDefinitions = {
-        
-        // Lab for LOG_001: Python vs C (Dynamic vs Static Allocation)
-        'python_vs_c': {
-            spec: 'WORKLOAD: 5,000,000 Elements',
-            desc: 'Test Dynamic Memory vs Static C-Arrays. Compares allocating a standard dynamic array (simulating Python Lists) against a strict Float64 TypedArray (simulating C memory).',
-            btnText: '[ ▶ RUN ALLOCATION BENCHMARK ]',
-            labelFast: '1. C-Style TypedArray (Contiguous RAM)',
-            labelSlow: '2. Dynamic Boxed Array (Scattered Pointers)',
-            runBenchmark: function() {
-                const N = 5000000;
-                
-                const t0 = performance.now();
-                const cArray = new Float64Array(N);
-                for (let i = 0; i < N; i++) cArray[i] = i * 1.5;
-                const fastMs = Math.max(0.1, performance.now() - t0);
+(function initResearchArchive() {
+    const container = document.getElementById('logs-container');
+    const indexContainer = document.getElementById('logs-index');
+    const searchInput = document.getElementById('log-search-input');
+    const sortToggleBtn = document.getElementById('sort-toggle-btn');
+    const countMeta = document.getElementById('log-count-meta');
 
-                const t1 = performance.now();
-                const pyArray = new Array(N);
-                for (let i = 0; i < N; i++) pyArray[i] = i * 1.5;
-                const slowMs = Math.max(0.2, performance.now() - t1);
-                
-                if (cArray[0] === -1 || pyArray[0] === -1) console.log(''); 
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because C-style arrays allocate one raw block of memory, while dynamic arrays create heavy object pointers.'
-                };
-            }
-        },
+    if (!container || !indexContainer) return;
 
-        // Lab for LOG_002: Lists vs Dicts (Hash Tables)
-        'list_vs_set': {
-            spec: 'SEARCH DATASET: 30,000 Elements',
-            desc: 'Compare algorithmic time-complexity directly. Tests searching through an O(N) Array versus an O(1) Hash Set (Dictionary engine).',
-            btnText: '[ ▶ RUN LOOKUP BENCHMARK ]',
-            labelFast: '1. Set Lookup (O(1) Hash Indexing)',
-            labelSlow: '2. List Lookup (O(N) Linear Scan)',
-            runBenchmark: function() {
-                const count = 30000;
-                const arr = [];
-                const set = new Set();
-                for (let i = 0; i < count; i++) {
-                    arr.push(i);
-                    set.add(i);
-                }
+    // Default: True -> Latest logs (e.g., LOG_014) render at the very top
+    let sortLatestFirst = true;
+    let currentSearchQuery = '';
+    let scrollObserver = null;
 
-                const t0 = performance.now();
-                let hits1 = 0;
-                for (let i = 0; i < count; i++) {
-                    if (set.has(i)) hits1++;
-                }
-                const fastMs = Math.max(0.1, performance.now() - t0);
-
-                const t1 = performance.now();
-                let hits2 = 0;
-                for (let i = 0; i < count; i++) {
-                    if (arr.indexOf(i) !== -1) hits2++;
-                }
-                const slowMs = Math.max(0.3, performance.now() - t1);
-                
-                if (hits1 === -1 || hits2 === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'by utilizing O(1) direct memory hashing instead of O(N) linear scanning.'
-                };
-            }
-        },
-
-        // Lab for LOG_003: Namespaces & Scope Resolution
-        'namespace_resolution': {
-            spec: 'ITERATIONS: 10,000,000 Variable Lookups',
-            desc: 'Test the LEGB rule and Namespace Dictionary lookups. Compares reading a Local variable (fast stack) vs reading a Global variable (heavy dictionary lookup).',
-            btnText: '[ ▶ RUN NAMESPACE BENCHMARK ]',
-            labelFast: '1. Local Scope Variable (Stack Access)',
-            labelSlow: '2. Global Scope Variable (Dictionary Search)',
-            runBenchmark: function() {
-                const N = 10000000;
-                window.__global_test_var = 5; 
-                let local_test_var = 5;
-
-                const t0 = performance.now();
-                let sum1 = 0;
-                for (let i = 0; i < N; i++) {
-                    sum1 += local_test_var;
-                }
-                const fastMs = Math.max(0.1, performance.now() - t0);
-
-                const t1 = performance.now();
-                let sum2 = 0;
-                for (let i = 0; i < N; i++) {
-                    sum2 += window.__global_test_var;
-                }
-                const slowMs = Math.max(0.2, performance.now() - t1);
-                
-                if (sum1 === -1 || sum2 === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because local variables are cached instantly on the stack frame, bypassing the global dictionary search.'
-                };
-            }
-        },
-
-        // Lab for LOG_004: State Architecture & OOP
-        'oop_overhead': {
-            spec: 'INSTANTIATION: 1,000,000 Objects',
-            desc: 'Test Object-Oriented memory allocation overhead. Compares flat structural dictionaries against heavy Class Instantiations with prototypes and "self" bindings.',
-            btnText: '[ ▶ RUN OOP ALLOCATION BENCHMARK ]',
-            labelFast: '1. Flat Object Literals (Raw Dictionary)',
-            labelSlow: '2. Class Instantiation (OOP Overhead)',
-            runBenchmark: function() {
-                const N = 1000000;
-                class Customer { constructor(id) { this.id = id; this.type = 'user'; } }
-
-                const t0 = performance.now();
-                const dicts = [];
-                for (let i = 0; i < N; i++) dicts.push({id: i, type: 'user'});
-                const fastMs = Math.max(0.2, performance.now() - t0);
-
-                const t1 = performance.now();
-                const objs = [];
-                for (let i = 0; i < N; i++) objs.push(new Customer(i));
-                const slowMs = Math.max(0.4, performance.now() - t1);
-                
-                if (dicts.length === 0 || objs.length === 0) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because Class instantiation carries internal binding, prototype mapping, and constructor execution overhead.'
-                };
-            }
-        },
-
-        // Lab for LOG_005: Advanced Control Flow & Memoization
-        'memoization_test': {
-            spec: 'RECURSION: Fibonacci(30)',
-            desc: 'Test Dynamic Programming space-time tradeoffs. Compares an O(2^N) exponential recursive tree against an O(N) Memoized linear cache.',
-            btnText: '[ ▶ RUN MEMOIZATION BENCHMARK ]',
-            labelFast: '1. Memoized Execution (O(N) Cached)',
-            labelSlow: '2. Naive Recursion (O(2^N) Exponential)',
-            runBenchmark: function() {
-                function fibNaive(n) {
-                    if (n <= 1) return n;
-                    return fibNaive(n - 1) + fibNaive(n - 2);
-                }
-                
-                const cache = {};
-                function fibMemo(n) {
-                    if (n <= 1) return n;
-                    if (cache[n]) return cache[n];
-                    cache[n] = fibMemo(n - 1) + fibMemo(n - 2);
-                    return cache[n];
-                }
-
-                const t0 = performance.now();
-                const res1 = fibMemo(30);
-                const fastMs = Math.max(0.01, performance.now() - t0);
-
-                const t1 = performance.now();
-                const res2 = fibNaive(30);
-                const slowMs = Math.max(5.0, performance.now() - t1);
-                
-                if (res1 === -1 || res2 === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'by utilizing RAM as a cache to completely bypass redundant CPU execution branches.'
-                };
-            }
-        },
-
-        // Lab for LOG_006: Concurrency Paradox
-        'context_switch': {
-            spec: 'EXECUTION: 5,000,000 Operations',
-            desc: 'Test the overhead of Context Switching (Thread hopping). Compares linear contiguous execution against heavily fragmented function calls (simulating thread jumping).',
-            btnText: '[ ▶ RUN CONCURRENCY BENCHMARK ]',
-            labelFast: '1. Linear Execution (Zero Context Switching)',
-            labelSlow: '2. Fragmented Execution (Context Switch Overhead)',
-            runBenchmark: function() {
-                const N = 5000000;
-                
-                const t0 = performance.now();
-                let sum1 = 0;
-                for (let i = 0; i < N; i++) { sum1 += i * 2; }
-                const fastMs = Math.max(0.1, performance.now() - t0);
-
-                const t1 = performance.now();
-                let sum2 = 0;
-                function work(val) { return val * 2; }
-                for (let i = 0; i < N; i++) { sum2 += work(i); }
-                const slowMs = Math.max(0.3, performance.now() - t1);
-                
-                if (sum1 === -1 || sum2 === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because jumping between stack frames creates severe CPU instruction-cache misses compared to linear loops.'
-                };
-            }
-        },
-
-        // Lab for LOG_007: Persistence & System Stability
-        'buffer_flush': {
-            spec: 'DATA: 100,000 String Concatenations',
-            desc: 'Test RAM Buffer Reallocation. Compares inefficient string rewriting (simulating bad I/O flushing) against memory-efficient Array joining (streaming).',
-            btnText: '[ ▶ RUN BUFFER BENCHMARK ]',
-            labelFast: '1. Chunked Array Join (Efficient Buffering)',
-            labelSlow: '2. String Reallocation (RAM Exhaustion)',
-            runBenchmark: function() {
-                const N = 100000;
-                
-                const t0 = performance.now();
-                const buffer = [];
-                for (let i = 0; i < N; i++) buffer.push("DATA_");
-                const res1 = buffer.join("");
-                const fastMs = Math.max(0.1, performance.now() - t0);
-
-                const t1 = performance.now();
-                let res2 = "";
-                for (let i = 0; i < N; i++) res2 += "DATA_";
-                const slowMs = Math.max(0.4, performance.now() - t1);
-                
-                if (res1.length === 0 || res2.length === 0) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because chunked buffering pre-allocates RAM once, whereas string rewriting forces the OS to destroy and rebuild memory continuously.'
-                };
-            }
-        },
-
-        // Lab for LOG_013: AI Math Engine (Matrix Operations)
-        'cache_locality': {
-            spec: 'BUFFER: 2048x2048 Float64 (33.55 MB RAM)',
-            desc: 'Test the hardware memory trap on your CPU. Allocates a 4-million element matrix and compares Row-Major traversal (cache hits) against Column-Major traversal (cache misses).',
-            btnText: '[ ▶ RUN CACHE LOCALITY BENCHMARK ]',
-            labelFast: '1. Row-Major Contiguous (Stride: 8B)',
-            labelSlow: '2. Column-Major Trap (Stride: 16KB)',
-            runBenchmark: function() {
-                const N = 2048;
-                const total = N * N;
-                const mat = new Float64Array(total);
-                for (let i = 0; i < total; i += 64) mat[i] = 1.0001;
-
-                const t0 = performance.now();
-                let s1 = 0;
-                for (let i = 0; i < N; i++) {
-                    const r = i * N;
-                    for (let j = 0; j < N; j++) s1 += mat[r + j];
-                }
-                const fastMs = Math.max(0.2, performance.now() - t0);
-
-                const t1 = performance.now();
-                let s2 = 0;
-                for (let i = 0; i < N; i++) {
-                    for (let j = 0; j < N; j++) s2 += mat[j * N + i];
-                }
-                const slowMs = Math.max(0.3, performance.now() - t1);
-                
-                if (s1 === -1 || s2 === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'by eliminating L1/L2 hardware cache-line thrashing at the silicon level.'
-                };
-            }
-        },
-
-        // Lab for LOG_014: Pandas Black Box
-        'pandas_view': {
-            spec: 'SERIES: 5,000,000 Float64 Rows (40.0 MB RAM)',
-            desc: 'Test memory overhead on your CPU. Compares zero-copy sequential slices against heavy RAM allocations caused by array copying (fancy indexing).',
-            btnText: '[ ▶ RUN MEMORY OVERHEAD BENCHMARK ]',
-            labelFast: '1. Stride Slice View (Zero Extra RAM Allocation)',
-            labelSlow: '2. Fancy Indexing Copy (New Heap Allocation)',
-            runBenchmark: function() {
-                const rows = 5000000;
-                const cArray = new Float64Array(rows);
-                for (let i = 0; i < rows; i += 64) cArray[i] = 42.5;
-
-                const t0 = performance.now();
-                const viewWindow = cArray.subarray(1, rows);
-                let viewSum = 0;
-                for (let i = 0; i < viewWindow.length; i += 2) viewSum += viewWindow[i];
-                const fastMs = Math.max(0.2, performance.now() - t0);
-
-                const t1 = performance.now();
-                const fancyCopy = [];
-                for (let i = 0; i < rows; i += 2) fancyCopy.push(cArray[i]);
-                let copySum = 0;
-                for (let i = 0; i < fancyCopy.length; i++) copySum += fancyCopy[i];
-                const slowMs = Math.max(0.4, performance.now() - t1);
-
-                if (viewSum === -1 || copySum === -1) console.log('');
-                
-                return {
-                    fastMs: fastMs,
-                    slowMs: slowMs,
-                    reason: 'because slices reuse existing contiguous memory, while copying forces expensive new RAM allocations.'
-                };
-            }
+    // Helper: Parse "DD.MM.YYYY" or fallback to array position so newest is always on top
+    function parseLogDate(dateStr, fallbackIndex) {
+        if (!dateStr || typeof dateStr !== 'string') return fallbackIndex;
+        const parts = dateStr.trim().split('.');
+        if (parts.length === 3) {
+            const day = parseInt(parts[0], 10) || 1;
+            const month = (parseInt(parts[1], 10) || 1) - 1;
+            const year = parseInt(parts[2], 10) || 2026;
+            return new Date(year, month, day).getTime() + fallbackIndex;
         }
-    };
-
-    // 2. MAP LABS TO SPECIFIC BLOG IDs 
-    const logAssignments = {
-        'LOG_001': 'python_vs_c',
-        'LOG_002': 'list_vs_set',
-        'LOG_003': 'namespace_resolution',
-        'LOG_004': 'oop_overhead',
-        'LOG_005': 'memoization_test',
-        'LOG_006': 'context_switch',
-        'LOG_007': 'buffer_flush',
-        'LOG_013': 'cache_locality',
-        'LOG_014': 'pandas_view'
-    };
-
-    // =========================================================
-    // UI RENDER ENGINE (DO NOT TOUCH)
-    // =========================================================
-    function makeEl(tag, className, text) {
-        const el = document.createElement(tag);
-        if (className) el.className = className;
-        if (text !== undefined) el.textContent = text;
-        return el;
+        return fallbackIndex;
     }
 
-    function mountLabs() {
-        document.querySelectorAll('.memory-trap-lab').forEach(old => old.remove());
+    function getSortedAndFilteredLogs() {
+        const indexed = researchLogs.map((log, idx) => ({
+            ...log,
+            _sortTimestamp: parseLogDate(log.date, idx)
+        }));
 
-        const logArticles = document.querySelectorAll('article[id^="LOG_"]');
-
-        logArticles.forEach(article => {
-            const logId = article.id;
-            if (!logAssignments[logId]) return; 
-
-            const labKey = logAssignments[logId];
-            const config = labDefinitions[labKey];
-            if (!config) return;
-
-            const labBox = makeEl('div', 'memory-trap-lab');
-            
-            const header = makeEl('div', 'mem-lab-header');
-            header.appendChild(makeEl('span', 'mem-lab-tag', '[ LIVE BENCHMARK ]'));
-            header.appendChild(makeEl('span', 'mem-lab-spec', config.spec));
-            
-            const descP = makeEl('p', 'mem-lab-desc', config.desc);
-            const runBtn = makeEl('button', 'mem-run-btn', config.btnText);
-            runBtn.type = 'button';
-
-            const resultsWrap = makeEl('div', 'mem-results-wrap');
-            resultsWrap.style.display = 'none';
-
-            const row1 = makeEl('div', 'mem-metric-row');
-            const label1 = makeEl('div', 'mem-metric-label');
-            const fastTimeEl = makeEl('strong', 'row-time-val', '-- ms');
-            label1.appendChild(makeEl('span', '', config.labelFast));
-            label1.appendChild(fastTimeEl);
-            const track1 = makeEl('div', 'mem-bar-track');
-            const fastBar = makeEl('div', 'mem-bar-fill mem-bar-row-major');
-            track1.appendChild(fastBar);
-            row1.appendChild(label1);
-            row1.appendChild(track1);
-
-            const row2 = makeEl('div', 'mem-metric-row');
-            const label2 = makeEl('div', 'mem-metric-label');
-            const slowTimeEl = makeEl('strong', 'col-time-val', '-- ms');
-            label2.appendChild(makeEl('span', '', config.labelSlow));
-            label2.appendChild(slowTimeEl);
-            const track2 = makeEl('div', 'mem-bar-track');
-            const slowBar = makeEl('div', 'mem-bar-fill mem-bar-col-major');
-            track2.appendChild(slowBar);
-            row2.appendChild(label2);
-            row2.appendChild(track2);
-
-            const verdictBox = makeEl('div', 'mem-verdict-box', '');
-
-            resultsWrap.appendChild(row1);
-            resultsWrap.appendChild(row2);
-            resultsWrap.appendChild(verdictBox);
-
-            labBox.appendChild(header);
-            labBox.appendChild(descP);
-            labBox.appendChild(runBtn);
-            labBox.appendChild(resultsWrap);
-
-            const titleEl = article.querySelector('h2.log-title');
-            if (titleEl) {
-                titleEl.insertAdjacentElement('afterend', labBox);
-            }
-
-            let isRunning = false;
-
-            runBtn.addEventListener('click', function() {
-                if (isRunning) return;
-                isRunning = true;
-
-                runBtn.textContent = '[ EXECUTING BENCHMARK... ]';
-                runBtn.style.opacity = '0.7';
-                resultsWrap.style.display = 'block';
-                fastBar.style.width = '0%';
-                slowBar.style.width = '0%';
-                verdictBox.textContent = 'Running live benchmark on your CPU...';
-
-                setTimeout(function() {
-                    const results = config.runBenchmark();
-                    
-                    const speedup = (results.slowMs / results.fastMs).toFixed(2);
-                    const maxMs = Math.max(results.fastMs, results.slowMs);
-
-                    fastTimeEl.textContent = results.fastMs.toFixed(2) + ' ms';
-                    slowTimeEl.textContent = results.slowMs.toFixed(2) + ' ms';
-
-                    fastBar.style.width = Math.max(8, Math.round((results.fastMs / maxMs) * 100)) + '%';
-                    slowBar.style.width = Math.max(8, Math.round((results.slowMs / maxMs) * 100)) + '%';
-
-                    verdictBox.innerHTML = "Verdict [" + logId + "]: Optimized method executed " + speedup + "x FASTER on your CPU (" + results.fastMs.toFixed(2) + " ms vs " + results.slowMs.toFixed(2) + " ms) " + results.reason;
-
-                    runBtn.textContent = '[ ↻ RE-RUN BENCHMARK ]';
-                    runBtn.style.opacity = '1';
-                    isRunning = false;
-                }, 100);
-            });
-        });
-    }
-
-    window.addEventListener('DOMContentLoaded', mountLabs);
-    setTimeout(mountLabs, 300);
-})();
-
-// 4. Auto Read-Time & AI Voice Reader for Research Logs
-function initLogVoiceReader() {
-    const logBoxes = document.querySelectorAll('[id^="LOG_"], article, .log-card, .log-box');
-
-    logBoxes.forEach((logBox) => {
-        if (logBox.querySelector('.log-tools-bar')) return;
-
-        const titleEl = logBox.querySelector('h2') || logBox.querySelector('h3');
-        if (!titleEl) return;
-
-        // Collect all readable text blocks (skipping code boxes)
-        const readableBlocks = Array.from(logBox.querySelectorAll('h2, h3, p, li')).filter(
-            (el) => !el.closest('.code-box') && el.innerText.trim().length > 0
+        // Sort Latest First (Descending) or Oldest First (Ascending)
+        indexed.sort((a, b) =>
+            sortLatestFirst
+                ? b._sortTimestamp - a._sortTimestamp
+                : a._sortTimestamp - b._sortTimestamp
         );
 
-        const fullText = readableBlocks.map((el) => el.innerText.trim()).join(' ');
-        const wordCount = fullText.split(/\s+/).filter(Boolean).length;
-        const readMinutes = Math.max(1, Math.ceil(wordCount / 190));
+        if (!currentSearchQuery) return indexed;
 
-        // Create Tools Bar
-        const toolsBar = document.createElement('div');
-        toolsBar.className = 'log-tools-bar';
+        const q = currentSearchQuery.toLowerCase();
+        return indexed.filter((log) => {
+            const inId = (log.id || '').toLowerCase().includes(q);
+            const inTitle = (log.title || '').toLowerCase().includes(q);
+            const inDate = (log.date || '').toLowerCase().includes(q);
+            const inContent = (log.content || '').toLowerCase().includes(q);
+            return inId || inTitle || inDate || inContent;
+        });
+    }
 
-        const timeBadge = document.createElement('span');
-        timeBadge.className = 'read-time-badge';
-        timeBadge.textContent = '[ TIME: ~' + readMinutes + ' MIN READ // ' + wordCount + ' WORDS ]';
-
-        const playBtn = document.createElement('button');
-        playBtn.className = 'audio-btn';
-        playBtn.textContent = '▶ LISTEN_LOG';
-
-        const stopBtn = document.createElement('button');
-        stopBtn.className = 'audio-stop-btn';
-        stopBtn.textContent = '⏹ STOP';
-
-        toolsBar.appendChild(timeBadge);
-        toolsBar.appendChild(playBtn);
-        toolsBar.appendChild(stopBtn);
-
-        titleEl.insertAdjacentElement('afterend', toolsBar);
-
-        // Speech Synthesis Engine (Paragraph-by-Paragraph to avoid cutoff)
-        let currentIdx = 0;
-        let isSpeaking = false;
-        let isPaused = false;
-
-        function clearHighlights() {
-            readableBlocks.forEach((el) => el.classList.remove('speaking-active'));
+    function renderArchive() {
+        // Cancel any active speech before re-rendering
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
         }
 
-        function resetAudioUI() {
-            isSpeaking = false;
-            isPaused = false;
-            currentIdx = 0;
+        const logsToRender = getSortedAndFilteredLogs();
+        container.innerHTML = '';
+        indexContainer.innerHTML = '';
+
+        if (countMeta) {
+            countMeta.textContent = `Showing ${logsToRender.length} of ${researchLogs.length} engineering logs`;
+        }
+
+        if (logsToRender.length === 0) {
+            container.innerHTML = `
+                <div class="empty-search-state">
+                    No research logs matched "${currentSearchQuery}". Try searching for RAM, SIMD, CPython, Strides, or Pandas.
+                </div>
+            `;
+            return;
+        }
+
+        const ul = document.createElement('ul');
+
+        logsToRender.forEach((log) => {
+            // 1. Build Sidebar Navigation Entry
+            const li = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = `#${log.id}`;
+            link.dataset.logTarget = log.id;
+            link.innerHTML = `
+                <div class="nav-log-meta">
+                    <span class="nav-log-id">${log.id}</span>
+                    <span class="nav-log-date">${log.date}</span>
+                </div>
+                <span class="nav-log-title">${log.title}</span>
+            `;
+            li.appendChild(link);
+            ul.appendChild(li);
+
+            // 2. Build Full Research Log Article Card
+            const article = document.createElement('article');
+            article.className = 'log-card';
+            article.id = log.id;
+
+            article.innerHTML = `
+                <div class="log-header">
+                    <span class="log-id">${log.id}</span>
+                    <span class="log-date">PUBLISHED // ${log.date}</span>
+                </div>
+                <h2 class="log-title">${log.title}</h2>
+                <div class="log-body">
+                    ${log.content}
+                </div>
+            `;
+            container.appendChild(article);
+        });
+
+        indexContainer.appendChild(ul);
+
+        // Initialize interactive tools on the newly rendered cards
+        initCopyButtons();
+        initLogVoiceReader();
+        initScrollSpy();
+    }
+
+    // 3. Auto-Inject Copy Buttons into Code Boxes (Skips pure tables)
+    function initCopyButtons() {
+        const codeBoxes = container.querySelectorAll('.code-box');
+        codeBoxes.forEach((box) => {
+            const pre = box.querySelector('pre');
+            if (!pre || box.querySelector('.copy-btn')) return;
+
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'copy-btn';
+            btn.textContent = 'COPY';
+
+            btn.addEventListener('click', () => {
+                const codeText = pre.innerText;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    btn.textContent = 'COPIED!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.textContent = 'COPY';
+                        btn.classList.remove('copied');
+                    }, 2000);
+                });
+            });
+
+            box.appendChild(btn);
+        });
+    }
+
+    // 4. Auto Read-Time, Word Count & Paragraph-by-Paragraph Voice Reader
+    function initLogVoiceReader() {
+        const logBoxes = container.querySelectorAll('.log-card');
+
+        logBoxes.forEach((logBox) => {
+            if (logBox.querySelector('.log-tools-bar')) return;
+
+            const titleEl = logBox.querySelector('h2.log-title');
+            if (!titleEl) return;
+
+            // Collect readable blocks (skipping code boxes)
+            const readableBlocks = Array.from(logBox.querySelectorAll('h2, h3, p, li')).filter(
+                (el) => !el.closest('.code-box') && el.innerText.trim().length > 0
+            );
+
+            const fullText = readableBlocks.map((el) => el.innerText.trim()).join(' ');
+            const wordCount = fullText.split(/\s+/).filter(Boolean).length;
+            const readMinutes = Math.max(1, Math.ceil(wordCount / 190));
+
+            const toolsBar = document.createElement('div');
+            toolsBar.className = 'log-tools-bar';
+
+            const timeBadge = document.createElement('span');
+            timeBadge.className = 'read-time-badge';
+            timeBadge.textContent = `[ TIME: ~${readMinutes} MIN READ // ${wordCount} WORDS ]`;
+
+            const playBtn = document.createElement('button');
+            playBtn.type = 'button';
+            playBtn.className = 'audio-btn';
             playBtn.textContent = '▶ LISTEN_LOG';
-            playBtn.classList.remove('playing');
-            stopBtn.style.display = 'none';
-            clearHighlights();
-        }
 
-        function speakBlock(index) {
-            if (index >= readableBlocks.length) {
-                resetAudioUI();
-                return;
+            const stopBtn = document.createElement('button');
+            stopBtn.type = 'button';
+            stopBtn.className = 'audio-stop-btn';
+            stopBtn.textContent = '⏹ STOP';
+
+            toolsBar.appendChild(timeBadge);
+            toolsBar.appendChild(playBtn);
+            toolsBar.appendChild(stopBtn);
+
+            titleEl.insertAdjacentElement('afterend', toolsBar);
+
+            let currentIdx = 0;
+            let isSpeaking = false;
+            let isPaused = false;
+
+            function clearHighlights() {
+                readableBlocks.forEach((el) => el.classList.remove('speaking-active'));
             }
 
-            clearHighlights();
-            const block = readableBlocks[index];
-            block.classList.add('speaking-active');
-
-            const utterance = new SpeechSynthesisUtterance(block.innerText.trim());
-            utterance.rate = 1.0;
-            utterance.pitch = 0.95;
-
-            utterance.onend = () => {
-                if (isSpeaking && !isPaused) {
-                    currentIdx++;
-                    speakBlock(currentIdx);
-                }
-            };
-
-            utterance.onerror = () => {
-                if (isSpeaking && !isPaused) {
-                    resetAudioUI();
-                }
-            };
-
-            window.speechSynthesis.speak(utterance);
-        }
-
-        playBtn.addEventListener('click', () => {
-            if (!('speechSynthesis' in window)) {
-                alert('Speech synthesis is not supported in this browser.');
-                return;
-            }
-
-            if (!isSpeaking) {
-                window.speechSynthesis.cancel();
-                isSpeaking = true;
+            function resetAudioUI() {
+                isSpeaking = false;
                 isPaused = false;
                 currentIdx = 0;
-                playBtn.textContent = '⏸ PAUSE_AUDIO';
-                playBtn.classList.add('playing');
-                stopBtn.style.display = 'inline-block';
-                speakBlock(currentIdx);
-            } else if (!isPaused) {
-                window.speechSynthesis.pause();
-                isPaused = true;
-                playBtn.textContent = '▶ RESUME_AUDIO';
-            } else {
-                window.speechSynthesis.resume();
-                isPaused = false;
-                playBtn.textContent = '⏸ PAUSE_AUDIO';
+                playBtn.textContent = '▶ LISTEN_LOG';
+                playBtn.classList.remove('playing');
+                stopBtn.style.display = 'none';
+                clearHighlights();
             }
-        });
 
-        stopBtn.addEventListener('click', () => {
+            function speakBlock(index) {
+                if (index >= readableBlocks.length) {
+                    resetAudioUI();
+                    return;
+                }
+
+                clearHighlights();
+                const block = readableBlocks[index];
+                block.classList.add('speaking-active');
+
+                const utterance = new SpeechSynthesisUtterance(block.innerText.trim());
+                utterance.rate = 1.0;
+                utterance.pitch = 0.95;
+
+                utterance.onend = () => {
+                    if (isSpeaking && !isPaused) {
+                        currentIdx++;
+                        speakBlock(currentIdx);
+                    }
+                };
+
+                utterance.onerror = () => {
+                    if (isSpeaking && !isPaused) {
+                        resetAudioUI();
+                    }
+                };
+
+                window.speechSynthesis.speak(utterance);
+            }
+
+            playBtn.addEventListener('click', () => {
+                if (!('speechSynthesis' in window)) {
+                    alert('Speech synthesis is not supported in this browser.');
+                    return;
+                }
+
+                if (!isSpeaking) {
+                    window.speechSynthesis.cancel();
+                    // Reset any other playing card UI
+                    container.querySelectorAll('.audio-btn.playing').forEach((otherBtn) => {
+                        otherBtn.textContent = '▶ LISTEN_LOG';
+                        otherBtn.classList.remove('playing');
+                    });
+                    container.querySelectorAll('.audio-stop-btn').forEach((sBtn) => {
+                        sBtn.style.display = 'none';
+                    });
+                    container.querySelectorAll('.speaking-active').forEach((el) => {
+                        el.classList.remove('speaking-active');
+                    });
+
+                    isSpeaking = true;
+                    isPaused = false;
+                    currentIdx = 0;
+                    playBtn.textContent = '⏸ PAUSE_AUDIO';
+                    playBtn.classList.add('playing');
+                    stopBtn.style.display = 'inline-block';
+                    speakBlock(currentIdx);
+                } else if (!isPaused) {
+                    window.speechSynthesis.pause();
+                    isPaused = true;
+                    playBtn.textContent = '▶ RESUME_AUDIO';
+                } else {
+                    window.speechSynthesis.resume();
+                    isPaused = false;
+                    playBtn.textContent = '⏸ PAUSE_AUDIO';
+                }
+            });
+
+            stopBtn.addEventListener('click', () => {
+                window.speechSynthesis.cancel();
+                resetAudioUI();
+            });
+        });
+    }
+
+    // 5. Scroll-Spy: Highlight Active Log in Sidebar While Reading
+    function initScrollSpy() {
+        if (scrollObserver) scrollObserver.disconnect();
+
+        const articles = container.querySelectorAll('.log-card');
+        const navLinks = indexContainer.querySelectorAll('a[data-log-target]');
+
+        if (!('IntersectionObserver' in window) || articles.length === 0) return;
+
+        scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const activeId = entry.target.id;
+                    navLinks.forEach((link) => {
+                        const isMatch = link.dataset.logTarget === activeId;
+                        link.classList.toggle('active-log-link', isMatch);
+                    });
+                }
+            });
+        }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+
+        articles.forEach((art) => scrollObserver.observe(art));
+    }
+
+    // 6. Search & Sort Event Listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value.trim();
+            renderArchive();
+        });
+    }
+
+    if (sortToggleBtn) {
+        sortToggleBtn.addEventListener('click', () => {
+            sortLatestFirst = !sortLatestFirst;
+            sortToggleBtn.innerHTML = sortLatestFirst ? 'Latest First &darr;' : 'Oldest First &uarr;';
+            renderArchive();
+        });
+    }
+
+    // Top Reading Progress Bar Listener
+    const progressBar = document.getElementById('reading-progress');
+    if (progressBar) {
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressBar.style.width = `${progress}%`;
+        });
+    }
+
+    window.addEventListener('beforeunload', () => {
+        if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
-            resetAudioUI();
-        });
-    });
-}
-
-initLogVoiceReader();
-window.addEventListener('DOMContentLoaded', initLogVoiceReader);
-window.addEventListener('beforeunload', () => {
-    if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-    }
-});
-
-// =========================================================
-// SMART MOUSE SCROLL FOR TAGS & FILTER BARS (HOVER + WHEEL)
-// =========================================================
-(function initSmartHorizontalScroll() {
-    function findScrollableBar(target) {
-        let el = target;
-        while (el && el !== document.body && el !== document.documentElement) {
-            const style = window.getComputedStyle(el);
-            if (
-                (style.overflowX === 'auto' || style.overflowX === 'scroll') &&
-                el.scrollWidth > el.clientWidth + 2
-            ) {
-                return el;
-            }
-            el = el.parentElement;
         }
-        return null;
-    }
-
-    // 1. Mouse Wheel -> Horizontal Scroll
-    document.addEventListener('wheel', function(e) {
-        const bar = findScrollableBar(e.target);
-        if (bar) {
-            e.preventDefault();
-            bar.scrollLeft += (e.deltaY !== 0 ? e.deltaY : e.deltaX);
-        }
-    }, { passive: false });
-
-    // 2. Cursor Move (Hover Auto-Pan Without Clicking!)
-    document.addEventListener('mousemove', function(e) {
-        const bar = findScrollableBar(e.target);
-        if (!bar || bar.classList.contains('cyber-filter-bar')) return;
-
-        const rect = bar.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const ratio = Math.max(0, Math.min(1, mouseX / rect.width));
-        const maxScroll = bar.scrollWidth - bar.clientWidth;
-
-        // Smoothly glide tags left/right just by moving the cursor across the bar
-        bar.scrollLeft = ratio * maxScroll;
     });
+
+    // Initial Render
+    renderArchive();
 })();

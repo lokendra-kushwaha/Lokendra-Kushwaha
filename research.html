@@ -6,71 +6,133 @@
     
     <script type="application/ld+json">
     { 
-    "@context" : "https://schema.org",
-    "@type" : "WebSite",
-    "name" : "Lokendra Kushwaha",
-    "url" :  "https://lokendra-kushwaha.web.app/"
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "Engineering Research Logs — Lokendra Kushwaha",
+        "url": "https://lokendra-kushwaha.web.app/research.html",
+        "description": "Technical research logs and architectural deep-dives by Lokendra Kushwaha. Exploring CPython internals, memory architecture, SIMD vectorization, and first-principles math engines."
     }
     </script>
 
     <meta name="description" content="Technical research logs and architectural deep-dives by Lokendra Kushwaha. Exploring low-level algorithmic optimizations, memory architecture, computational math, and raw performance engineering from first principles.">
+    <meta name="keywords" content="Lokendra Kushwaha, Research Logs, Systems Architecture, CPython Internals, Memory Architecture, SIMD, BLAS, Zero-Copy, OmniCore Systems">
+    <meta name="author" content="Lokendra Kushwaha">
+    <meta name="robots" content="index, follow">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="shortcut icon" href="/favicon.svg">
     <meta name="application-name" content="Lokendra Kushwaha">
     <meta property="og:site_name" content="Lokendra Kushwaha">
 
-    <!-- Social Media Preview Card (WhatsApp, LinkedIn, Facebook) -->
+    <!-- Social Media Preview Card -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://lokendra-kushwaha.web.app/">
-    <meta property="og:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta property="og:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
+    <meta property="og:url" content="https://lokendra-kushwaha.web.app/research.html">
+    <meta property="og:title" content="Engineering Research Logs & Systems Architecture | Lokendra Kushwaha">
+    <meta property="og:description" content="Deep-tech breakdowns on CPython memory mechanics, SIMD hardware vectorization, pointer arithmetic, and first-principles AI engineering.">
     <meta property="og:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
 
     <!-- X (Twitter) Large Preview Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta name="twitter:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
-    <meta name="twitter:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
+    <meta name="twitter:title" content="Engineering Research Logs & Systems Architecture | Lokendra Kushwaha">
+    <meta name="twitter:description" content="Deep-tech breakdowns on CPython memory mechanics, SIMD hardware vectorization, pointer arithmetic, and first-principles AI engineering.">
+    <meta property="og:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
     
-    <title>Engineering Research Logs & Systems Architecture | Lokendra Kushwaha</title>
+    <title>Engineering Research Logs — Lokendra Kushwaha</title>
     
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Eye-Friendly Engineering Typography: Inter (Reading) & JetBrains Mono (Code/Specs) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <!-- CSS Files -->
+    
+    <!-- Master & Page-Specific SOP Stylesheets -->
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/research.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="nav-box">
-        <div class="logo">LOKENDRA KUSHWAHA</div>
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-        <ul class="menu">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="projects.html">PROJECTS</a></li>
-            <li><a href="research.html">RESEARCH LOGS</a></li>
-            <li><a href="index.html#about">ABOUT</a></li>
-            <li><a href="index.html#contact">CONTACT</a></li>
-        </ul>
-    </nav>
 
-    <!-- Research Logs Section -->
-    <section class="research-section">
-        <h1 class="section-title">Research Logs</h1>
-        <p class="subtitle">System architecture, core logic, and engineering notes.</p>
+    <!-- Top Reading Progress Bar -->
+    <div id="reading-progress" aria-hidden="true"></div>
+
+    <!-- Top Navigation Bar (Synced with index.html & projects.html) -->
+    <header class="site-header">
+        <nav class="nav-box">
+            <a href="index.html" class="logo">
+                LOKENDRA KUSHWAHA
+            </a>
+            
+            <div class="nav-controls">
+                <ul class="menu" id="nav-menu">
+                    <li><a href="index.html">Index</a></li>
+                    <li><a href="projects.html">Architectures</a></li>
+                    <li><a href="research.html" class="active">Research Logs</a></li>
+                    <li><a href="index.html#about">Doctrine</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+
+                <button type="button" id="theme-toggle-btn" class="theme-toggle-btn" title="Switch System Color Scheme" aria-label="Switch Theme">
+                    <i class="fas fa-adjust"></i> <span id="theme-label">System</span>
+                </button>
+
+                <button type="button" class="hamburger" id="hamburger-btn" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Research Layout (Sidebar Navigation + Main Reading Stream) -->
+    <main class="research-workspace">
         
-        <!-- Quick Navigation Index -->
-        <div id="logs-index" class="logs-index"></div>
+        <!-- Left Sticky Sidebar: Search, Sort & Quick Index -->
+        <aside class="research-sidebar" aria-label="Research Archive Navigation">
+            <div class="sidebar-top">
+                <div class="sidebar-title-row">
+                    <span class="sidebar-tag">ARCHIVE INDEX</span>
+                    <button type="button" id="sort-toggle-btn" class="sort-toggle-btn" title="Toggle Chronological Order">
+                        Latest First &darr;
+                    </button>
+                </div>
 
-        <!-- Logs will be injected here by JS -->
-        <div id="logs-container" class="logs-container"></div>
-    </section>
+                <!-- Live Search Input -->
+                <div class="log-search-box">
+                    <i class="fas fa-search log-search-icon"></i>
+                    <input type="search" id="log-search-input" placeholder="Search logs, topics, IDs..." autocomplete="off">
+                </div>
 
-    <!-- Scripts -->
+                <div id="log-count-meta" class="log-count-meta">Loading archive...</div>
+            </div>
+
+            <!-- Scrollable Navigation Links Injected Here -->
+            <nav id="logs-index" class="logs-index"></nav>
+        </aside>
+
+        <!-- Right Column: Header & Full Research Logs Stream -->
+        <section class="research-main">
+            <div class="research-header">
+                <span class="section-tag">ENGINEERING PUBLICATIONS</span>
+                <h1 class="research-main-title">Research Logs &amp; Systems Architecture</h1>
+                <p class="research-subtitle">
+                    First-principles technical breakdowns exploring hardware memory layouts, CPython internals, SIMD vectorization, and deterministic math architectures.
+                </p>
+            </div>
+
+            <!-- Research Log Articles Injected Here by JS -->
+            <div id="logs-container" class="logs-container"></div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <span>&copy; 2026 Lokendra Kushwaha.</span>
+            <span class="footer-meta">Systems Architecture &amp; First-Principles Engineering.</span>
+        </div>
+    </footer>
+
+    <!-- Master & Page-Specific SOP Scripts -->
     <script src="script/script.js"></script>
     <script src="script/research.js"></script>
 </body>
