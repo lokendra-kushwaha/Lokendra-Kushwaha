@@ -3,138 +3,444 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — Unmapped Route | Lokendra Kushwaha</title>
     
-    <title>Lokendra Kushwaha</title>
-    
-    <!-- Social Media Preview Card (WhatsApp, LinkedIn, Facebook) -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg?v=1">
+    <link rel="shortcut icon" href="favicon.svg?v=1">
+
+    <!-- Social Media & SEO Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://lokendra-kushwaha.web.app/">
-    <meta property="og:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta property="og:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
-    <meta property="og:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
-
-    <!-- X (Twitter) Large Preview Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Lokendra Kushwaha | AI Engines & Data Architectures">
-    <meta name="twitter:description" content="Explore my custom AI algorithms, pure NumPy matrices, and logic-driven engineering projects built from scratch.">
-    <meta name="twitter:image" content="https://lokendra-kushwaha.web.app/assets/preview.png">
-
-    <!-- Rajdhani Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta property="og:title" content="Lokendra Kushwaha — Systems Architect">
+    <meta property="og:description" content="Architecting Autonomous AI & High-Efficiency Data Systems. Founder @ OmniCore Systems.">
     
-    <!-- Poppins Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Orbitron Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Social Media Icons -->
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-    <!-- Linking CSS from the style folder -->
-    <link rel="stylesheet" href="style/style.css">
+    <style>
+        :root {
+            --bg-main: #080a0f;
+            --bg-card: #0d1017;
+            --border-color: #1c212b;
+            --border-subtle: #151922;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent-blue: #388bfd;
+            --accent-green: #2ea043;
+            --btn-primary-bg: #f0f6fc;
+            --btn-primary-text: #080a0f;
+            --btn-sec-bg: #11151e;
+        }
+
+        body.light-mode {
+            --bg-main: #ffffff;
+            --bg-card: #f8f9fb;
+            --border-color: #e1e4e8;
+            --border-subtle: #eaeef2;
+            --text-primary: #1f2328;
+            --text-secondary: #57606a;
+            --text-muted: #6e7781;
+            --accent-blue: #0969da;
+            --accent-green: #1a7f37;
+            --btn-primary-bg: #1f2328;
+            --btn-primary-text: #ffffff;
+            --btn-sec-bg: #f3f4f6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Shared Centered Container for Exact Top-to-Bottom Symmetry */
+        .container {
+            width: 100%;
+            max-width: 1350px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header Navigation */
+        .site-header {
+            width: 100%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-inner {
+            height: 68px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+            font-weight: 600;
+            font-size: 0.92rem;
+            letter-spacing: 2.2px;
+            color: var(--text-primary);
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.86rem;
+            font-weight: 400;
+            transition: color 0.15s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a.active {
+            font-weight: 500;
+        }
+
+        .theme-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: border-color 0.15s ease;
+        }
+
+        .theme-btn:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Main Hero / 404 Section — Matches Index Layout 1:1 */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 64px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 64px;
+            align-items: center;
+            padding-bottom: 64px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        /* Left Column */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 13px;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-size: 3.35rem;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.22rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 0.96rem;
+            line-height: 1.75;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .hero-description strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary-bg);
+            color: var(--btn-primary-text);
+            padding: 11px 22px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid transparent;
+            transition: opacity 0.15s ease;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+        }
+
+        .btn-secondary {
+            background-color: var(--btn-sec-bg);
+            color: var(--text-primary);
+            padding: 11px 22px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            transition: border-color 0.15s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Right Column Card — Exact Clone of Engineering Overview */
+        .overview-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 26px 28px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .card-header .title {
+            color: var(--text-primary);
+        }
+
+        .card-header .badge {
+            color: var(--accent-blue);
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 0.82rem;
+        }
+
+        .spec-label {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+            color: var(--text-primary);
+            text-align: right;
+        }
+
+        .card-footer {
+            padding-top: 18px;
+        }
+
+        .footer-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 920px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-title {
+                font-size: 2.6rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Premium Navigation Bar -->
-    <nav class="nav-box">
-        <div class="logo">LOKENDRA KUSHWAHA</div>
-        
-        <!-- Hamburger Icon for Mobile -->
-        <div class="hamburger">
-            <i class="fas fa-bars"></i>
-        </div>
-        
-        <ul class="menu">
-            <li><a href="index.html">HOME</a></li>
-            <li><a href="projects.html">PROJECTS</a></li>
-            <li><a href="research.html">RESEARCH LOGS</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
-    </nav>
 
-    <!-- Main Introduction Section -->
-    <section id="error-404" class="main-section">
-        <div class="intro-text">
-            <h1>Hi, I'm <span class="accent-text">Lokendra</span>.</h1>
-            <h2>I Build Advanced AI Engines & Data Architectures.</h2>
-            <p>Explore my custom algorithms and logic-driven projects like the Universe Crawler.</p>
-            <a href="projects.html" class="action-btn">Explore Projects</a>
-        </div>
-        
-        <!-- Placeholder for future profile picture -->
-        <div class="profile-area">
-            <div class="image-circle">
-                <canvas id="neuralCanvas"></canvas>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-container">
-            <!-- Box 1: The Origin -->
-            <div class="about-box">
-                <h3>The Origin</h3>
-                <p>With a strong foundation in math and logic, I was naturally drawn to the AI revolution. I wanted to understand the core mechanics of how machines process information, which led me into the depths of AI development.</p>
-            </div>
+    <!-- Top Navigation Bar (Symmetric Container) -->
+    <header class="site-header">
+        <div class="container nav-inner">
+            <a href="index.html" class="logo">LOKENDRA KUSHWAHA</a>
             
-            <!-- Box 2: The Philosophy -->
-            <div class="about-box">
-                <h3>The Philosophy</h3>
-                <p>My core drive is absolute control over complex systems. I build algorithms, mathematical logic, and engines entirely from scratch because true engineering means commanding a system at its deepest level, not relying on black-box tools.</p>
-            </div>
-            
-            <!-- Box 3: The Vision -->
-            <div class="about-box">
-                <h3>The Vision</h3>
-                <p>My goal is to become an AI Engineer who designs foundational architectures. I aim to build highly scalable, custom data pipelines and logic-driven engines rather than just integrating existing APIs.</p>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Index</a></li>
+                    <li><a href="architectures.html">Architectures</a></li>
+                    <li><a href="research.html">Research Logs</a></li>
+                    <li><a href="index.html#about">Doctrine</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <button class="theme-btn" id="themeToggle">
+                    <i class="fas fa-adjust"></i> <span id="themeText">System</span>
+                </button>
             </div>
         </div>
-    </section>
+    </header>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <h2 class="section-title">Contact Me</h2>
-        
-        <div class="contact-container">
-            <!-- Left Side: Info & Social Links -->
-            <div class="contact-info">
-                <h3>Let's Connect</h3>
-                <p>Interested in collaborating on AI architectures or discussing custom logic? Drop me a message.</p>
+    <!-- Main Content Area (Same Symmetric Container) -->
+    <main class="main-wrapper">
+        <div class="container">
+            <div class="hero-grid">
                 
-                <div class="email-box">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:thelokendrakushwaha@gmail.com" style="color: white; text-decoration: none;"><span>thelokendrakushwaha@gmail.com</span></a>
+                <!-- Left Section -->
+                <div class="hero-left">
+                    <div class="status-badge">
+                        <span class="status-dot"></span>
+                        <span>ROUTING DIAGNOSTIC • FOUNDER @ OMNICORE SYSTEMS</span>
+                    </div>
+
+                    <h1 class="hero-title">404 — Unmapped Route</h1>
+                    <h2 class="hero-subtitle">The requested resource does not exist in the current index.</h2>
+
+                    <p class="hero-description">
+                        The document, system architecture, or research publication you are attempting to access has been relocated or removed during repository restructuring. Through <strong>OmniCore Systems</strong>, all active mathematical cores, <strong>NullHunter</strong> pipelines, and <strong>OmniCore Tabular Intelligence (OTI)</strong> specifications are consolidated within the main index and architecture directories.
+                    </p>
+
+                    <div class="action-group">
+                        <a href="index.html" class="btn-primary">Return to Index</a>
+                        <a href="architectures.html" class="btn-secondary">Explore Systems & Engines</a>
+                    </div>
                 </div>
-                
-                <div class="social-links">
-                    <a href="https://github.com/lokendra-kushwaha" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/the-lokendra-kushwaha/" target="_blank" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://x.com/The__Lokendra__" target="_blank" class="social-icon" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+
+                <!-- Right Section: Overview Box -->
+                <div class="overview-card">
+                    <div class="card-header">
+                        <span class="title">ROUTING OVERVIEW</span>
+                        <span class="badge">HTTP 404</span>
+                    </div>
+
+                    <div class="spec-row">
+                        <span class="spec-label">Status</span>
+                        <span class="spec-value">Resource Not Found</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Organization</span>
+                        <span class="spec-value">OmniCore Systems</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Core Focus</span>
+                        <span class="spec-value">Autonomous AI & Data Automation</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Data Engine</span>
+                        <span class="spec-value">NullHunter (Automated Data Refinery)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Tabular AI</span>
+                        <span class="spec-value">OmniCore Tabular Intelligence (OTI)</span>
+                    </div>
+                    <div class="spec-row">
+                        <span class="spec-label">Resolution</span>
+                        <span class="spec-value">Navigate via Root Index</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="footer-label">CORE PRINCIPLE</div>
+                        <p class="footer-quote">
+                            "True engineering means understanding every layer of how a machine stores, calculates, and learns from data."
+                        </p>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Right Side: Custom Contact Form -->
-            <div class="contact-form-box">
-                <form action="https://formsubmit.co/thelokendrakushwaha@gmail.com" method="POST" class="contact-form">
-                    <div class="input-group">
-                        <input name = "name" type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="input-group">
-                        <input name="email" type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="input-group">
-                        <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="action-btn submit-btn">Send Message</button>
-                </form>
+
             </div>
         </div>
-    </section>
+    </main>
 
-    <!-- Linking JavaScript file -->
-    <script src="script/script.js"></script>
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeText.textContent = document.body.classList.contains('light-mode') ? 'Light' : 'System';
+        });
+    </script>
 </body>
 </html>

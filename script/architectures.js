@@ -1,33 +1,31 @@
 /* =========================================================
    ARCHITECTURES REPOSITORY // DATA & FILTER ENGINE (SOP)
-   ========================================================= */
+   =========================================================*/
 
 const systemsData = [
     {
-        id: "SYS_01 // FLAGSHIP REFINERY",
-        title: "NullHunter — Autonomous Cognitive Data Refinery",
+        id: "SYS_01 // AUTONOMOUS DATA ENGINE",
+        title: "NullHunter — Autonomous AI Data Refinery",
         category: "flagship",
         isFlagship: true,
-        layer: "OMNICORE SYSTEMS // OTI FOUNDATION ENGINE",
+        layer: "OMNICORE SYSTEMS // CORE ARCHITECTURE",
         specs: [
-            { label: "Execution Model", val: "Zero-IPC Ticket DAG / Out-of-Core" },
-            { label: "COMPUTE & AI CORE", val: "C++ Arrow SIMD + OmniCore OTI (MoE)" },
+            { label: "Execution Model", val: "Out-of-Core / Zero-IPC Streaming" },
+            { label: "COMPUTE & AI CORE", val: "OmniCore Tabular LLM + 60+ C++ Kernels" },
             { label: "Memory Ceiling", val: "100GB+ Stream on <1.5GB RAM (O(1))" },
             { label: "STATE & BLUEPRINT", val: "Editable JSON + Zero-Rescan .pkl Cache" }
         ],
         tags: [
-            "OmniCore OTI (Sparse MoE)",
-            "Zero-IPC Ticket Streaming",
-            "Counterfactual F1 Sandbox",
+            "OmniCore Tabular LLM",
+            "Human-Like Sandbox Testing",
+            "Zero-IPC Streaming",
+            "60+ C++ & Arrow Kernels",
+            "Automated Feature Engineering",
+            "Schema Flattener & Reconstructor",
             "AST-to-SIMD & LLVM JIT",
-            "Pébay & Bayesian Posteriors",
-            "INT8 SVD Text Embeddings",
-            "Histogram GBDT & RFF Probe",
-            "3D Schema Flattener & Reconstructor",
-            "Multi-Cohort Drift Router",
             "O(1) RAM Distributed Sink"
         ],
-        description: "Engineered to obliterate the industry's 80/20 data preparation bottleneck, NullHunter is a distributed, out-of-core autonomous data refinery powered by OmniCore Tabular Intelligence (OTI)—a Relational Graph-Biased Sparse Mixture-of-Experts (SwiGLU-MoE) foundation architecture. Operating within a strict O(1) memory envelope on constrained hardware, its 7-stage DAG orchestrates a Zero-IPC Ticket DataLoader, 3D-to-2D SchemaFlattener, and drift-aware SchemaOptimizer before igniting a parallel C++/PyArrow MapReduce DataScanner. Rather than relying on brittle textbook rules, the Scanner synthesizes Pébay parallel moments, 18 continuous Bayesian posteriors, Histogram GBDT split-gains, Rahimi-Recht Random Fourier Features, Pickands extreme-value tail physics, and INT8-quantized SVD subword embeddings—validating candidate pipelines in an in-memory Counterfactual Tournament Sandbox (OOF F1, R², and Jensen-Shannon fidelity) with online AdamW self-distillation. In Phase 2, a polyglot AST-to-SIMD/LLVM ExecutionEngine and lossless SchemaReconstructor execute 60+ C++/BLAS kernels to emit model-ready, schema-restored Parquet sinks that surpass manual grandmaster feature engineering.",
+        description: "Built to replace manual data wrangling with human-like decision-making, NullHunter is an out-of-core AI data refinery powered by OmniCore Tabular Intelligence (OTI)—a custom tabular LLM engineered to reason over structured datasets. Instead of relying on rigid rules, NullHunter thinks like an experienced data scientist: its loader streams massive files within a strict sub-2GB RAM ceiling, flattens nested multi-level headers, optimizes messy column names, and runs a parallel statistical scan across all cores. Before touching the full dataset, an internal validation sandbox tests multiple cleaning and imputation strategies on a live sample to verify which pipeline actually improves downstream ML accuracy and F1-score. Once proven, it locks a 1-second editable JSON blueprint and executes 60+ C++ and PyArrow kernels to heal corrupted data, extract date and text signals, and reconstruct clean, model-ready Parquet datasets—purifying 25 million rows in 44 seconds.",
         liveLink: "#",
         statusText: "Flagship Engine (OmniCore)",
         githubLink: "https://github.com/lokendra-kushwaha/NullHunter"
