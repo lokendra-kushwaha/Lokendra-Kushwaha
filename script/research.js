@@ -2220,7 +2220,7 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_10.1",
+        id: "LOG_010",
         date: "29.08.2026",
         title: "The Engine of Speed: SIMD, BLAS & Vectorization (Part 1)",
         content: (function() {
@@ -2368,7 +2368,7 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_10.2",
+        id: "LOG_011",
         date: "03.09.2026",
         title: "The Engine of Speed: SIMD, BLAS & Vectorization (Part 2)",
         content: (function() {
@@ -2501,8 +2501,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_11.1",
-        date: "12.09.2026",
+        id: "LOG_012",
+        date: "08.09.2026",
         title: "The Hardware Illusion: Broadcasting & Advanced Iteration (Part 1)",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -2651,8 +2651,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_11.2",
-        date: "16.09.2026",
+        id: "LOG_013",
+        date: "13.09.2026",
         title: "The Hardware Illusion: Broadcasting & Advanced Iteration (Part 2 - The Custom O(1) Broadcast Engine)",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -2838,8 +2838,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_12.1",
-        date: "21.09.2026",
+        id: "LOG_014",
+        date: "19.09.2026",
         title: "The Architect's Minefield: Memory Traps, Masks & Zero-Copy (Part 1)",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -2968,8 +2968,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_12.2",
-        date: "26.09.2026",
+        id: "LOG_015",
+        date: "25.09.2026",
         title: "The Architect's Minefield: Memory Traps, Masks & Zero-Copy (Part 2)",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -3131,8 +3131,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_013",
-        date: "04.10.2026",
+        id: "LOG_016",
+        date: "01.10.2026",
         title: "Pandas Architecture Masterclass — Blog 1: The Anatomy of a Series, The RangeIndex Illusion & The Two-Step Lookup Engine",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -3646,8 +3646,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_014",
-        date: "11.10.2026",
+        id: "LOG_017",
+        date: "08.10.2026",
         title: "Pandas Architecture Masterclass — Blog 2: Inside the DataFrame: Heterogeneous Data, The BlockManager Engine & Memory Fragmentation",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -4104,8 +4104,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_015",
-        date: "17.10.2026",
+        id: "LOG_018",
+        date: "15.10.2026",
         title: "Pandas Architecture Masterclass — Blog 3: Views vs. Copies, Hardware-Level Filtering & The \"Swiss Cheese\" Compaction Trap",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -4562,8 +4562,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_016",
-        date: "25.10.2026",
+        id: "LOG_019",
+        date: "20.10.2026",
         title: "Pandas Architecture Masterclass — Blog 4: Binary Anatomy: The Silent NaN Upcasting Disaster, IEEE 754 Silicon & The Dual-Array Nullable Integer Engine",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -5038,8 +5038,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_017",
-        date: "31.10.2026",
+        id: "LOG_020",
+        date: "26.10.2026",
         title: "Pandas Architecture Masterclass — Blog 5: The Text, Time & Hardware Frontier: Strings, PyArrow, Categoricals, The Year 2262 Crash & AI Silicon",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -5544,8 +5544,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_018",
-        date: "06.11.2026",
+        id: "LOG_021",
+        date: "03.11.2026",
         title: "Pandas Architecture Masterclass — Blog 6: Execution Engines, Relational Mechanics & Memory Reshaping: SIMD Alignment, .apply(), GroupBy, Hash Joins & MultiIndex",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -6417,8 +6417,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_019",
-        date: "16.11.2026",
+        id: "LOG_022",
+        date: "10.11.2026",
         title: "Pandas Architecture Masterclass — Blog 7: Out-of-Core Big Data Engineering: Processing 50GB to 1 Billion Rows on an 8GB RAM Machine",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -6995,8 +6995,8 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_020",
-        date: "21.11.2026",
+        id: "LOG_023",
+        date: "17.11.2026",
         title: "Unveiling the Pandas Black Box: The Ultimate System Engineer's Guide to Memory, Architecture, and Performance",
         content: (function() {
             var L = String.fromCharCode(60);
@@ -7121,13 +7121,13 @@ const researchLogs = [
         })()
     },
     {
-        id: "LOG_021",
-        date: "25.11.2026",
+        id: "LOG_024",
+        date: "22.11.2026",
         title: "Building an AI Math Engine from Scratch: The Physics of Matrices and the Hardware Memory Trap",
         content: `
             <p>I have never liked limitations. My journey into AI engineering is not just driven by a love for mathematics—it is driven by an obsession with understanding systems at their absolute core and maintaining complete control over the logic.</p>
 
-            <p>When I started coding, I did not want to just import a pre-built library to do the heavy lifting. I wanted to translate my own notebook derivations into raw code to execute the massive calculations I could not do by hand. This led me to build a complete custom Linear Algebra engine comprising roughly 45,000 lines of pure Python logic, completely independent of external libraries like NumPy.</p>
+            <p>When I started coding, I did not want to just import a pre-built library to do the heavy lifting. I wanted to translate my own notebook derivations into raw code to execute the massive calculations I could not do by hand. This led me to build a complete custom Linear Algebra engine of pure Python logic, completely independent of external libraries like NumPy.</p>
 
             <p>What started as an exercise in mathematics quickly turned into a deep dive into computer hardware, memory architectures, and the true physics of data processing. Here is what I learned.</p>
 
@@ -7185,6 +7185,698 @@ const researchLogs = [
             <br>
             <p><em>Building a math engine from scratch and watching it get crushed by NumPy is a rite of passage. It forces you to look past the syntax and understand what is actually happening at the silicon level. True engineering is not just knowing how to import a library—it is understanding how hardware processes your data. If you do not understand how your data sits in the RAM, you do not truly understand your AI architecture.</em></p>
         `
+    },
+    {
+        id: "LOG_025",
+        date: "27.11.2026",
+        title: "Linear Algebra: The True Geometry of Vector, Field, Vector Space & Linear Transformations",
+        content: (function() {
+            var L = String.fromCharCode(60);
+            var G = String.fromCharCode(62);
+            function tag(t, s) { return L + t + G + s + L + "/" + t + G; }
+            function p(s) { return tag("p", s); }
+            function h3(s) { return tag("h3", s); }
+            function b(s) { return tag("strong", s); }
+            function em(s) { return tag("em", s); }
+            function codeBox(s) {
+                return L + 'div class="code-box"' + G + tag("pre", tag("code", s)) + L + "/div" + G;
+            }
+            function ul(arr) {
+                return tag("ul", arr.map(function(item) { return tag("li", item); }).join(""));
+            }
+
+            return [
+                h3("SECTION 1: The True Geometry of Vector, Field, and Vector Space"),
+
+                p("To understand Linear Algebra, it is first necessary to visually see three basic things—Vector (" + em("u, v") + "), Field (" + em("F") + "), and Vector Space (" + em("V") + ")—on a Cartesian Plane (Graph)."),
+
+                p(b("1. What is a Vector (u, v)?")),
+
+                ul([
+                    b("An Arrow from the Origin to a Point (Position Vector): ") + "Right in the center of a graph paper (Cartesian plane) lies the Origin (0,0). The arrow formed by connecting the Origin (0,0) to any point (x, y) present on the plane is called a Vector. Every vector has two properties:<br>" +
+                    "1. " + b("Length (Magnitude):") + " The distance from the Origin to that point.<br>" +
+                    "2. " + b("Direction:") + " Which angle or way that arrow is pointing toward.",
+
+                    b("A Vector Connecting Two Points (A and B) on a Plane (Free Vector): ") + "If there are any two distinct points A(x₁, y₁) and B(x₂, y₂) on the plane, then the line connecting both of them (" + b("AB⃗") + ") is also a vector of that same Vector Space.<br>" +
+                    "• " + b("Mathematical Logic:") + " From the Origin O(0,0) to A is one vector " + b("OA⃗") + ", and from the Origin O(0,0) to B is a second vector " + b("OB⃗") + ". When we connect A to B, we are actually subtracting two vectors:<br>" +
+                    b("AB⃗ = OB⃗ − OA⃗ = (x₂ − x₁, y₂ − y₁)") + "<br>" +
+                    "To keep calculations easy, we pick up that " + b("AB⃗") + " arrow and place its tail back at the Origin (0,0). Its length and direction remain the exact same.",
+
+                    b("Real-World Examples:") + "<br>" +
+                    "1. " + b("Motion of a Car:") + " A car moving at a speed of 50 km/h in the North-East direction is a 2D vector.<br>" +
+                    "2. " + b("Digital Image Pixel (RGB):") + " Every single pixel of a color photo is made up of 3 numbers: [Red, Green, Blue], such as u = (200, 150, 50). This is a vector in 3D space (ℝ³)."
+                ]),
+
+                p(b("2. Why Do We Call It \"Vector Space\"? Why Not Just \"Vector\"?")),
+
+                p("When we assume " + em("u") + " and " + em("v") + " to be vectors while solving problems, why is this entire chapter named Vector Space?"),
+
+                ul([
+                    b("Single Vector vs. Infinite Space (Fish vs. Ocean):") + "<br>" +
+                    "• " + b("Vector (u or v):") + " It is just one single arrow drawn on the plane, such as u = (2, 3).<br>" +
+                    "• " + b("Vector Space (V):") + " How many points are there on a Cartesian plane? Infinite! The entire set (collection / container) of all the infinite vectors that can be formed by connecting the Origin (0,0) to those infinite points is called a Vector Space.<br>" +
+                    "• " + b("Analogy:") + " If a single vector (u) is a fish, then the Vector Space (V) is that entire ocean (plane) inside which those infinite fish are swimming. When we write \"Let u, v ∈ V\" in a proof, it means that we have picked out any 2 vectors (u and v) from that infinite ocean (V).",
+
+                    b("Standard Examples of Vector Spaces:") + "<br>" +
+                    "• " + b("ℝ¹ (1D Space):") + " A single straight number line (X-axis).<br>" +
+                    "• " + b("ℝ² (2D Space):") + " A flat graph paper (X-Y plane) in which every vector is in the form of (x, y).<br>" +
+                    "• " + b("ℝ³ (3D Space):") + " Our 3D room (X-Y-Z space) which has length (x), width (y), and height (z) all three, meaning every vector is in the form of (x, y, z)."
+                ]),
+
+                p(b("3. What is a Field (F) and Where Does It Appear on a Graph?")),
+
+                p("Everywhere in books, it is written: \"Let V be a Vector Space over a Field F\" — which is written in short as " + b("V(F)") + " (such as " + b("ℝ²(ℝ)") + " or " + b("ℝ³(ℝ)") + ")."),
+
+                ul([
+                    b("Location of the Field (F) on the Graph: ") + "When you draw the X-axis and Y-axis, the set of plain numbers (0, 1, 2, −3, 0.5, √2) written along those axes is what we call the Field (F)!",
+                    b("Function of the Field (The Control Knob / Multiplier Slider): ") + "The numbers of the Field (α, β ∈ F) are called Scalars. Their job is to multiply with a vector and Scale (stretch or shrink) its length.",
+                    b("Common Fields and the Meaning of (F, +, ·): ") + "When (ℚ, +, ·) or (ℝ, +, ·) is written in books, it means that this is a set of numbers in which all the rules of normal addition (+) and multiplication (·) work:<br>" +
+                    "1. " + b("ℚ (Field of Rational Numbers):") + " Those numbers that can be written as a fraction p/q (such as 1, −2, 3/4, 2.5). Root numbers (√2, √3, π) do not come under this.<br>" +
+                    "2. " + b("ℝ (Field of Real Numbers):") + " All normal numbers in the world come under this—both Rational (1, 2, 0.5) and Irrational (√2, √5, π).<br>" +
+                    "3. " + b("ℂ (Field of Complex Numbers):") + " Numbers of the form a + ib (where i = √(−1)) come under this."
+                ]),
+
+                codeBox(
+                    "================================================================================\n" +
+                    "        DIAGRAM 1: ANATOMY OF A VECTOR SPACE R^2(R) ON A CARTESIAN PLANE\n" +
+                    "================================================================================\n" +
+                    "\n" +
+                    "                        Y-Axis (Numbers from Field R)\n" +
+                    "                             ^\n" +
+                    "                          5  |               * B(4, 5)\n" +
+                    "                             |              /\n" +
+                    "                          4  |             /  <-- Free Vector AB = OB - OA\n" +
+                    "                             |            /       (Also part of Vector Space R^2)\n" +
+                    "                          3  |           * A(2, 3)\n" +
+                    "                             |          /\n" +
+                    "                          2  |         /  u = (2, 3) [Position Vector]\n" +
+                    "                             |        /\n" +
+                    "                          1  |       /\n" +
+                    "                             |      /\n" +
+                    "  <---+----+----+----+----+--+-----+----+----+----+----+---> X-Axis (Field R)\n" +
+                    "     -4   -3   -2   -1    0  |     1    2    3    4    5\n" +
+                    "                       Origin (0,0)\n" +
+                    "                            -1\n" +
+                    "                             |\n" +
+                    "                            -2     * v = (3, -2) [Another Vector in R^2]\n" +
+                    "                             v\n" +
+                    "\n" +
+                    "  * Single Arrow u = (2, 3)          ---> ONE Vector\n" +
+                    "  * Entire Infinite 2D Plane         ---> Vector Space (V = R^2)\n" +
+                    "  * Numbers on X & Y Axes (R)        ---> Field (F = R, Scalar Multipliers)\n" +
+                    "================================================================================"
+                ),
+
+                h3("SECTION 2: Binary Operations — Internal (+) vs. External (·) Composition"),
+
+                p("Inside a Vector Space " + b("(V, +, ·)") + ", there are only 2 fundamental operations (actions). There is a direct visual reason why they are called Internal Composition and External Composition:"),
+
+                p(b("1. Internal Composition (+ : Vector Addition)")),
+
+                ul([
+                    b("Definition: ") + "When we pick two vectors u and v from inside the Vector Space V itself and add them together (u + v), this is called Internal Composition:<br>" +
+                    b("+ : V × V → V   ⇒   u + v ∈ V"),
+                    b("Why is it Called \"Internal\"? ") + "Because the first input (u) belongs inside V, the second input (v) also belongs inside V, and the resulting new vector (u + v) also remains inside V. Nothing came from outside!",
+                    b("Visual & Geometric Effect (The Direction Changes!): ") + "When two vectors pointing in different directions are added together, the direction (angle) of the newly formed resultant vector (u + v) depends on the combined effect of both original vectors.<br>" +
+                    "• " + b("Example:") + " Suppose vector u = (4, 0) is pulling a car toward the East (X-axis), and vector v = (0, 3) is pulling the car toward the North (Y-axis). When both act together (u + v), the car will go neither pure East nor pure North—it will travel along the new middle path North-East toward the point (4, 3)!"
+                ]),
+
+                p(b("2. External Composition (· : Scalar Multiplication)")),
+
+                ul([
+                    b("Definition: ") + "When we pick a plain number (scalar α) from the outside Field (F) and multiply it with a vector u of the Vector Space (V) (α · u), this is called External Composition:<br>" +
+                    b("· : F × V → V   ⇒   α · u ∈ V"),
+                    b("Why is it Called \"External\"? ") + "Because while the vector u came from inside the house (V), the multiplier α came from outside the house (External Field F)!",
+                    b("Visual & Geometric Effect (Same Track / Line of Action Rule): ") + "Scalar multiplication can never pick up a vector and send it to a new angle (such as 30° or 60°)! It only stretches the vector forward, shrinks it backward, or flips it by 180 degrees along its own straight line (Line of Action).",
+                    b("Concrete Numerical Example (In 3D Space ℝ³): ") + "Suppose we have a vector whose X, Y, and Z coordinates are:<br>" +
+                    b("u = (2, 3, 4)") + "<br>" +
+                    "Now we take different scalars (α) from the Field ℝ and multiply:<br>" +
+                    "1. " + b("When α = 2 (Stretch by 2×):") + "<br>" +
+                    b("2 · u = 2 · (2, 3, 4) = (2 × 2, 2 × 3, 2 × 4) = (4, 6, 8)") + "<br>" +
+                    b("Visual Meaning:") + " The vector shifted along all three axes X, Y, and Z in that exact same direction to reach (4, 6, 8), and its length became exactly double (2×).<br>" +
+                    "2. " + b("When α = 0.5 (Shrink by Half):") + "<br>" +
+                    b("0.5 · u = 0.5 · (2, 3, 4) = (1, 1.5, 2)") + "<br>" +
+                    b("Visual Meaning:") + " The vector shrank along that same straight line to half its size.<br>" +
+                    "3. " + b("When α = −1 (180° Flip on the Same Line):") + "<br>" +
+                    b("−1 · u = −1 · (2, 3, 4) = (−2, −3, −4)") + "<br>" +
+                    b("Visual Meaning:") + " Here, the direction of the vector certainly became opposite, but it did not leave its Line of Action (straight track)! It simply went to (−2, −3, −4) on the other side of (0,0,0) along that same track.<br>" +
+                    "4. " + b("When α = 0 (Crush to Origin):") + "<br>" +
+                    b("0 · u = 0 · (2, 3, 4) = (0, 0, 0)") + "<br>" +
+                    b("Visual Meaning:") + " The vector shrank completely to become the Origin (0,0,0), i.e., the Zero Vector."
+                ]),
+
+                codeBox(
+                    "================================================================================\n" +
+                    "     DIAGRAM 2: INTERNAL ADDITION (+) VS. EXTERNAL SCALAR MULTIPLICATION (.)\n" +
+                    "================================================================================\n" +
+                    "\n" +
+                    "  [1] INTERNAL COMPOSITION (u + v) ---> CREATES A NEW ANGLE / DIRECTION!\n" +
+                    "\n" +
+                    "        Y (North)\n" +
+                    "        ^\n" +
+                    "      3 | - - - - - - - - - * Resultant (u + v) = (4, 3)\n" +
+                    "        |                 /   [New Direction: North-East!]\n" +
+                    "      2 |               /\n" +
+                    "        |             /\n" +
+                    "      1 |   v=(0,3) /\n" +
+                    "        |         /\n" +
+                    "      0 +--------*----------> X (East)\n" +
+                    "               (0,0)        4\n" +
+                    "                        u = (4,0)\n" +
+                    "\n" +
+                    "\n" +
+                    "  [2] EXTERNAL COMPOSITION (alpha . u) ---> STAYS ON THE EXACT SAME LINE!\n" +
+                    "\n" +
+                    "                                                 * 2u = (4, 6, 8) [Stretched 2x]\n" +
+                    "                                               /\n" +
+                    "                                             /\n" +
+                    "                                           * u = (2, 3, 4) [Original Vector]\n" +
+                    "                                         /\n" +
+                    "                                       * 0.5u = (1, 1.5, 2) [Shrunk 0.5x]\n" +
+                    "                                     /\n" +
+                    "                        (0,0,0)    /\n" +
+                    "  -----------------------*-------+----------------------- (Same Line of Action)\n" +
+                    "                       /\n" +
+                    "                     /\n" +
+                    "                   /\n" +
+                    "                 * -1u = (-2, -3, -4)\n" +
+                    "                [Flipped 180 Degrees on the Same Track]\n" +
+                    "================================================================================"
+                ),
+
+                h3("SECTION 3: Why is a Vector Space Always Greater Than or Equal to the Field (V ≥ F)?"),
+
+                p("A very important rule is taught in lectures:"),
+
+                ul([
+                    b("ℝ(ℝ)") + " (Real space over Real field) ⇒ " + b("Valid Vector Space"),
+                    b("ℚ(ℚ)") + " (Rational space over Rational field) ⇒ " + b("Valid Vector Space"),
+                    b("ℝ(ℚ)") + " (Real space over Rational field) ⇒ " + b("Valid Vector Space"),
+                    b("ℚ(ℝ)") + " (Rational space over Real field) ⇒ " + b("NOT a Vector Space (System Crash!)")
+                ]),
+
+                p("Why does " + b("ℚ(ℝ)") + " fail? Let us see this on the Number Line Graph:"),
+
+                p(b("1. What Do ℚ and ℝ Look Like on a Graph?")),
+
+                ul([
+                    b("Rational Line (ℚ — Dotted Line with Holes / Gaps): ") + "If we draw an X-axis of only Rational numbers (ℚ), all fractions like 0, 1, 1.5, 2, −3 will be on it, but wherever Irrational numbers (√2 ≈ 1.414, √3 ≈ 1.732, π ≈ 3.14159) occur, there will be Holes (empty gaps) because those numbers do not exist in ℚ at all!",
+                    b("Real Line (ℝ — Solid Cement Line): ") + "Both Rational and Irrational numbers are combined in the line of Real numbers (ℝ). Therefore, there is not a single hole or gap on the line of ℝ—the entire ground is solid."
+                ]),
+
+                p(b("2. How Does the System Crash in ℚ(ℝ)?")),
+
+                p(b("ℚ(ℝ)") + " means that our Vector Space is V = ℚ (the Dotted Line floor), and our Field is F = ℝ (all multipliers of the Solid Line):"),
+
+                ul([
+                    "1. We chose a vector from the Vector Space V = ℚ:<br>" + b("u = 1 ∈ ℚ"),
+                    "2. Now we chose a scalar multiplier from the Field F = ℝ:<br>" + b("α = √2 ∈ ℝ"),
+                    "3. Now we applied External Composition (α · u):<br>" + b("α · u = √2 · 1 = √2"),
+                    "4. " + b("The Crash:") + " Our vector stretched and went to land at the √2 (1.414...) spot on the graph. However, our Vector Space (floor) is only ℚ, and on the floor of ℚ, there is no ground at all (there is a Hole) at the √2 spot!<br>" +
+                    "Because " + b("√2 ∉ ℚ") + ", our new vector fell outside our Vector Space ℚ! This is called: " + b("Closure under Scalar Multiplication Failed.") + " Therefore, a Vector Space (V) can never be smaller than the Field (F)!"
+                ]),
+
+                codeBox(
+                    "================================================================================\n" +
+                    "        DIAGRAM 3: GRAPHICAL PROOF OF WHY Q(R) CRASHES & R(Q) SUCCEEDS\n" +
+                    "================================================================================\n" +
+                    "\n" +
+                    "  CASE A: Q(R) ---> VECTOR SPACE (Q) IS SMALLER THAN FIELD (R) [CRASH!]\n" +
+                    "\n" +
+                    "  Vector u = 1 (from Q) multiplied by Scalar alpha = sqrt(2) (from R):\n" +
+                    "\n" +
+                    "      0               1          sqrt(2)=1.414          2\n" +
+                    "  ....*...............*..............( HOLE )...........*....> Floor V = Q\n" +
+                    "                      |                 |                      (Dotted Line)\n" +
+                    "                      +-- Stretch by -->+\n" +
+                    "                          sqrt(2)       |\n" +
+                    "                                        v\n" +
+                    "                              [CRASH! NOT IN SPACE Q!]\n" +
+                    "                        (Closure Property Failed: sqrt(2) not in Q)\n" +
+                    "\n" +
+                    "\n" +
+                    "  CASE B: R(Q) ---> VECTOR SPACE (R) IS LARGER THAN FIELD (Q) [100% SAFE!]\n" +
+                    "\n" +
+                    "  Vector u = sqrt(2) (from R) multiplied by Scalar alpha = 2 (from Q):\n" +
+                    "\n" +
+                    "      0                    sqrt(2)                   2*sqrt(2)\n" +
+                    "  ====*=======================*==========================*====> Floor V = R\n" +
+                    "                              |                          ^      (Solid Line)\n" +
+                    "                              +---- Stretch by 2x -------+\n" +
+                    "                                                         |\n" +
+                    "                                             [SAFE! LANDS ON SOLID R!]\n" +
+                    "================================================================================"
+                ),
+
+                h3("SECTION 4: Why Do We Check the 8 Conditions (Abelian Group, Closure, etc.) of a Vector Space?"),
+
+                p("A very logical question comes to mind: \"When every vector is formed on some plane or another, why is there any need to check Abelian group, Associativity, Commutativity, and Closure in every question?\""),
+
+                p("The answer to this is that not every set or every space is \"Flat (Straight)\" and \"Infinite (Without walls)\"! If there is a wall (boundary) in the space or if the space is curved, then vector addition and scaling fail there."),
+
+                p(b("1. Real-World Examples Where a Space Does NOT Become a \"Vector Space\" (System Failures)")),
+
+                ul([
+                    b("Failure 1: Bounded / Walled Space (RGB Color Space [0, 255]): ") + "In a computer, the color of any pixel stays between [0, 255]. Suppose vector u = 200. If you scale it by α = 2, it becomes 2 × 200 = 400, which breaks through the wall of 255 and goes outside! That is why the Closure Property is checked, so we know that the space is infinite and has no walls.",
+                    b("Failure 2: Curved Space (Surface of the Earth / Globe): ") + "On a flat sheet of paper, whether you go East first and then North (u + v), or go North first and then East (v + u), you will reach the exact same point.<br>" +
+                    "However, on a Curved Globe (Earth), if you go 1000 km North from the Equator and then 1000 km East, you will reach one place, whereas if you go 1000 km East first and then 1000 km North, you will reach a different place! That means on a spherical surface, " + b("u + v ≠ v + u") + ". That is why Commutativity and Associativity are checked to ensure that our plane is 100% Flat.",
+                    b("Failure 3: Space Without the Origin (0,0): ") + "Suppose someone gives a plane from which the center point (0,0) has been cut out and removed, or gives a line y = x + 5 that does not pass through the Origin (0,0) at all. If you multiply any of its vectors by α = 0, it will become (0,0), which is not on that line at all! That is why the Zero Vector (Identity) is checked."
+                ]),
+
+                p(b("2. Exam Blueprint: All 10 Rules to Prove a Set V(F) is a Vector Space")),
+
+                p("If a question comes in the B.Sc. exam: \"Prove that V(F) is a Vector Space\", you have to write these conditions in 3 parts:"),
+
+                p(b("Part A: (V, +) must be an Abelian Group (5 Rules of Internal Addition)")),
+
+                ul([
+                    "1. " + b("Closure under Addition:") + " For every u, v ∈ V, " + b("u + v ∈ V") + " must hold (Upon adding, the vector remains inside the plane).",
+                    "2. " + b("Associativity:") + " " + b("(u + v) + w = u + (v + w)") + " (Group and add in any order, the answer comes out the same).",
+                    "3. " + b("Existence of Additive Identity (Zero Vector):") + " There must be a Zero Vector (0 ∈ V) in the space such that " + b("u + 0 = u") + " (The Origin must exist).",
+                    "4. " + b("Existence of Additive Inverse:") + " For every vector u ∈ V, its opposite vector −u ∈ V must exist such that " + b("u + (−u) = 0") + " (Every step can be brought back to the origin).",
+                    "5. " + b("Commutativity:") + " " + b("u + v = v + u") + " (The plane must be completely flat)."
+                ]),
+
+                p(b("Part B: External Scalar Multiplication Closure (1 Rule)")),
+
+                ul([
+                    "1. " + b("Closure under Scalar Multiplication:") + " For every scalar α ∈ F and vector u ∈ V, " + b("α · u ∈ V") + " must hold (Upon stretching or shrinking, the vector does not fall into any hole in the space)."
+                ]),
+
+                p(b("Part C: Compatibility Rules between Field F and Space V (4 Rules)")),
+
+                ul([
+                    "1. " + b("Distributivity over Vector Addition:") + " " + b("α · (u + v) = αu + αv") + " (Whether you add both vectors and stretch, or stretch them separately and add, it is the same thing).",
+                    "2. " + b("Distributivity over Field Addition:") + " " + b("(α + β) · u = αu + βu") + ".",
+                    "3. " + b("Associativity of Scalars:") + " " + b("(αβ) · u = α · (βu)") + ".",
+                    "4. " + b("Unit Scalar Identity:") + " " + b("1 · u = u") + " (where 1 ∈ F—multiplying a vector by 1 produces no change in it)."
+                ]),
+
+                h3("SECTION 5: Linear Transformation (T: V → W) — Concept, Geometry, and Formula"),
+
+                p("When we have two Vector Spaces (V and W), the process of picking up a vector from one space and sending or changing it into the second space is called a Linear Transformation."),
+
+                p(b("1. What is the True Meaning of a Linear Transformation (T)?")),
+
+                p("In mathematics, this is written as:"),
+
+                codeBox("T : V → W"),
+
+                p("This means that T is a Machine (Action Box) in which:"),
+
+                ul([
+                    b("Input:") + " Comes from Vector Space V (which is called the Domain).",
+                    b("Output:") + " Comes out into Vector Space W after being transformed (which is called the Codomain)."
+                ]),
+
+                p(b("2. Can a Set That is Not a \"Vector Space\" Have a Linear Transformation?")),
+
+                p("Absolutely Not! The very first condition of a Linear Transformation is that both the Input (V) and the Output (W) must 100% be Vector Spaces. If a space is not a Vector Space at all (for example, it has no Origin (0,0) or it is curved), then vectors can neither be added nor scaled there—and without addition and scaling, the Linear Transformation formula will fail at the very first step!"),
+
+                p(b("3. Geometric Rules: What Does a Linear Transformation Look Like on a Graph?")),
+
+                p("A transformation machine T will only be called \"Linear\" when it follows these 2 rules with the graph paper (grid):"),
+
+                ul([
+                    "1. " + b("Rule 1 (Origin Remains Fixed):") + " The Origin (0,0) of the Input space must remain at the Origin (0,0) of the Output space after being transformed:<br>" +
+                    b("T(0) = 0") + "<br>" +
+                    "If a machine shifts (0,0) and sends it to (1,0) or any other point, then it is not a Linear Transformation!",
+                    "2. " + b("Rule 2 (Grid Lines Remain Straight and Parallel):") + " All straight lines of the graph paper must remain straight and parallel (equally spaced) even after being transformed. Those lines can rotate, stretch, or compress, but they cannot curve!"
+                ]),
+
+                p(b("4. Real-World Visual Examples of T: V → W")),
+
+                ul([
+                    b("Example A (3D to 2D Projection — Sunlight and Shadow): ") + "Suppose a person is standing on the ground in the sunlight. That person's body is in 3D Vector Space (ℝ³) whose coordinates are (x, y, z) (where z is their height). When sunlight falls from above, their shadow is formed on the ground. That shadow is on the 2D flat ground (ℝ²) which only has (x, y) and the height z has been eliminated!<br>" +
+                    "Here, the sunlight is a Linear Transformation Machine (T: ℝ³ → ℝ²) that compressed the 3D vector (x, y, z) and turned it into a 2D vector (x, y):<br>" +
+                    b("T(x, y, z) = (x, y)"),
+
+                    b("Example B (RGB Color Image to Black & White Image Conversion): ") + "Every pixel of a color photo exists in 3D space ℝ³: (R, G, B). When we apply a \"Black & White (Grayscale)\" filter on our phone, our filter program combines those 3 numbers into a single brightness number:<br>" +
+                    b("T : ℝ³ → ℝ¹   defined by   T(R, G, B) = (0.3R + 0.59G + 0.11B)") + "<br>" +
+                    "Here, the 3D Vector Space (ℝ³) is directly transformed into a 1D Vector Space (ℝ¹)!"
+                ]),
+
+                p(b("5. Where Did the Linear Transformation Formula Come From?")),
+
+                p("To prove that T is a Linear Transformation in any question, we apply this Master Formula:"),
+
+                codeBox("T(αu + βv) = αT(u) + βT(v)"),
+
+                p("How was this formula actually formed?\nWe saw that there are only 2 operations in a Vector Space: Addition (u + v) and Scalar Multiplication (αu). A machine (T) is considered \"Linear\" only when it respects both of these operations (which is called the Principle of Superposition):"),
+
+                ul([
+                    b("Condition 1 (Preservation of Addition):") + "<br>" +
+                    b("T(u + v) = T(u) + T(v)") + "<br>" +
+                    b("Meaning:") + " Whether you add two vectors u and v outside first and then feed them into machine T (T(u + v)), or feed both separately into machine T and add their outputs afterward (T(u) + T(v))—in both cases, the final answer must come out to be the exact same!",
+
+                    b("Condition 2 (Preservation of Scalar Multiplication):") + "<br>" +
+                    b("T(αu) = αT(u)") + "<br>" +
+                    b("Meaning:") + " Whether you stretch vector u by α times first and then feed it into machine T (T(αu)), or pass vector u through the machine first and stretch the output by α times afterward (αT(u))—in both cases, the final answer must come out to be the exact same!"
+                ]),
+
+                p("Instead of writing two separate steps in the exam, mathematicians combined Condition 1 and Condition 2 to create one single combined equation:"),
+
+                codeBox("T(αu + βv) = αT(u) + βT(v)"),
+
+                h3("SECTION 6: THE ULTIMATE CONNECTION — Every Linear Transformation is Actually a MATRIX!"),
+
+                p("Now we come to the biggest discovery: The Linear Transformation (T) that we have been calling a \"Machine\" or \"Action Box\" all this time is actually a MATRIX (A)!"),
+
+                p("Whenever an equation T(x, y, z) is written, a Matrix is working behind the scenes, multiplying with the vector (A · v) to form a new vector."),
+
+                p(b("1. Question: A Matrix Rotates or Stretches a Vector Within the Same Space, So How Does It Send It to Another Vector Space?")),
+
+                p("The answer to this is hidden in the Size / Order of the Matrix! Matrices work in two ways:"),
+
+                p(b("Case A: Square Matrix (2 × 2 or 3 × 3) ⇒ Rotates or Stretches the Vector Within the SAME SPACE!")),
+
+                ul([
+                    "When the number of Rows and Columns in a Matrix are equal (such as 2 × 2 or 3 × 3), the output vector comes out with the exact same number of dimensions as the input vector that went in:<br>" +
+                    "• " + b("2 × 2 Matrix:") + " ℝ² → ℝ² (Rotates, stretches, or tilts/shears a vector of a 2D plane within that same 2D plane).<br>" +
+                    "• " + b("3 × 3 Matrix:") + " ℝ³ → ℝ³ (Rotates or stretches a vector of 3D space within that same 3D space)."
+                ]),
+
+                p(b("Case B: Rectangular Matrix (2 × 3, 3 × 2, 1 × 3) ⇒ Transforms the Vector from ONE SPACE TO ANOTHER SPACE!")),
+
+                ul([
+                    "When the number of Rows and Columns in a Matrix are different, it changes the dimension of the vector itself:<br>" +
+                    "• " + b("2 × 3 Matrix (ℝ³ → ℝ² Compression):") + " It has 3 Columns (which eat the 3D input x, y, z) and 2 Rows (which spit out a 2D output). That means this matrix compresses a vector from 3D space and throws it onto a 2D plane!<br>" +
+                    "• " + b("3 × 2 Matrix (ℝ² → ℝ³ Expansion):") + " It has 2 Columns (for the 2D input) and 3 Rows (for the 3D output). This picks up a 2D vector and sends it into 3D space."
+                ]),
+
+                p(b("Direct Rule for Matrix Size:")),
+
+                p("If a Linear Transformation is T : ℝⁿ → ℝᵐ (meaning there are n coordinates in the Input and m coordinates in the Output), then the size of its Matrix will always be m × n:"),
+
+                codeBox("Matrix Order = Output Coordinates (m) × Input Coordinates (n)"),
+
+                codeBox(
+                    "================================================================================\n" +
+                    "       DIAGRAM 4: HOW SQUARE VS. RECTANGULAR MATRICES TRANSFORM SPACES\n" +
+                    "================================================================================\n" +
+                    "\n" +
+                    "  [A] SQUARE MATRIX (2 x 2) ---> STAYS IN THE SAME SPACE (R^2 ---> R^2)\n" +
+                    "  \n" +
+                    "      Input (2D)             Action Box (2x2 Matrix)          Output (2D)\n" +
+                    "       +-----+                 +--------+--------+            +----------+\n" +
+                    "       |  x  |    Multiply     |   2    |   -1   |            | 2x - y   |\n" +
+                    "       |-----|      ===>       |--------|--------|    ===>    |----------|\n" +
+                    "       |  y  |                 |   1    |    3   |            | x + 3y   |\n" +
+                    "       +-----+                 +--------+--------+            +----------+\n" +
+                    "      (2 x 1)                        (2 x 2)                    (2 x 1)\n" +
+                    "   [Vector in R^2]        [Stretches/Shears in Same Plane]   [Vector in R^2]\n" +
+                    "\n" +
+                    "\n" +
+                    "  [B] RECTANGULAR MATRIX (2 x 3) ---> JUMPS TO ANOTHER SPACE (R^3 ---> R^2)\n" +
+                    "\n" +
+                    "      Input (3D)             Action Box (2x3 Matrix)          Output (2D)\n" +
+                    "       +-----+                 +-----+-----+-----+            +----------+\n" +
+                    "       |  x  |                 |  1  |  0  | -1  |            |  x - z   |\n" +
+                    "       |-----|    Multiply     |-----|-----|-----|    ===>    |----------|\n" +
+                    "       |  y  |      ===>       |  0  |  1  |  1  |            |  y + z   |\n" +
+                    "       |-----|                 +-----+-----+-----+            +----------+\n" +
+                    "       |  z  |                       (2 x 3)                    (2 x 1)\n" +
+                    "       +-----+                  [3 Columns eat 3D;           [Compressed to\n" +
+                    "       (3 x 1)                   2 Rows spit out 2D]          2D Plane R^2!]\n" +
+                    "   [Vector in R^3]\n" +
+                    "================================================================================"
+                ),
+
+                p(b("2. How to Build a Matrix Directly from an Equation Without Any Formula? (3 Concrete Examples)")),
+
+                p("Just as we built the matrix on a rough notebook without any bookish formula simply by looking at the numbers (coefficients) written in front of x, y, z, let us lock that in with 3 examples:"),
+
+                p(b("Example 1: T : ℝ³ → ℝ² defined by T(x, y, z) = (x, y) (Screenshot Question)")),
+
+                ul([
+                    b("Step 1 (Check Dimensions): ") + "There are 3 variables (x, y, z) in the Input (ℝ³) and 2 parts in the Output (ℝ²). So the size of the Matrix will be 2 × 3 (2 Rows, 3 Columns).",
+                    b("Step 2 (Read Coefficients of x, y, z):") + "<br>" +
+                    "• The 1st part of the Output is x ⇒ This means: 1·x + 0·y + 0·z ⇒ The First Row becomes: [1   0   0]<br>" +
+                    "• The 2nd part of the Output is y ⇒ This means: 0·x + 1·y + 0·z ⇒ The Second Row becomes: [0   1   0]",
+                    b("Step 3 (Write the Matrix & Verify by Multiplication):") + " Now multiply this Matrix A with the 3D column vector [x, y, z]ᵀ and see:"
+                ]),
+
+                codeBox(
+                    "A = ⎡ 1   0   0 ⎤\n" +
+                    "    ⎣ 0   1   0 ⎦\n\n" +
+                    "⎡ 1   0   0 ⎤ ⎡ x ⎤   ⎡ (1·x) + (0·y) + (0·z) ⎤   ⎡ x ⎤\n" +
+                    "⎣ 0   1   0 ⎦ ⎢ y ⎥ = ⎣ (0·x) + (1·y) + (0·z) ⎦ = ⎣ y ⎦\n" +
+                    "             ⎣ z ⎦"
+                ),
+
+                p("See that? The 2 × 3 Matrix multiplied the 3D vector (x, y, z), wiped out the z-axis with zero, and turned it into the 2D vector (x, y)!"),
+
+                p(b("Example 2: T : ℝ³ → ℝ² defined by T(x, y, z) = (x − z, y + z) (Which You Solved on Your Notebook!)")),
+
+                ul([
+                    b("Step 1 (Check Dimensions): ") + "Input ℝ³ (3 variables: x, y, z) → Output ℝ² (2 parts). Matrix size = 2 × 3.",
+                    b("Step 2 (Read Coefficients of x, y, z):") + "<br>" +
+                    "• The 1st part of the Output is x − z ⇒ Namely 1·x + 0·y + (−1)·z ⇒ First Row: [1   0  −1]<br>" +
+                    "• The 2nd part of the Output is y + z ⇒ Namely 0·x + 1·y + 1·z ⇒ Second Row: [0   1   1]",
+                    b("Step 3 (Write the Matrix & Verify by Multiplication):") + " Multiply and check, plus run a Numerical Test feeding the 3D vector u = (5, 2, 3) into this matrix:"
+                ]),
+
+                codeBox(
+                    "A = ⎡ 1   0  -1 ⎤\n" +
+                    "    ⎣ 0   1   1 ⎦\n\n" +
+                    "Algebraic Verification:\n" +
+                    "⎡ 1   0  -1 ⎤ ⎡ x ⎤   ⎡ (1·x) + (0·y) + (-1·z) ⎤   ⎡ x - z ⎤\n" +
+                    "⎣ 0   1   1 ⎦ ⎢ y ⎥ = ⎣ (0·x) + (1·y) + (1·z)  ⎦ = ⎣ y + z ⎦\n" +
+                    "              ⎣ z ⎦\n\n" +
+                    "Numerical Test with u = (5, 2, 3):\n" +
+                    "⎡ 1   0  -1 ⎤ ⎡ 5 ⎤   ⎡ 5 - 3 ⎤   ⎡ 2 ⎤\n" +
+                    "⎣ 0   1   1 ⎦ ⎢ 2 ⎥ = ⎣ 2 + 3 ⎦ = ⎣ 5 ⎦\n" +
+                    "             ⎣ 3 ⎦"
+                ),
+
+                p("Passing through this matrix, the vector (5, 2, 3) from 3D space became the vector (2, 5) of a 2D plane!"),
+
+                p(b("Example 3: T : ℝ² → ℝ² defined by T(x, y) = (2x − y, x + 3y) (Same Space Transformation)")),
+
+                ul([
+                    b("Step 1 (Check Dimensions): ") + "Input ℝ² (2 variables: x, y) → Output ℝ² (2 parts). Matrix size = 2 × 2 (Square Matrix).",
+                    b("Step 2 (Read Coefficients of x, y):") + "<br>" +
+                    "• The 1st part of the Output is 2x − y ⇒ 2·x + (−1)·y ⇒ First Row: [2  −1]<br>" +
+                    "• The 2nd part of the Output is x + 3y ⇒ 1·x + 3·y ⇒ Second Row: [1   3]",
+                    b("Step 3 (Write the Matrix & Verify):")
+                ]),
+
+                codeBox(
+                    "A = ⎡ 2  -1 ⎤   ⇒   ⎡ 2  -1 ⎤ ⎡ x ⎤ = ⎡ 2x - y ⎤\n" +
+                    "    ⎣ 1   3 ⎦       ⎣ 1   3 ⎦ ⎣ y ⎦   ⎣ x + 3y ⎦"
+                ),
+
+                p("Because this is a 2 × 2 Square Matrix, it keeps the vector inside the 2D plane itself, merely stretching and tilting its X-axis according to 2x − y and its Y-axis according to x + 3y!"),
+
+                h3("SECTION 7: Complete Exam Vault — Step-by-Step Solved Proofs"),
+
+                p("When a question appears in the exam, we have to write a step-by-step algebraic proof in our answer sheet. Below are the complete steps and logic for all four of our questions:"),
+
+                p(b("Problem 1: 3D to 2D Projection Proof (From Lecture Image)")),
+
+                p(b("Question:") + " Let ℝ³(ℝ) and ℝ²(ℝ) be two vector spaces over the Field ℝ. Show that T : ℝ³ → ℝ² such that T(x, y, z) = (x, y) is a linear transformation. Also write its matrix representation."),
+
+                ul([
+                    b("Concept & Logic:") + " Here, the input space is V = ℝ³ and the output space is W = ℝ². The rule of the machine is to drop the third coordinate (z) and output the first two coordinates (x, y)."
+                ]),
+
+                p(b("Step-by-Step Exam Solution:")),
+
+                ul([
+                    "1. " + b("Step 1 (Define Vectors and Scalars):") + "<br>" +
+                    "Let u = (x₁, y₁, z₁) ∈ ℝ³ and v = (x₂, y₂, z₂) ∈ ℝ³ be any two vectors in ℝ³.<br>" +
+                    "Let α, β ∈ ℝ be any two scalars in the field ℝ.",
+
+                    "2. " + b("Step 2 (Find the Linear Combination αu + βv inside ℝ³):") + "<br>" +
+                    "αu + βv = α(x₁, y₁, z₁) + β(x₂, y₂, z₂)<br>" +
+                    "αu + βv = (αx₁, αy₁, αz₁) + (βx₂, βy₂, βz₂)<br>" +
+                    b("αu + βv = (αx₁ + βx₂,  αy₁ + βy₂,  αz₁ + βz₂)"),
+
+                    "3. " + b("Step 3 (Calculate LHS = T(αu + βv)):") + "<br>" +
+                    "Applying the transformation rule T(X, Y, Z) = (X, Y) (which keeps the first two coordinates and drops the third coordinate):<br>" +
+                    "T(αu + βv) = T(αx₁ + βx₂,  αy₁ + βy₂,  αz₁ + βz₂)<br>" +
+                    b("LHS = (αx₁ + βx₂,  αy₁ + βy₂)   --- (Equation 1)"),
+
+                    "4. " + b("Step 4 (Calculate RHS = αT(u) + βT(v)):") + "<br>" +
+                    "αT(u) + βT(v) = αT(x₁, y₁, z₁) + βT(x₂, y₂, z₂)<br>" +
+                    "Since T(x₁, y₁, z₁) = (x₁, y₁) and T(x₂, y₂, z₂) = (x₂, y₂):<br>" +
+                    "= α(x₁, y₁) + β(x₂, y₂)<br>" +
+                    "= (αx₁, αy₁) + (βx₂, βy₂)<br>" +
+                    b("RHS = (αx₁ + βx₂,  αy₁ + βy₂)   --- (Equation 2)"),
+
+                    "5. " + b("Step 5 (Conclusion & Matrix Form):") + "<br>" +
+                    "From Equation (1) and Equation (2), we get: " + b("T(αu + βv) = αT(u) + βT(v)") + ".<br>" +
+                    "Hence, T is a Linear Transformation. Its standard matrix representation of order 2 × 3 is:"
+                ]),
+
+                codeBox(
+                    "[T] = ⎡ 1   0   0 ⎤\n" +
+                    "      ⎣ 0   1   0 ⎦"
+                ),
+
+                p(b("Problem 2: 2D Stretching & Shearing Proof (T: ℝ² → ℝ²)")),
+
+                p(b("Question:") + " Let T : ℝ² → ℝ² be defined by T(x, y) = (2x − y,  x + 3y). Prove that T is a linear transformation and find its matrix."),
+
+                ul([
+                    b("Concept & Logic:") + " When we form αu + βv, our New X becomes (αx₁ + βx₂) and our New Y becomes (αy₁ + βy₂). When we apply T, wherever there is x in the formula, we substitute the entire New X, and wherever there is y, we substitute the entire New Y."
+                ]),
+
+                p(b("Step-by-Step Exam Solution:")),
+
+                ul([
+                    "1. " + b("Step 1 (Define Vectors and Scalars):") + "<br>" +
+                    "Let u = (x₁, y₁) ∈ ℝ² and v = (x₂, y₂) ∈ ℝ² be any two vectors. Let α, β ∈ ℝ be any two scalars.",
+
+                    "2. " + b("Step 2 (Find αu + βv):") + "<br>" +
+                    b("αu + βv = α(x₁, y₁) + β(x₂, y₂) = (αx₁ + βx₂,  αy₁ + βy₂)"),
+
+                    "3. " + b("Step 3 (Calculate LHS = T(αu + βv)):") + "<br>" +
+                    "Here, first coordinate X = αx₁ + βx₂ and second coordinate Y = αy₁ + βy₂.<br>" +
+                    "Applying the rule T(X, Y) = (2X − Y,  X + 3Y):<br>" +
+                    "T(αu + βv) = ( 2(αx₁ + βx₂) − (αy₁ + βy₂),   (αx₁ + βx₂) + 3(αy₁ + βy₂) )<br>" +
+                    "Opening the brackets inside both coordinates:<br>" +
+                    "= ( 2αx₁ + 2βx₂ − αy₁ − βy₂,   αx₁ + βx₂ + 3αy₁ + 3βy₂ )<br>" +
+                    "Grouping the α terms together and the β terms together:<br>" +
+                    "= ( (2αx₁ − αy₁) + (2βx₂ − βy₂),   (αx₁ + 3αy₁) + (βx₂ + 3βy₂) )<br>" +
+                    "Separating into two vectors by vector addition rule:<br>" +
+                    "= (2αx₁ − αy₁,  αx₁ + 3αy₁) + (2βx₂ − βy₂,  βx₂ + 3βy₂)<br>" +
+                    "Taking scalar α common from the first vector and β common from the second vector:<br>" +
+                    "= α(2x₁ − y₁,  x₁ + 3y₁) + β(2x₂ − y₂,  x₂ + 3y₂)<br>" +
+                    "Since T(u) = (2x₁ − y₁,  x₁ + 3y₁) and T(v) = (2x₂ − y₂,  x₂ + 3y₂):<br>" +
+                    b("LHS = αT(u) + βT(v) = RHS"),
+
+                    "4. " + b("Step 4 (Conclusion & Matrix Form):") + "<br>" +
+                    "Since T(αu + βv) = αT(u) + βT(v), T is a Linear Transformation. Its 2 × 2 matrix representation is:"
+                ]),
+
+                codeBox(
+                    "[T] = ⎡ 2  -1 ⎤\n" +
+                    "      ⎣ 1   3 ⎦"
+                ),
+
+                p(b("Problem 3: Non-Linear Transformation Proof (Origin Shift Failure)")),
+
+                p(b("Question:") + " Let T : ℝ² → ℝ² be defined by T(x, y) = (x + 1,  y). Check whether T is a linear transformation or not."),
+
+                ul([
+                    b("Concept & Logic:") + " In this equation, a constant number +1 is added to x. As soon as we feed the Origin (0,0) into this machine: T(0,0) = (0 + 1, 0) = (1,0) ≠ (0,0). Because the Origin shifted from its place, this is not a Linear Transformation at all (and no standard 2 × 2 matrix can be formed for it either!)."
+                ]),
+
+                p(b("Step-by-Step Exam Solution (Method 1 — General Algebraic Disproof):")),
+
+                ul([
+                    "1. " + b("Step 1:") + " Let u = (x₁, y₁) ∈ ℝ², v = (x₂, y₂) ∈ ℝ², and α, β ∈ ℝ.",
+
+                    "2. " + b("Step 2 (Calculate LHS = T(αu + βv)):") + "<br>" +
+                    "αu + βv = (αx₁ + βx₂,  αy₁ + βy₂)<br>" +
+                    "Applying T(X, Y) = (X + 1,  Y):<br>" +
+                    b("LHS = T(αx₁ + βx₂,  αy₁ + βy₂) = (αx₁ + βx₂ + 1,  αy₁ + βy₂)"),
+
+                    "3. " + b("Step 3 (Calculate RHS = αT(u) + βT(v)):") + "<br>" +
+                    "αT(u) + βT(v) = α(x₁ + 1,  y₁) + β(x₂ + 1,  y₂)<br>" +
+                    "= (αx₁ + α,  αy₁) + (βx₂ + β,  βy₂)<br>" +
+                    b("RHS = (αx₁ + βx₂ + α + β,  αy₁ + βy₂)"),
+
+                    "4. " + b("Step 4 (Comparison):") + "<br>" +
+                    "Comparing the first coordinate of LHS and RHS:<br>" +
+                    b("αx₁ + βx₂ + 1  ≠  αx₁ + βx₂ + α + β   (since 1 ≠ α + β in general)") + "<br>" +
+                    "Therefore, " + b("T(αu + βv) ≠ αT(u) + βT(v)") + ".<br>" +
+                    "Hence, T is NOT a Linear Transformation."
+                ]),
+
+                p(em("(Shortcut Note for Exams: You can also write in the exam that \"For any linear transformation, T(0,0) must be (0,0). Here T(0,0) = (0 + 1, 0) = (1,0) ≠ (0,0). Hence T is not a linear transformation.\")")),
+
+                p(b("Problem 4: 3D to 2D Compression with Axis Mixing (T: ℝ³ → ℝ²)")),
+
+                p(b("Question:") + " Let T : ℝ³ → ℝ² be defined by T(x, y, z) = (x − z,  y + z). Prove that T is a linear transformation and write its matrix."),
+
+                ul([
+                    b("Concept & Logic:") + " This machine brings a vector from 3D space (ℝ³) into 2D space (ℝ²), where the 1st output is X − Z and the 2nd output is Y + Z."
+                ]),
+
+                p(b("Step-by-Step Exam Solution:")),
+
+                ul([
+                    "1. " + b("Step 1 (Define Vectors and Scalars):") + "<br>" +
+                    "Let u = (x₁, y₁, z₁) ∈ ℝ³ and v = (x₂, y₂, z₂) ∈ ℝ³. Let α, β ∈ ℝ be any two scalars.",
+
+                    "2. " + b("Step 2 (Find αu + βv):") + "<br>" +
+                    b("αu + βv = (αx₁ + βx₂,  αy₁ + βy₂,  αz₁ + βz₂)"),
+
+                    "3. " + b("Step 3 (Calculate LHS = T(αu + βv)):") + "<br>" +
+                    "Here X = αx₁ + βx₂, Y = αy₁ + βy₂, and Z = αz₁ + βz₂.<br>" +
+                    "Applying T(X, Y, Z) = (X − Z,  Y + Z):<br>" +
+                    "T(αu + βv) = ( (αx₁ + βx₂) − (αz₁ + βz₂),   (αy₁ + βy₂) + (αz₁ + βz₂) )<br>" +
+                    "Grouping α terms and β terms inside both coordinates:<br>" +
+                    "= ( (αx₁ − αz₁) + (βx₂ − βz₂),   (αy₁ + αz₁) + (βy₂ + βz₂) )<br>" +
+                    "Splitting into two separate vectors:<br>" +
+                    "= (αx₁ − αz₁,  αy₁ + αz₁) + (βx₂ − βz₂,  βy₂ + βz₂)<br>" +
+                    "Factoring out α and β:<br>" +
+                    "= α(x₁ − z₁,  y₁ + z₁) + β(x₂ − z₂,  y₂ + z₂)<br>" +
+                    b("LHS = αT(u) + βT(v) = RHS"),
+
+                    "4. " + b("Step 4 (Conclusion & Matrix Form):") + "<br>" +
+                    "Since T(αu + βv) = αT(u) + βT(v), T is a Linear Transformation. Its 2 × 3 matrix representation is:"
+                ]),
+
+                codeBox(
+                    "[T] = ⎡ 1   0  -1 ⎤\n" +
+                    "      ⎣ 0   1   1 ⎦"
+                ),
+
+                h3("SECTION 8: Master Summary Table & 1-Second Exam Identification Rules"),
+
+                p("To identify within 1 second of looking at any objective or subjective question in the exam whether it is a Linear Transformation or not (and whether its Matrix can be formed or not), always keep this table in mind:"),
+
+                L + 'table style="width:100%; border-collapse: collapse; margin-bottom: 15px;"' + G +
+                L + 'tr style="border-bottom: 1px solid #ccc;"' + G +
+                L + 'th style="padding: 8px; text-align: left;"' + G + "Transformation Equation T(x, y, z)" + L + '/th' + G +
+                L + 'th style="padding: 8px; text-align: left;"' + G + "Is It a Linear Transformation?" + L + '/th' + G +
+                L + 'th style="padding: 8px; text-align: left;"' + G + "Why? (Visual & Mathematical Reason)" + L + '/th' + G +
+                L + 'th style="padding: 8px; text-align: left;"' + G + "Matrix Representation [T]" + L + '/th' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y, z) = (x, y)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("YES") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "The power of every variable is 1 and T(0,0,0) = (0,0)." + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "[[1, 0, 0], [0, 1, 0]] (2 × 3)" + L + '/td' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y) = (2x − y, x + 3y)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("YES") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "Power is 1, no constant +c is added." + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "[[2, −1], [1, 3]] (2 × 2)" + L + '/td' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y, z) = (x − z, y + z)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("YES") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "Power is 1, Origin (0,0,0) → (0,0) is fixed." + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "[[1, 0, −1], [0, 1, 1]] (2 × 3)" + L + '/td' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y) = (x + 1, y)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("NO") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "Adding the +1 constant shifted the Origin (0,0) to (1,0)!" + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("Matrix Cannot Be Formed!") + L + '/td' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y) = (x², y)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("NO") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "The power of x² is 2, which turns straight grid lines into a curve (parabola)!" + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("Matrix Cannot Be Formed!") + L + '/td' + G +
+                L + '/tr' + G +
+                L + 'tr style="border-bottom: 1px solid #eee;"' + G +
+                L + 'td style="padding: 8px;"' + G + b("T(x, y, z) = (xy, z)") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("NO") + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + "Two variables x · y are multiplying with each other (Scaling will fail)." + L + '/td' + G +
+                L + 'td style="padding: 8px;"' + G + b("Matrix Cannot Be Formed!") + L + '/td' + G +
+                L + '/tr' + G +
+                L + '/table' + G,
+
+                p("Now our Vector Space, Field, Binary Operations, Linear Transformation, and its Matrix Engine have been completely covered. Shall we now use this same Matrix [[1, 0, −1], [0, 1, 1]] to start the next topic: Kernel (Null Space) and Range (Rank-Nullity)?")
+            ].join("\n");
+        })()
     }
 ];
 

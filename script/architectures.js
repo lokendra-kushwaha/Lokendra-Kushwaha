@@ -13,13 +13,13 @@ const systemsData = [
             { label: "Execution Model", val: "Out-of-Core / Zero-IPC Streaming" },
             { label: "COMPUTE & AI CORE", val: "OmniCore Tabular LLM + 60+ C++ Kernels" },
             { label: "Memory Ceiling", val: "100GB+ Stream on <1.5GB RAM (O(1))" },
-            { label: "STATE & BLUEPRINT", val: "Editable JSON + Zero-Rescan .pkl Cache" }
+            { label: "STATE & BLUEPRINT", val: "Editable JSON + Zero-Rescan .nhb Cache" }
         ],
         tags: [
             "OmniCore Tabular LLM",
             "Human-Like Sandbox Testing",
             "Zero-IPC Streaming",
-            "60+ C++ & Arrow Kernels",
+            "80+ C++ & Arrow Kernels",
             "Automated Feature Engineering",
             "Schema Flattener & Reconstructor",
             "AST-to-SIMD & LLVM JIT",
@@ -28,7 +28,7 @@ const systemsData = [
         description: "Built to replace manual data wrangling with human-like decision-making, NullHunter is an out-of-core AI data refinery powered by OmniCore Tabular Intelligence (OTI)—a custom tabular LLM engineered to reason over structured datasets. Instead of relying on rigid rules, NullHunter thinks like an experienced data scientist: its loader streams massive files within a strict sub-2GB RAM ceiling, flattens nested multi-level headers, optimizes messy column names, and runs a parallel statistical scan across all cores. Before touching the full dataset, an internal validation sandbox tests multiple cleaning and imputation strategies on a live sample to verify which pipeline actually improves downstream ML accuracy and F1-score. Once proven, it locks a 1-second editable JSON blueprint and executes 60+ C++ and PyArrow kernels to heal corrupted data, extract date and text signals, and reconstruct clean, model-ready Parquet datasets—purifying 25 million rows in 44 seconds.",
         liveLink: "#",
         statusText: "Flagship Engine (OmniCore)",
-        githubLink: "https://github.com/lokendra-kushwaha/NullHunter"
+        githubLink: "https://github.com/lokendra-kushwaha/OmniCore"
     },
     {
         id: "SYS_02 // MATHEMATICAL CORE",
@@ -110,7 +110,7 @@ const systemsData = [
             "Dual-Engine Pipeline"
         ],
         description: "Engineered a dependency-free N-Dimensional tensor engine from scratch featuring native 3D convolutions, custom spatial filtering kernels, and a dual-engine architecture. Built to demonstrate how neural feature extraction, edge detection, and matrix convolutions operate at the raw mathematical level without deep learning wrappers.",
-        liveLink: "#",
+        liveLink: "https://neural-optic-core.streamlit.app/",
         statusText: "Tensor Vision Engine",
         githubLink: "https://github.com/lokendra-kushwaha/Neural-Optic-Core"
     },
